@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Screens/Splash/screen_splash.dart';
+import 'package:pharmacy_hn_clone/Screens/Onboarding/screen_onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pharmacy hn clone',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ScreenSplash()
-    );
+        title: 'Pharmacy hn clone',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const ScreenOnboarding());
   }
 }
