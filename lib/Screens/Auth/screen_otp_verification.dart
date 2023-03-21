@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
+import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenOtpVerification extends StatefulWidget {
   const ScreenOtpVerification({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
             const Align(
               alignment: Alignment.topCenter,
               child: Text(
-                'Verification',
+                AppString.textVerification,
                 style: TextStyle(
                     color: AppColor.colorBlack_two,
                     fontFamily: AppFonts.avenirRegular,
@@ -44,7 +45,8 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
             const Align(
               alignment: Alignment.topCenter,
               child: Text(
-                'Please type verification code sent \n\t\t\t\t\t\t\t\t\t\t\t\t\t to +1 9999 999999',
+                AppString.textOtpVerificationSend,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: AppColor.colorCoolGrey,
                     fontFamily: AppFonts.avenirRegular,
@@ -60,7 +62,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                   filled: true,
                   fillColor: AppColor.colorWhite_three,
                   border: InputBorder.none,
-                  hintText: 'Enter email or mobile number',
+                  hintText: AppString.textEnterEmailOrMobile,
                   hintStyle: TextStyle(
                       color: AppColor.colorCoolGrey,
                       fontWeight: FontWeight.w500)),
@@ -79,7 +81,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                   ),
                 ),
                 child: const Text(
-                  'Submit',
+                  AppString.textSubmit,
                   style: TextStyle(
                       color: AppColor.colorWhite_two,
                       fontFamily: AppFonts.avenirRegular,

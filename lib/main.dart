@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
+import 'package:pharmacy_hn_clone/Screens/Auth/screen_set_address.dart';
 import 'package:pharmacy_hn_clone/Screens/Splash/screen_splash.dart';
+import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Pharmacy hn clone',
+        title: AppString.textTitle,
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ScreenOtpVerification());
+        home: const ScreenSplash());
   }
 }

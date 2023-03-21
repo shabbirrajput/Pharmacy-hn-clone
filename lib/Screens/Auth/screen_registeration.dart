@@ -3,6 +3,7 @@ import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
+import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenRegisteration extends StatefulWidget {
   const ScreenRegisteration({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const Align(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  'Registeration',
+                  AppString.textRegisteration,
                   style: TextStyle(
                       color: AppColor.colorBlack_two,
                       fontFamily: AppFonts.avenirRegular,
@@ -52,7 +53,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Full Name',
+                    hintText: AppString.textFullName,
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
@@ -66,7 +67,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Email Address',
+                    hintText: AppString.textEmailAddress,
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
@@ -80,7 +81,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Mobile Number',
+                    hintText: AppString.textMobileNumber,
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
@@ -94,7 +95,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Password',
+                    hintText: AppString.textPassword,
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
@@ -108,7 +109,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Confirm Password',
+                    hintText: AppString.textConfirmPassword,
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
@@ -120,7 +121,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: 'By continuing, you’re agree to our',
+                      text: AppString.textTermsAndCondition,
                       style: TextStyle(
                         color: AppColor.colorGreyish,
                         fontFamily: AppFonts.avenirRegular,
@@ -129,7 +130,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Term & Condition ',
+                      text: AppString.textTermsAndCondition1,
                       style: TextStyle(
                         color: AppColor.colorPrimary_two,
                         fontFamily: AppFonts.avenirRegular,
@@ -138,7 +139,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                       ),
                     ),
                     TextSpan(
-                      text: 'and ',
+                      text: AppString.textAnd,
                       style: TextStyle(
                         color: AppColor.colorGreyish,
                         fontFamily: AppFonts.avenirRegular,
@@ -147,7 +148,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Privacy Policy.',
+                      text: AppString.textPrivacyPolicy,
                       style: TextStyle(
                         color: AppColor.colorPrimary_two,
                         fontFamily: AppFonts.avenirRegular,
@@ -178,7 +179,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     ),
                   ),
                   child: const Text(
-                    'Continue',
+                    AppString.textContinue,
                     style: TextStyle(
                         color: AppColor.colorWhite_two,
                         fontFamily: AppFonts.avenirRegular,
@@ -202,10 +203,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Already have an account?',
+                        text: AppString.textAlreadyHaveanAccount,
                         style: TextStyle(
                           color: AppColor.colorGreyish,
-                          fontFamily: 'Avenir',
+                          fontFamily: AppFonts.avenirRegular,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -213,15 +214,15 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                         text: ' ',
                         style: TextStyle(
                           color: AppColor.colorGreyish,
-                          fontFamily: 'Avenir',
+                          fontFamily: AppFonts.avenirRegular,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       TextSpan(
-                        text: 'Sign In',
+                        text: AppString.textSignIn,
                         style: TextStyle(
                           color: AppColor.colorPrimary_two,
-                          fontFamily: 'Avenir',
+                          fontFamily: AppFonts.avenirRegular,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -229,7 +230,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                   ),
                   style: TextStyle(
                     color: AppColor.colorGreyish,
-                    fontFamily: 'Avenir',
+                    fontFamily: AppFonts.avenirRegular,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

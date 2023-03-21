@@ -5,6 +5,7 @@ import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
+import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenOnboarding extends StatefulWidget {
   const ScreenOnboarding({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                         ),
                       ),
                       child: const Text(
-                        'Sign Up',
+                        AppString.textSignUp,
                         style: TextStyle(
                           color: AppColor.colorWhite_two,
                           fontFamily: AppFonts.avenirRegular,
@@ -71,7 +72,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                   side: const BorderSide(color: AppColor.colorPrimary),
                 ),
                 child: const Text(
-                  'Continue as a Guest',
+                  AppString.textContinueAsGuest,
                   style: TextStyle(
                     color: AppColor.colorPrimary,
                     fontFamily: AppFonts.avenirRegular,
@@ -83,7 +84,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
               height: AppSize.mainSize19,
             ),
             const Text(
-              'or',
+              AppString.textOr,
               style: TextStyle(
                 color: Color(0xff252427),
                 fontSize: AppSize.mainSize16,
@@ -100,7 +101,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
               child: OutlinedButton.icon(
                 icon: Image.asset(AppImage.appFblogo),
                 label: const Text(
-                  'Continue with Facebook',
+                  AppString.textContinueWithFb,
                   style: TextStyle(
                       color: AppColor.colorWhite,
                       fontFamily: AppFonts.avenirRegular),
@@ -122,7 +123,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
               child: OutlinedButton.icon(
                 icon: Image.asset(AppImage.appSearch),
                 label: const Text(
-                  'Continue with Google',
+                  AppString.textContinueWithGoogle,
                   style: TextStyle(fontFamily: AppFonts.avenirRegular),
                 ),
                 onPressed: () {},
@@ -149,7 +150,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Already have an account?',
+                      text: AppString.textAlreadyHaveanAccount,
                       style: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontFamily: AppFonts.avenirRegular,
@@ -165,7 +166,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                       ),
                     ),
                     TextSpan(
-                      text: 'Sign In',
+                      text: AppString.textSignIn,
                       style: TextStyle(
                         color: AppColor.colorPrimary_two,
                         fontFamily: AppFonts.avenirRegular,

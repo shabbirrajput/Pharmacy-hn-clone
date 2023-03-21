@@ -4,6 +4,7 @@ import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
+import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const Align(
                 alignment: Alignment.topCenter,
                 child: Text(
-                  'Login',
+                  AppString.textLogin,
                   style: TextStyle(
                       color: AppColor.colorBlack_two,
                       fontFamily: AppFonts.avenirHeavy,
@@ -50,7 +51,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Enter email or mobile number',
+                    hintText: AppString.textEnterEmailOrMobile,
                     hintStyle: TextStyle(color: AppColor.colorCoolGrey)),
               ),
               const SizedBox(
@@ -62,7 +63,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
-                    hintText: 'Enter password',
+                    hintText: AppString.textEnterPassword,
                     hintStyle: TextStyle(color: AppColor.colorCoolGrey)),
               ),
               Padding(
@@ -81,7 +82,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     );
                   },
                   child: const Text(
-                    'Forgot Password?',
+                    AppString.textForgotPassword,
                     style: TextStyle(color: AppColor.colorCoolGrey),
                   ),
                 ),
@@ -100,7 +101,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     ),
                   ),
                   child: const Text(
-                    'Login',
+                    AppString.textLogin,
                     style: TextStyle(
                       // color: AppColor.colorWhite_two,
                       fontFamily: AppFonts.avenirRegular,
@@ -124,7 +125,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   TextSpan(
                     children: [
                       TextSpan(
-                        text: 'Don’t have an account?',
+                        text: AppString.textDontHaveAnAccount,
                         style: TextStyle(
                           color: AppColor.colorCoolGrey,
                           fontFamily: AppFonts.avenirRegular,
@@ -140,7 +141,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         ),
                       ),
                       TextSpan(
-                        text: 'Register Now',
+                        text: AppString.textRegisterNow,
                         style: TextStyle(
                           color: AppColor.colorPrimary_two,
                           fontFamily: AppFonts.avenirRegular,
