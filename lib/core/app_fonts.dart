@@ -3,6 +3,7 @@ import 'package:pharmacy_hn_clone/core/app_color.dart';
 
 class AppFonts {
   static const avenirRegular = 'AvenirRegular';
+  static const avenirHeavy = 'Avenir-Heavy';
 
   static const regular = TextStyle(
       fontFamily: avenirRegular,
@@ -18,6 +19,23 @@ class AppFonts {
       color: AppColor.colorPrimary);
   static const mediumBold = TextStyle(
       fontFamily: avenirRegular,
+      fontWeight: FontWeight.w500,
+      color: AppColor.colorPrimary);
+
+  static const hregular = TextStyle(
+      fontFamily: avenirHeavy,
+      fontWeight: FontWeight.w400,
+      color: AppColor.colorPrimary);
+  static const hbold = TextStyle(
+      fontFamily: avenirHeavy,
+      fontWeight: FontWeight.w700,
+      color: AppColor.colorPrimary);
+  static const hsemiBold = TextStyle(
+      fontFamily: avenirHeavy,
+      fontWeight: FontWeight.w600,
+      color: AppColor.colorPrimary);
+  static const hmediumBold = TextStyle(
+      fontFamily: avenirHeavy,
       fontWeight: FontWeight.w500,
       color: AppColor.colorPrimary);
 

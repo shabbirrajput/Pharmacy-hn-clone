@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/Onboarding/screen_onboarding.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 
 class ScreenSplash extends StatefulWidget {
@@ -10,6 +11,15 @@ class ScreenSplash extends StatefulWidget {
 
 class _ScreenSplashState extends State<ScreenSplash> {
   @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const ScreenOnboarding()),
+          (Route<dynamic> route) => false);
+    });
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
