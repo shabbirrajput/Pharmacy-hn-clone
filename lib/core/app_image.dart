@@ -10,4 +10,8 @@ class AppImage {
   static const String appSearch = '${filePathPNG}search.png';
   static const String appLocation = '${filePathPNG}location.png';
   static const String appSetAddress = '${filePathPNG}setAdddress.png';
+  static const String appHome = '${filePathPNG}home.png';
+  static const String appFamily = '${filePathPNG}faimly.png';
+  static const String appOffice = '${filePathPNG}office.png';
+  static const String appOther = '${filePathPNG}other.png';
 }

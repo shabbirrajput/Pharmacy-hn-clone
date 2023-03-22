@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_forgot_password.dart';
+import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
+import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
@@ -94,7 +96,14 @@ class _ScreenLoginState extends State<ScreenLogin> {
                 height: AppSize.mainSize46,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScreenMenu(),
+                      ),
+                    );
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) => AppColor.colorPrimary,

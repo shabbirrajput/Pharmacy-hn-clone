@@ -37,4 +37,13 @@ class AppString {
   static const text841MontgomerySt =
       '841 Montgomery St \nJersey City, NJ 07306, USA';
   static const textJerseyCityNJ07306USA = 'Jersey City, NJ 07306, USA';
+  static const textVerify = 'Verify';
+  static const textAddAddressInformation = 'Add address information';
+  static const textZipCodeOptional = 'Zip Code(Optional)';
+  static const textThisAddressWillAppearAs = 'This address will appear as:';
+  static const textHome = 'Home';
+  static const textOffice = 'Office';
+  static const textFamily = 'Family';
+  static const textOther = 'Other';
+  static const textSaveAndContinue = 'Save & Continue';
 }

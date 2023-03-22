@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pharmacy_hn_clone/Screens/Auth/screen_set_address.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
@@ -204,7 +205,14 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                   height: AppSize.mainSize46,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ScreenSetAddress(),
+                        ),
+                      );
+                    },
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.resolveWith<Color?>(
@@ -212,7 +220,7 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                       ),
                     ),
                     child: const Text(
-                      AppString.textSubmit,
+                      AppString.textVerify,
                       style: TextStyle(
                           color: AppColor.colorWhite_two,
                           fontFamily: AppFonts.avenirRegular,
@@ -223,43 +231,6 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _textFieldOTP({required bool first, last}) {
-    return Flexible(
-      child: SizedBox(
-        height: 85,
-        child: AspectRatio(
-          aspectRatio: 1.0,
-          child: TextField(
-            autofocus: true,
-            onChanged: (value) {
-              if (value.length == 1 && last == false) {
-                FocusScope.of(context).nextFocus();
-              }
-              if (value.isEmpty && first == false) {
-                FocusScope.of(context).previousFocus();
-              }
-            },
-            showCursor: false,
-            readOnly: false,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            keyboardType: TextInputType.number,
-            maxLength: 1,
-            decoration: InputDecoration(
-              counter: const Offstage(),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 2, color: Colors.black12),
-                  borderRadius: BorderRadius.circular(12)),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(width: 2, color: Colors.purple),
-                  borderRadius: BorderRadius.circular(12)),
-            ),
-          ),
         ),
       ),
     );
