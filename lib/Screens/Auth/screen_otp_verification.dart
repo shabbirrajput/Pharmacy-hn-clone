@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
@@ -60,12 +61,109 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
               children: [
                 SingleChildScrollView(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      _textFieldOTP(first: true, last: false),
-                      _textFieldOTP(first: false, last: false),
-                      _textFieldOTP(first: false, last: false),
-                      _textFieldOTP(first: false, last: true),
+                      Container(
+                        color: AppColor.colorWhite_three,
+                        height: 50,
+                        width: 50,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          onSaved: (pin1) {},
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '0',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        color: AppColor.colorWhite_three,
+                        height: 50,
+                        width: 50,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          onSaved: (pin1) {},
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '0',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        color: AppColor.colorWhite_three,
+                        height: 50,
+                        width: 50,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          onSaved: (pin1) {},
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '0',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Container(
+                        color: AppColor.colorWhite_three,
+                        height: 50,
+                        width: 50,
+                        child: TextFormField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          onSaved: (pin1) {},
+                          textAlign: TextAlign.center,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: '0',
+                          ),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

@@ -34,4 +34,7 @@ class AppString {
   static const textDidntGetTheOTP = 'Didn’t get the  OTP? ';
   static const textResendOTP = 'Resend OTP';
   static const textSearchCity = 'Search City';
+  static const text841MontgomerySt =
+      '841 Montgomery St \nJersey City, NJ 07306, USA';
+  static const textJerseyCityNJ07306USA = 'Jersey City, NJ 07306, USA';
 }
