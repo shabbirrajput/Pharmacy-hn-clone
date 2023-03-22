@@ -31,4 +31,7 @@ class AppString {
   static const textAnd = 'and';
   static const textPrivacyPolicy = 'Privacy Policy.';
   static const textContinue = 'Continue';
+  static const textDidntGetTheOTP = 'Didn’t get the  OTP? ';
+  static const textResendOTP = 'Resend OTP';
+  static const textSearchCity = 'Search City';
 }

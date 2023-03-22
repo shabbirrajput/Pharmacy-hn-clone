@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ScreenSplash());
+        home: const ScreenSetAddress());
   }
 }
