@@ -22,4 +22,10 @@ class AppImage {
   static const String appRewardsAndCoupons = '${filePathPNG}rewards.png';
   static const String appNewsAndBlogs = '${filePathPNG}news.png';
   static const String appSettings = '${filePathPNG}settings.png';
+  static const String appDiscount = '${filePathPNG}discount.png';
+  static const String appHomeImg = '${filePathPNG}homeimg.png';
+  static const String appWine = '${filePathPNG}wine.png';
+  static const String appVitamins = '${filePathPNG}vitamins.png';
+  static const String appHealth = '${filePathPNG}health.png';
+  static const String appSkinCare = '${filePathPNG}skincare.png';
 }

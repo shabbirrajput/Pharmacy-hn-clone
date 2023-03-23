@@ -14,6 +14,14 @@ class ScreenSetAddress extends StatefulWidget {
 }
 
 class _ScreenSetAddressState extends State<ScreenSetAddress> {
+  late var _currentIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,22 +36,40 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
               hintStyle: TextStyle(
                   color: AppColor.colorCoolGrey, fontWeight: FontWeight.w500)),
         ),
-        //
-        // const Text(
-        //   AppString.textSearchCity,
-        //   style: TextStyle(
-        //     color: AppColor.colorCoolGrey,
-        //     fontSize: 16,
-        //     fontFamily: AppFonts.avenirRegular,
-        //     fontWeight: FontWeight.w500,
-        //   ),
-        // ),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: AppColor.colorWhite_two,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: AppColor.colorPrimary_two,
+        unselectedItemColor: AppColor.colorBlack_two.withOpacity(.60),
+        selectedFontSize: 14,
+        unselectedFontSize: 14,
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
+        elevation: 5,
+        items: const [
+          BottomNavigationBarItem(
+            label: AppString.textHome,
+            icon: Icon(Icons.home_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: AppString.textOffice,
+            icon: Icon(Icons.apartment),
+          ),
+          BottomNavigationBarItem(
+            label: AppString.textFamily,
+            icon: Icon(Icons.family_restroom_outlined),
+          ),
+          BottomNavigationBarItem(
+            label: AppString.textOther,
+            icon: Icon(Icons.pin_drop_outlined),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -68,18 +94,8 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  // const SizedBox(
-                  //   height: 1,
-                  // ),
                 ],
               ),
-              // const Text(
-              //   AppString.textJerseyCityNJ07306USA,
-              //   style: TextStyle(
-              //     color: AppColor.colorBlack_two,
-              //     fontFamily: AppFonts.avenirRegular,
-              //   ),
-              // ),
               const SizedBox(
                 height: AppSize.mainSize15,
               ),
@@ -115,63 +131,10 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   AppString.textThisAddressWillAppearAs,
-                  // textAlign: TextAlign.left,
                 ),
               ),
               const SizedBox(
                 height: AppSize.mainSize16,
-              ),
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.home_outlined),
-                  ),
-                  const Text(AppString.textHome),
-
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.apartment),
-                    color: AppColor.colorPrimary_two,
-                  ),
-                  Text(
-                    AppString.textOffice,
-                    style: getTextStyle(AppFonts.regular, AppSize.mainSize14),
-                  ),
-
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.family_restroom_outlined),
-                  ),
-                  const Text(AppString.textFamily),
-
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.pin_drop_outlined),
-                  ),
-                  const Text(AppString.textOther),
-
-                  // Image.asset(AppImage.appHome),
-                  // const SizedBox(
-                  //   width: AppSize.mainSize8,
-                  // ),
-                  // const Text(AppString.textHome),
-                  // Image.asset(AppImage.appOffice),
-                  // const SizedBox(
-                  //   width: AppSize.mainSize8,
-                  // ),
-                  // const Text(AppString.textOffice),
-                  // Image.asset(AppImage.appFamily),
-                  // const SizedBox(
-                  //   width: AppSize.mainSize8,
-                  // ),
-                  // const Text(AppString.textFamily),
-                  // Image.asset(AppImage.appOther),
-                  // const SizedBox(
-                  //   width: AppSize.mainSize8,
-                  // ),
-                  // const Text(AppString.textOther),
-                ],
               ),
               const SizedBox(
                 height: AppSize.mainSize25,

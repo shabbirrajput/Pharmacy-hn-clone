@@ -34,6 +34,7 @@ class AppString {
   static const textDidntGetTheOTP = 'Didn’t get the  OTP? ';
   static const textResendOTP = 'Resend OTP';
   static const textSearchCity = 'Search City';
+  static const textSearch = 'Search....';
   static const text841MontgomerySt =
       '841 Montgomery St \nJersey City, NJ 07306, USA';
   static const textJerseyCityNJ07306USA = 'Jersey City, NJ 07306, USA';
@@ -54,4 +55,9 @@ class AppString {
   static const textRewardsAndCoupons = 'Rewards & Coupons';
   static const textNewsAndBlog = 'News & Blog';
   static const textSettings = 'Settings';
+  static const textPharmacy = 'Pharmacy';
+  static const textDeals = 'Deals';
+  static const textCategory = 'Category';
+  static const textViewAllCategory = 'View All Category';
+  static const textWineLiqour = 'Wine/Liqour';
 }
