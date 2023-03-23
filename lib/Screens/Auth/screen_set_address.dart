@@ -18,15 +18,26 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          AppString.textSearchCity,
-          style: TextStyle(
-            color: AppColor.colorCoolGrey,
-            fontSize: 16,
-            fontFamily: AppFonts.avenirRegular,
-            fontWeight: FontWeight.w500,
-          ),
+        title: const TextField(
+          style: TextStyle(color: AppColor.colorBlack_two),
+          decoration: InputDecoration(
+              filled: true,
+              // fillColor: AppColor.colorWhite_three,
+              border: InputBorder.none,
+              hintText: AppString.textSearchCity,
+              hintStyle: TextStyle(
+                  color: AppColor.colorCoolGrey, fontWeight: FontWeight.w500)),
         ),
+        //
+        // const Text(
+        //   AppString.textSearchCity,
+        //   style: TextStyle(
+        //     color: AppColor.colorCoolGrey,
+        //     fontSize: 16,
+        //     fontFamily: AppFonts.avenirRegular,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -73,7 +84,7 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
                 height: AppSize.mainSize15,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
@@ -87,7 +98,7 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
                 height: AppSize.mainSize8,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,

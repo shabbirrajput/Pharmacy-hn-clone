@@ -57,7 +57,7 @@ class _ScreenForgotpasswordState extends State<ScreenForgotpassword> {
               height: AppSize.mainSize18,
             ),
             const TextField(
-              style: TextStyle(color: AppColor.colorWhite_three),
+              style: TextStyle(color: AppColor.colorBlack_two),
               decoration: InputDecoration(
                   filled: true,
                   fillColor: AppColor.colorWhite_three,

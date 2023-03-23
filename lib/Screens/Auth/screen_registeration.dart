@@ -49,7 +49,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize30,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
@@ -63,7 +63,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
@@ -77,7 +77,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
@@ -91,7 +91,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
@@ -105,7 +105,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               const TextField(
-                style: TextStyle(color: AppColor.colorWhite_three),
+                style: TextStyle(color: AppColor.colorBlack_two),
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,

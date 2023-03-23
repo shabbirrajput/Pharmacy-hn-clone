@@ -46,4 +46,12 @@ class AppString {
   static const textFamily = 'Family';
   static const textOther = 'Other';
   static const textSaveAndContinue = 'Save & Continue';
+  static const textAllCategory = 'All Category';
+  static const textMyOrder = 'My Order';
+  static const textMyWishlist = 'My Wishlist';
+  static const textMyProfile = 'My Profile';
+  static const textNotification = 'Notification';
+  static const textRewardsAndCoupons = 'Rewards & Coupons';
+  static const textNewsAndBlog = 'News & Blog';
+  static const textSettings = 'Settings';
 }

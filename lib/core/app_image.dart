@@ -14,4 +14,12 @@ class AppImage {
   static const String appFamily = '${filePathPNG}faimly.png';
   static const String appOffice = '${filePathPNG}office.png';
   static const String appOther = '${filePathPNG}other.png';
+  static const String appCategory = '${filePathPNG}category.png';
+  static const String appOrder = '${filePathPNG}order.png';
+  static const String appWishlist = '${filePathPNG}wishlist.png';
+  static const String appProfile = '${filePathPNG}profile.png';
+  static const String appNotification = '${filePathPNG}notifications.png';
+  static const String appRewardsAndCoupons = '${filePathPNG}rewards.png';
+  static const String appNewsAndBlogs = '${filePathPNG}news.png';
+  static const String appSettings = '${filePathPNG}settings.png';
 }
