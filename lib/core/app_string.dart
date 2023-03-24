@@ -60,4 +60,12 @@ class AppString {
   static const textCategory = 'Category';
   static const textViewAllCategory = 'View All Category';
   static const textWineLiqour = 'Wine/Liqour';
+  static const textVitamins = 'Vitamins';
+  static const textHealth = 'Health';
+  static const textSkinCare = 'Skin Care';
+  static const textPopularProduct = 'Popular Product';
+  static const textDoritosTangyCheeseCornChips =
+      'Doritos Tangy Cheese \nCorn Chips';
+  static const textPrice = '2.25';
+  static const textViewMore = 'View more';
 }

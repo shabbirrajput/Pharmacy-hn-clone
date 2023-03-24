@@ -86,7 +86,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
             const Text(
               AppString.textOr,
               style: TextStyle(
-                color: Color(0xff252427),
+                color: AppColor.colorDarkGrey,
                 fontSize: AppSize.mainSize16,
                 fontFamily: AppFonts.avenirRegular,
                 fontWeight: FontWeight.w500,

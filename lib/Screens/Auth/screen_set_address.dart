@@ -43,34 +43,6 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
         ),
         backgroundColor: AppColor.colorWhite_two,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.colorPrimary_two,
-        unselectedItemColor: AppColor.colorBlack_two.withOpacity(.60),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
-        elevation: 5,
-        items: const [
-          BottomNavigationBarItem(
-            label: AppString.textHome,
-            icon: Icon(Icons.home_outlined),
-          ),
-          BottomNavigationBarItem(
-            label: AppString.textOffice,
-            icon: Icon(Icons.apartment),
-          ),
-          BottomNavigationBarItem(
-            label: AppString.textFamily,
-            icon: Icon(Icons.family_restroom_outlined),
-          ),
-          BottomNavigationBarItem(
-            label: AppString.textOther,
-            icon: Icon(Icons.pin_drop_outlined),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -135,6 +107,37 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
               ),
               const SizedBox(
                 height: AppSize.mainSize16,
+              ),
+              const SizedBox(
+                height: AppSize.mainSize25,
+              ),
+              BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                selectedItemColor: AppColor.colorPrimary_two,
+                unselectedItemColor: AppColor.colorBlack_two.withOpacity(.60),
+                selectedFontSize: 14,
+                unselectedFontSize: 14,
+                currentIndex: _currentIndex,
+                onTap: _onItemTapped,
+                elevation: 0,
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    label: AppString.textHome,
+                    icon: Icon(Icons.home_outlined),
+                  ),
+                  BottomNavigationBarItem(
+                    label: AppString.textOffice,
+                    icon: Icon(Icons.apartment),
+                  ),
+                  BottomNavigationBarItem(
+                    label: AppString.textFamily,
+                    icon: Icon(Icons.family_restroom_outlined),
+                  ),
+                  BottomNavigationBarItem(
+                    label: AppString.textOther,
+                    icon: Icon(Icons.pin_drop_outlined),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: AppSize.mainSize25,

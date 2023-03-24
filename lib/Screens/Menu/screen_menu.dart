@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -35,23 +37,26 @@ class _ScreenMenuState extends State<ScreenMenu> {
           ],
         ),
         actions: [
-          SizedBox(
-            height: 1,
-            width: 91,
-            child: OutlinedButton.icon(
-              icon: Image.asset(AppImage.appDiscount),
-              label: const Text(
-                AppString.textDeals,
-                style: TextStyle(
-                    color: AppColor.colorBlack,
-                    fontFamily: AppFonts.avenirRegular),
-              ),
-              onPressed: () {},
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(AppColor.colorWhite_three),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0))),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: SizedBox(
+              height: 100,
+              width: 95,
+              child: OutlinedButton.icon(
+                icon: Image.asset(AppImage.appDiscount),
+                label: const Text(
+                  AppString.textDeals,
+                  style: TextStyle(
+                      color: AppColor.colorBlack,
+                      fontFamily: AppFonts.avenirRegular),
+                ),
+                onPressed: () {},
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      AppColor.colorWhite_three),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0))),
+                ),
               ),
             ),
           ),
@@ -231,24 +236,179 @@ class _ScreenMenuState extends State<ScreenMenu> {
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 150,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                      image: AssetImage(AppImage.appWine),
-                      fit: BoxFit.fill,
-                    )),
-                    child: const Text(
-                      AppString.textWineLiqour,
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                  Card(
+                    elevation: 0,
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize100,
+                              width: AppSize.mainSize100,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appWine),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textWineLiqour,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize100,
+                              width: AppSize.mainSize100,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appVitamins),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textVitamins,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize100,
+                              width: AppSize.mainSize100,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appHealth),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textHealth,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize100,
+                              width: AppSize.mainSize100,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appSkinCare),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textSkinCare,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
+            const SizedBox(
+              height: AppSize.mainSize29,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: AppSize.mainSize16, bottom: AppSize.mainSize17),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textPopularProduct,
+                  style: TextStyle(
+                      fontSize: AppSize.mainSize18,
+                      color: AppColor.colorBlack,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Container(
+              height: 400,
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  // physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                      height: 300,
+                      margin: const EdgeInsets.only(
+                        left: 4,
+                        right: 4,
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            AppImage.appDoritos,
+                            height: 140,
+                          ),
+
+                          const Text(
+                            AppString.textDoritosTangyCheeseCornChips,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          const Text(
+                            "\$${AppString.textPrice}",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: AppColor.colorPrimary_two,
+
+                              // fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          // SizedBox(
+                          //     height: 25,
+                          //     width: 90,
+                          //     child: ElevatedButton.icon(
+                          //       onPressed:  () {
+                          //
+                          //       },
+                          //       style: ElevatedButton.styleFrom(
+                          //           backgroundColor: Colors.deepPurpleAccent),
+                          //       icon: const Icon(Icons.shopping_cart),
+                          //       label: const Text(
+                          //         "Add",
+                          //         style: TextStyle(color: Colors.white),
+                          //       ), //label text
+                          //     )),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+            const Text(
+              AppString.textViewMore,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColor.colorPrimary_two),
+            )
           ],
         ),
       ),

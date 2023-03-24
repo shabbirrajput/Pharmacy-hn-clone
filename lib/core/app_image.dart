@@ -28,4 +28,5 @@ class AppImage {
   static const String appVitamins = '${filePathPNG}vitamins.png';
   static const String appHealth = '${filePathPNG}health.png';
   static const String appSkinCare = '${filePathPNG}skincare.png';
+  static const String appDoritos = '${filePathPNG}doritos.png';
 }
