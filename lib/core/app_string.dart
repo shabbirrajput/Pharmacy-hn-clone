@@ -68,4 +68,20 @@ class AppString {
       'Doritos Tangy Cheese \nCorn Chips';
   static const textPrice = '2.25';
   static const textViewMore = 'View more';
+  static const textRecommendProduct = 'Recommend Product';
+  static const textLatestNewsAndBlog = 'Latest News & Blog';
+  static const textLoremIpsum =
+      'Lorem Ipsum is simply dummy text\n of the printing and typesetting in…';
+  static const textCategoryName = 'Category Name';
+  static const text1HoursAgo = '1 hours ago';
+  static const textOurInstagramFeed = 'Our Instagram Feed';
+  static const textFollowUsOn = 'FOLLOW US ON';
+  static const textAveenoBaby = 'Aveeno Baby';
+  static const textTheOrdinaryHyaluronicAcid =
+      'The Ordinary \nHyaluronic Acid 2%';
+  static const textHeadAndShouldersShampoo = 'Head and Shoulders Shampoo';
+  static const textTrueBasicsMultivitSport = 'TrueBasics Multivit Sport';
+  static const textPondsVitaminMicellar = 'Pond’s Vitamin Micellar';
+  static const textFormulaMaskCollection = 'Formula 10.0.6 Mask Collection';
+  static const textBabyDiapersNewborn = 'Baby Diapers Newborn';
 }

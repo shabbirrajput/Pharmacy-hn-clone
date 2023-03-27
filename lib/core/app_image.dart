@@ -29,4 +29,23 @@ class AppImage {
   static const String appHealth = '${filePathPNG}health.png';
   static const String appSkinCare = '${filePathPNG}skincare.png';
   static const String appDoritos = '${filePathPNG}doritos.png';
+  static const String appTrueBasicsMultivitSport = '${filePathPNG}tbms.png';
+  static const String appTablets = '${filePathPNG}tablets.png';
+  static const String appDiscount1 = '${filePathPNG}discount1.png';
+  static const String appHurrah = '${filePathPNG}hurrah.png';
+  static const String appAveenoBaby = '${filePathPNG}aveenobaby.png';
+  static const String appTheOrdinaryHyaluronicAcid =
+      '${filePathPNG}theordinaryhyaluronicacid.png';
+  static const String appHeadAndShouldersShampoo =
+      '${filePathPNG}head&shoulders.png';
+  static const String appPonds = '${filePathPNG}ponds.png';
+  static const String appBePure = '${filePathPNG}bepure.png';
+  static const String appPampers = '${filePathPNG}pampers.png';
+  static const String appFacebook = '${filePathPNG}fb.png';
+  static const String appYoutube = '${filePathPNG}youtube.png';
+  static const String appInstagram = '${filePathPNG}instagram.png';
+  static const String appGmail = '${filePathPNG}gmail.png';
+  static const String appWhatsApp = '${filePathPNG}whatsapp.png';
+  static const String appMessenger = '${filePathPNG}messenger.png';
+  static const String appTiktok = '${filePathPNG}tiktok.png';
 }

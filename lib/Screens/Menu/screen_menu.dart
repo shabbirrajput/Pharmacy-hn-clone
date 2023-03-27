@@ -26,6 +26,8 @@ class _ScreenMenuState extends State<ScreenMenu> {
     });
   }
 
+  final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,6 +163,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
           children: [
             Container(
@@ -236,95 +239,31 @@ class _ScreenMenuState extends State<ScreenMenu> {
               ),
             ),
             SizedBox(
-              height: 150,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Card(
-                    elevation: 0,
-                    child: Row(
+              height: AppSize.mainSize150,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Column(
                       children: [
-                        Column(
-                          children: [
-                            Container(
-                              height: AppSize.mainSize100,
-                              width: AppSize.mainSize100,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(AppImage.appWine),
-                                fit: BoxFit.fill,
-                              )),
-                            ),
-                            const Text(
-                              AppString.textWineLiqour,
-                              style: TextStyle(
-                                  fontSize: AppSize.mainSize14,
-                                  color: AppColor.colorBlack_two),
-                            ),
-                          ],
+                        Container(
+                          height: AppSize.mainSize100,
+                          width: AppSize.mainSize100,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage(items()[index].image!),
+                            fit: BoxFit.fill,
+                          )),
                         ),
-                        Column(
-                          children: [
-                            Container(
-                              height: AppSize.mainSize100,
-                              width: AppSize.mainSize100,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(AppImage.appVitamins),
-                                fit: BoxFit.fill,
-                              )),
-                            ),
-                            const Text(
-                              AppString.textVitamins,
-                              style: TextStyle(
-                                  fontSize: AppSize.mainSize14,
-                                  color: AppColor.colorBlack_two),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: AppSize.mainSize100,
-                              width: AppSize.mainSize100,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(AppImage.appHealth),
-                                fit: BoxFit.fill,
-                              )),
-                            ),
-                            const Text(
-                              AppString.textHealth,
-                              style: TextStyle(
-                                  fontSize: AppSize.mainSize14,
-                                  color: AppColor.colorBlack_two),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              height: AppSize.mainSize100,
-                              width: AppSize.mainSize100,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                image: AssetImage(AppImage.appSkinCare),
-                                fit: BoxFit.fill,
-                              )),
-                            ),
-                            const Text(
-                              AppString.textSkinCare,
-                              style: TextStyle(
-                                  fontSize: AppSize.mainSize14,
-                                  color: AppColor.colorBlack_two),
-                            ),
-                          ],
+                        Text(
+                          items()[index].name!,
+                          style: const TextStyle(
+                              fontSize: AppSize.mainSize14,
+                              color: AppColor.colorBlack_two),
                         ),
                       ],
-                    ),
-                  ),
-                ],
-              ),
+                    );
+                  },
+                  itemCount: items().length),
             ),
             const SizedBox(
               height: AppSize.mainSize29,
@@ -338,13 +277,14 @@ class _ScreenMenuState extends State<ScreenMenu> {
                   AppString.textPopularProduct,
                   style: TextStyle(
                       fontSize: AppSize.mainSize18,
+                      fontFamily: AppFonts.avenirRegular,
                       color: AppColor.colorBlack,
                       fontWeight: FontWeight.w500),
                 ),
               ),
             ),
             Container(
-              height: 400,
+              height: AppSize.mainSize400,
               child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
@@ -353,8 +293,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
                   ),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: 4,
-                  // physics: const NeverScrollableScrollPhysics(),
+                  itemCount: catitems().length,
                   itemBuilder: (BuildContext ctx, index) {
                     return Container(
                       height: 300,
@@ -365,40 +304,25 @@ class _ScreenMenuState extends State<ScreenMenu> {
                       child: Column(
                         children: [
                           Image.asset(
-                            AppImage.appDoritos,
-                            height: 140,
+                            catitems()[index].image!,
+                            height: 130,
                           ),
-
-                          const Text(
-                            AppString.textDoritosTangyCheeseCornChips,
+                          Text(
+                            catitems()[index].name!,
                             textAlign: TextAlign.start,
-                            style: TextStyle(fontSize: 14),
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: AppFonts.avenirRegular),
                           ),
-                          const Text(
-                            "\$${AppString.textPrice}",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
+                          Text(
+                            "\$${catitems()[index].price!}",
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
                               color: AppColor.colorPrimary_two,
-
-                              // fontFamily: AppFonts.avenirRegular,
+                              fontFamily: AppFonts.avenirRegular,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          // SizedBox(
-                          //     height: 25,
-                          //     width: 90,
-                          //     child: ElevatedButton.icon(
-                          //       onPressed:  () {
-                          //
-                          //       },
-                          //       style: ElevatedButton.styleFrom(
-                          //           backgroundColor: Colors.deepPurpleAccent),
-                          //       icon: const Icon(Icons.shopping_cart),
-                          //       label: const Text(
-                          //         "Add",
-                          //         style: TextStyle(color: Colors.white),
-                          //       ), //label text
-                          //     )),
                         ],
                       ),
                     );
@@ -408,7 +332,327 @@ class _ScreenMenuState extends State<ScreenMenu> {
               AppString.textViewMore,
               textAlign: TextAlign.center,
               style: TextStyle(color: AppColor.colorPrimary_two),
-            )
+            ),
+            const SizedBox(
+              height: AppSize.mainSize29,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: AppSize.mainSize16, bottom: AppSize.mainSize17),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textRecommendProduct,
+                  style: TextStyle(
+                      fontSize: AppSize.mainSize18,
+                      fontFamily: AppFonts.avenirRegular,
+                      color: AppColor.colorBlack,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: AppSize.mainSize400,
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: citems().length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return Container(
+                      height: 300,
+                      margin: const EdgeInsets.only(
+                        left: 4,
+                        right: 4,
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            citems()[index].image!,
+                            height: 130,
+                          ),
+                          Text(
+                            citems()[index].name!,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontFamily: AppFonts.avenirRegular),
+                          ),
+                          Text(
+                            "\$${citems()[index].price!}",
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              color: AppColor.colorPrimary_two,
+                              fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
+            const Text(
+              AppString.textViewMore,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColor.colorPrimary_two),
+            ),
+            const SizedBox(
+              height: AppSize.mainSize29,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: AppSize.mainSize16, bottom: AppSize.mainSize17),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textLatestNewsAndBlog,
+                  style: TextStyle(
+                      fontSize: AppSize.mainSize18,
+                      fontFamily: AppFonts.avenirRegular,
+                      color: AppColor.colorBlack,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: AppSize.mainSize200,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Card(
+                    elevation: 1,
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize130,
+                              width: AppSize.mainSize234,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appTablets),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textLoremIpsum,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  fontFamily: AppFonts.avenirRegular,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  AppString.textCategoryName,
+                                  textAlign: TextAlign.left,
+                                  style:
+                                      TextStyle(color: AppColor.colorCoolGrey),
+                                ),
+                                SizedBox(
+                                  width: AppSize.mainSize43,
+                                ),
+                                Text(
+                                  AppString.text1HoursAgo,
+                                  textAlign: TextAlign.right,
+                                  style:
+                                      TextStyle(color: AppColor.colorCoolGrey),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: AppSize.mainSize16,
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              height: AppSize.mainSize130,
+                              width: AppSize.mainSize234,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(AppImage.appTablets),
+                                fit: BoxFit.fill,
+                              )),
+                            ),
+                            const Text(
+                              AppString.textLoremIpsum,
+                              style: TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  fontFamily: AppFonts.avenirRegular,
+                                  color: AppColor.colorBlack_two),
+                            ),
+                            Row(
+                              children: const [
+                                Text(
+                                  AppString.textCategoryName,
+                                  textAlign: TextAlign.left,
+                                  style:
+                                      TextStyle(color: AppColor.colorCoolGrey),
+                                ),
+                                SizedBox(
+                                  width: AppSize.mainSize43,
+                                ),
+                                Text(
+                                  AppString.text1HoursAgo,
+                                  textAlign: TextAlign.right,
+                                  style:
+                                      TextStyle(color: AppColor.colorCoolGrey),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: AppSize.mainSize25,
+            ),
+            const Text(
+              AppString.textViewMore,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColor.colorPrimary_two),
+            ),
+            const SizedBox(
+              height: AppSize.mainSize29,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: AppSize.mainSize16, bottom: AppSize.mainSize17),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textOurInstagramFeed,
+                  style: TextStyle(
+                      fontSize: AppSize.mainSize18,
+                      fontFamily: AppFonts.avenirRegular,
+                      color: AppColor.colorBlack,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: AppSize.mainSize13, left: AppSize.mainSize16),
+              child: SizedBox(
+                  height: AppSize.mainSize140,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: AppSize.mainSize100,
+                            width: AppSize.mainSize100,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(AppImage.appDiscount1),
+                              fit: BoxFit.fill,
+                            )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: AppSize.mainSize16,
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: AppSize.mainSize100,
+                            width: AppSize.mainSize100,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(AppImage.appHurrah),
+                              fit: BoxFit.fill,
+                            )),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: AppSize.mainSize16,
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: AppSize.mainSize100,
+                            width: AppSize.mainSize100,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                              image: AssetImage(AppImage.appDiscount1),
+                              fit: BoxFit.fill,
+                            )),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                  left: AppSize.mainSize16, bottom: AppSize.mainSize17),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textFollowUsOn,
+                  style: TextStyle(
+                      fontSize: AppSize.mainSize18,
+                      fontFamily: AppFonts.avenirRegular,
+                      color: AppColor.colorBlack,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
+                child: Wrap(
+                  children: [
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appFacebook),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appYoutube),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appInstagram),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appGmail),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appWhatsApp),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appMessenger),
+                    ),
+                    Container(
+                      height: AppSize.mainSize68,
+                      width: AppSize.mainSize68,
+                      child: Image.asset(AppImage.appTiktok),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
