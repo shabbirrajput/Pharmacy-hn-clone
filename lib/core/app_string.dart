@@ -84,4 +84,21 @@ class AppString {
   static const textPondsVitaminMicellar = 'Pond’s Vitamin Micellar';
   static const textFormulaMaskCollection = 'Formula 10.0.6 Mask Collection';
   static const textBabyDiapersNewborn = 'Baby Diapers Newborn';
+  static const textEarnedRewardPoints = 'Earned Reward 10 Points';
+  static const text1MinAgo = '1 min ago';
+  static const textOrderSuccessfullyDelivered =
+      'Order 123-321-123 Successfully Delivered';
+  static const text10MinAgo = '10 min ago';
+  static const textOrderOutForDelivery = 'Order 123-321-123 Out for Delivery';
+  static const text50MinAgo = '50 min ago';
+  static const textOrderConfirmed = 'Order 123-321-123 Confirmed';
+  static const text1HourAgo = '1 hour ago';
+  static const textOrderSuccessfullyCancelled =
+      'Order 222-546-646 Successfully Cancelled';
+  static const text1DayAgo = '1 day ago';
+  static const textOrderSuccessfullyReturned =
+      'Order 555-555-666 Successfully Returned';
+  static const text1MonthAgo = '1 month ago';
+  static const textReceivedCouponOffCoupon = 'Received Coupon 10% off Coupon';
+  static const text2MonthAgo = '2 month ago';
 }

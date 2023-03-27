@@ -30,6 +30,96 @@ class _ScreenMenuState extends State<ScreenMenu> {
 
   @override
   Widget build(BuildContext context) {
+    Drawer drawer = Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          const SizedBox(
+            height: AppSize.mainSize100,
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appHome,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textHome),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appCategory,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textAllCategory),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appOrder,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textMyOrder),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appWishlist,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textMyWishlist),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appProfile,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textMyProfile),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appNotification,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textNotification),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appRewardsAndCoupons,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textRewardsAndCoupons),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
+              AppImage.appSettings,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textSettings),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.colorPrimary_two,
@@ -72,96 +162,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
         ],
         elevation: 0,
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const SizedBox(
-              height: AppSize.mainSize100,
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appHome,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textHome),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appCategory,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textAllCategory),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appOrder,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textMyOrder),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appWishlist,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textMyWishlist),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appProfile,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textMyProfile),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appNotification,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textNotification),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appRewardsAndCoupons,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textRewardsAndCoupons),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Image.asset(
-                AppImage.appSettings,
-                color: AppColor.colorPrimary_two,
-              ),
-              title: const Text(AppString.textSettings),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: drawer,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
