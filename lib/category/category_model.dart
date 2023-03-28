@@ -268,3 +268,51 @@ List<NotificationDetails> nitems() {
 
   return mNList;
 }
+
+List<NotificationDetails> ritems() {
+  List<NotificationDetails> mNList = [];
+
+  NotificationDetails mNotModel = NotificationDetails();
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textCreditedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textDebitedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textCreditedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textDebitedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textCreditedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textDebitedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textCreditedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textDebitedOrderDetail;
+  mNotModel.ntime = AppString.textDateAndTime;
+  mNList.add(mNotModel);
+
+  return mNList;
+}

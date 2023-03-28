@@ -102,8 +102,12 @@ class AppString {
   static const textReceivedCouponOffCoupon = 'Received Coupon 10% off Coupon';
   static const text2MonthAgo = '2 month ago';
   static const textRewardPoints = 'Reward Points';
+  static const textRewardPointsHistory = 'Reward Points History';
   static const textViewHistory = 'View History';
   static const text1000 = '1000';
   static const textCurrentRewardPoints = 'Current Reward Points';
   static const text100Points1Dollar = '100 Points = 1 Dollar';
+  static const textCreditedOrderDetail = 'Credited from Order 123-321-123';
+  static const textDebitedOrderDetail = 'Debited for Order 222-555-666';
+  static const textDateAndTime = '20/03/2021 | 10:15';
 }

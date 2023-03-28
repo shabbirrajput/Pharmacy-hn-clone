@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
+import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_points_history.dart';
 import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -172,8 +173,8 @@ class _ScreenRewardsAndCouponsState extends State<ScreenRewardsAndCoupons> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   AppString.textRewardPoints,
                   style: TextStyle(
                       color: AppColor.colorBlack,
@@ -181,13 +182,23 @@ class _ScreenRewardsAndCouponsState extends State<ScreenRewardsAndCoupons> {
                       fontFamily: AppFonts.avenirRegular,
                       fontWeight: FontWeight.w500),
                 ),
-                Text(
-                  AppString.textViewHistory,
-                  style: TextStyle(
-                      color: AppColor.colorPrimary_two,
-                      fontSize: AppSize.mainSize14,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScreenRewardPointsHistory(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    AppString.textViewHistory,
+                    style: TextStyle(
+                        color: AppColor.colorPrimary_two,
+                        fontSize: AppSize.mainSize14,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ],
             ),
@@ -300,7 +311,7 @@ class _ScreenRewardsAndCouponsState extends State<ScreenRewardsAndCoupons> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: AppSize.mainSize16),
+              padding: const EdgeInsets.only(left: AppSize.mainSize16),
               child: Column(
                 children: [],
               ),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/PopularProduct/screen_popular_product.dart';
 import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
@@ -315,7 +316,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               height: AppSize.mainSize400,
               child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -360,10 +361,20 @@ class _ScreenMenuState extends State<ScreenMenu> {
                     );
                   }),
             ),
-            const Text(
-              AppString.textViewMore,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: AppColor.colorPrimary_two),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenPopularProduct(),
+                  ),
+                );
+              },
+              child: const Text(
+                AppString.textViewMore,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: AppColor.colorPrimary_two),
+              ),
             ),
             const SizedBox(
               height: AppSize.mainSize29,
@@ -671,37 +682,37 @@ class _ScreenMenuState extends State<ScreenMenu> {
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
                 child: Wrap(
                   children: [
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appFacebook),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appYoutube),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appInstagram),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appGmail),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appWhatsApp),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appMessenger),
                     ),
-                    Container(
+                    SizedBox(
                       height: AppSize.mainSize68,
                       width: AppSize.mainSize68,
                       child: Image.asset(AppImage.appTiktok),
