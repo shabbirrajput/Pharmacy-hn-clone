@@ -206,3 +206,65 @@ List<FeedModel> feeditems() {
 
   return mFeedList;
 }
+
+class NotificationDetails {
+  String? nname;
+  String? ntime;
+
+  NotificationDetails({this.nname, this.ntime});
+
+  NotificationDetails.fromJson(Map<String, dynamic> json) {
+    nname = json['name'];
+    ntime = json['time'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = nname;
+    data['time'] = ntime;
+    return data;
+  }
+}
+
+List<NotificationDetails> nitems() {
+  List<NotificationDetails> mNList = [];
+
+  NotificationDetails mNotModel = NotificationDetails();
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textEarnedRewardPoints;
+  mNotModel.ntime = AppString.text1MinAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textOrderSuccessfullyDelivered;
+  mNotModel.ntime = AppString.text10MinAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textOrderOutForDelivery;
+  mNotModel.ntime = AppString.text50MinAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textOrderConfirmed;
+  mNotModel.ntime = AppString.text1HourAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textOrderSuccessfullyCancelled;
+  mNotModel.ntime = AppString.text1DayAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textOrderSuccessfullyReturned;
+  mNotModel.ntime = AppString.text1MonthAgo;
+  mNList.add(mNotModel);
+
+  mNotModel = NotificationDetails();
+  mNotModel.nname = AppString.textReceivedCouponOffCoupon;
+  mNotModel.ntime = AppString.text2MonthAgo;
+  mNList.add(mNotModel);
+
+  return mNList;
+}

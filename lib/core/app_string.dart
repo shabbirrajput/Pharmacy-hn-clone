@@ -101,4 +101,9 @@ class AppString {
   static const text1MonthAgo = '1 month ago';
   static const textReceivedCouponOffCoupon = 'Received Coupon 10% off Coupon';
   static const text2MonthAgo = '2 month ago';
+  static const textRewardPoints = 'Reward Points';
+  static const textViewHistory = 'View History';
+  static const text1000 = '1000';
+  static const textCurrentRewardPoints = 'Current Reward Points';
+  static const text100Points1Dollar = '100 Points = 1 Dollar';
 }

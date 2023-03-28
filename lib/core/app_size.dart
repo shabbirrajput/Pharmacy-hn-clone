@@ -45,11 +45,14 @@ class AppSize {
   static const double mainSize23 = 23;
   static const double mainSize24 = 24;
   static const double mainSize25 = 25;
+  static const double mainSize26 = 26;
+  static const double mainSize27 = 27;
   static const double mainSize28 = 28;
   static const double mainSize29 = 29;
   static const double mainSize30 = 30;
   static const double mainSize31 = 31;
   static const double mainSize32 = 32;
+  static const double mainSize33 = 33;
   static const double mainSize35 = 35;
   static const double mainSize40 = 40;
   static const double mainSize43 = 43;
@@ -82,4 +85,5 @@ class AppSize {
   static const double mainSize234 = 234;
   static const double mainSize300 = 300;
   static const double mainSize400 = 400;
+  static const double mainSize500 = 500;
 }

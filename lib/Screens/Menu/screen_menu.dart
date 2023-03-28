@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
+import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
+import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -28,6 +31,8 @@ class _ScreenMenuState extends State<ScreenMenu> {
 
   final ScrollController _scrollController = ScrollController();
 
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     Drawer drawer = Drawer(
@@ -44,7 +49,12 @@ class _ScreenMenuState extends State<ScreenMenu> {
             ),
             title: const Text(AppString.textHome),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ScreenMenu(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -94,7 +104,12 @@ class _ScreenMenuState extends State<ScreenMenu> {
             ),
             title: const Text(AppString.textNotification),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ScreenNotification(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -104,7 +119,12 @@ class _ScreenMenuState extends State<ScreenMenu> {
             ),
             title: const Text(AppString.textRewardsAndCoupons),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ScreenRewardsAndCoupons(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -121,7 +141,18 @@ class _ScreenMenuState extends State<ScreenMenu> {
       ),
     );
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset(AppImage.appDrawerIcon),
+          onPressed: () {
+            if (scaffoldKey.currentState!.isDrawerOpen) {
+              scaffoldKey.currentState!.openEndDrawer();
+            } else {
+              scaffoldKey.currentState!.openDrawer();
+            }
+          },
+        ),
         backgroundColor: AppColor.colorPrimary_two,
         title: Row(
           children: const [
@@ -364,43 +395,66 @@ class _ScreenMenuState extends State<ScreenMenu> {
                   shrinkWrap: true,
                   itemCount: citems().length,
                   itemBuilder: (BuildContext ctx, index) {
-                    return Container(
-                      height: 300,
-                      margin: const EdgeInsets.only(
-                        left: 4,
-                        right: 4,
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            citems()[index].image!,
-                            height: 130,
-                          ),
-                          Text(
-                            citems()[index].name!,
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                                fontSize: 14,
-                                fontFamily: AppFonts.avenirRegular),
-                          ),
-                          Text(
-                            "\$${citems()[index].price!}",
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                              color: AppColor.colorPrimary_two,
-                              fontFamily: AppFonts.avenirRegular,
-                              fontWeight: FontWeight.w500,
+                    return Card(
+                      child: Container(
+                        height: 300,
+                        margin: const EdgeInsets.only(
+                          left: 4,
+                          right: 4,
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              citems()[index].image!,
+                              height: 120,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 27, right: 12),
+                              child: Text(
+                                citems()[index].name!,
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: AppFonts.avenirRegular),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 27, right: 12),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "\$${citems()[index].price!}",
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                    color: AppColor.colorPrimary_two,
+                                    fontFamily: AppFonts.avenirRegular,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),
             ),
-            const Text(
-              AppString.textViewMore,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: AppColor.colorPrimary_two),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenRecommendedProduct(),
+                  ),
+                );
+              },
+              child: const Text(
+                AppString.textViewMore,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: AppColor.colorPrimary_two),
+              ),
             ),
             const SizedBox(
               height: AppSize.mainSize29,

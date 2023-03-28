@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_set_address.dart';
-import 'package:pharmacy_hn_clone/Screens/Menu/screen_notification.dart';
+import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
+import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
 import 'package:pharmacy_hn_clone/Screens/Splash/screen_splash.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 
@@ -21,6 +22,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const ScreenNotification());
+        home: const ScreenSplash());
   }
 }

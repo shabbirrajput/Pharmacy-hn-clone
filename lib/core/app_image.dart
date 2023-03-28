@@ -49,4 +49,8 @@ class AppImage {
   static const String appMessenger = '${filePathPNG}messenger.png';
   static const String appTiktok = '${filePathPNG}tiktok.png';
   static const String appCart = '${filePathPNG}cart.png';
+  static const String appSetting = '${filePathPNG}setting.png';
+  static const String appRewardsBg = '${filePathPNG}rewardsbg.png';
+  static const String appRewardsBadge = '${filePathPNG}rewardsbadge.png';
+  static const String appDrawerIcon = '${filePathPNG}drawericon.png';
 }

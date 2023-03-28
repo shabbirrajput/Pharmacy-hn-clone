@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -13,6 +14,8 @@ class ScreenNotification extends StatefulWidget {
 }
 
 class _ScreenNotificationState extends State<ScreenNotification> {
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     Drawer drawer = Drawer(
@@ -106,7 +109,18 @@ class _ScreenNotificationState extends State<ScreenNotification> {
       ),
     );
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
+        leading: IconButton(
+          icon: Image.asset(AppImage.appDrawerIcon),
+          onPressed: () {
+            if (scaffoldKey.currentState!.isDrawerOpen) {
+              scaffoldKey.currentState!.openEndDrawer();
+            } else {
+              scaffoldKey.currentState!.openDrawer();
+            }
+          },
+        ),
         backgroundColor: AppColor.colorPrimary_two,
         title: Row(
           children: const [
@@ -137,35 +151,48 @@ class _ScreenNotificationState extends State<ScreenNotification> {
       body: Padding(
         padding: const EdgeInsets.only(
             top: AppSize.mainSize29, left: AppSize.mainSize30),
-        child: ListView(
-          children: [
-            Column(
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      AppString.textEarnedRewardPoints,
-                      style: TextStyle(
-                          fontSize: AppSize.mainSize14,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500),
+        child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: nitems().length,
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 0,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: AppSize.mainSize33,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          nitems()[index].nname!,
+                          style: TextStyle(
+                              color: index == 0 || index == 1
+                                  ? AppColor.colorBlack_two
+                                  : AppColor.colorCoolGrey,
+                              fontSize: AppSize.mainSize14,
+                              fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          nitems()[index].ntime!,
+                          style: const TextStyle(
+                              color: AppColor.colorCoolGrey,
+                              fontFamily: AppFonts.avenirRegular),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: AppSize.mainSize33,
                     ),
                   ],
                 ),
-                Row(
-                  children: const [
-                    Text(
-                      AppString.text1MinAgo,
-                      style: TextStyle(
-                          color: AppColor.colorCoolGrey,
-                          fontFamily: AppFonts.avenirRegular),
-                    )
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
+              );
+            }),
       ),
     );
   }
