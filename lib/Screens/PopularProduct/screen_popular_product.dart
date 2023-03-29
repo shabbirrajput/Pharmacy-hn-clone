@@ -55,7 +55,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
       body: SizedBox(
         height: AppSize.mainSize500,
         child: GridView.builder(
-            padding: EdgeInsets.only(top: AppSize.mainSize20),
+            padding: const EdgeInsets.only(top: AppSize.mainSize20),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 0,

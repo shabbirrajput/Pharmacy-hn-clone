@@ -20,6 +20,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(

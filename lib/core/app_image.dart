@@ -53,4 +53,13 @@ class AppImage {
   static const String appRewardsBg = '${filePathPNG}rewardsbg.png';
   static const String appRewardsBadge = '${filePathPNG}rewardsbadge.png';
   static const String appDrawerIcon = '${filePathPNG}drawericon.png';
+  static const String appBabies = '${filePathPNG}babies.png';
+  static const String appSnacks = '${filePathPNG}snacks.png';
+  static const String appCopy = '${filePathPNG}copy.png';
+  static const String appPlusCircle = '${filePathPNG}pluscircle.png';
+  static const String appMinusCircle = '${filePathPNG}minuscircle.png';
+  static const String appDoveMen = '${filePathPNG}dovemen.png';
+  static const String appStressRelief = '${filePathPNG}stressrelief.png';
+  static const String appTheOrdinary = '${filePathPNG}theordinary.png';
+  static const String appSkincareAgeless = '${filePathPNG}skincareageless.png';
 }

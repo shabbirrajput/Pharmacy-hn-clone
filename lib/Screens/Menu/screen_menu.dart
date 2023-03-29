@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/PopularProduct/screen_popular_product.dart';
 import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
+import 'package:pharmacy_hn_clone/Screens/ViewAllCategory/screen_view_all_category.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -22,16 +22,6 @@ class ScreenMenu extends StatefulWidget {
 }
 
 class _ScreenMenuState extends State<ScreenMenu> {
-  late var _currentIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  final ScrollController _scrollController = ScrollController();
-
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -263,7 +253,13 @@ class _ScreenMenuState extends State<ScreenMenu> {
                           fontSize: AppSize.mainSize18,
                           color: AppColor.colorPrimary_two),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ScreenViewAllCategory()));
+                    },
                   ),
                   const SizedBox(
                     height: AppSize.mainSize13,

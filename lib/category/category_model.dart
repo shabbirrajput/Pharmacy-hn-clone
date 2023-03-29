@@ -44,6 +44,16 @@ List<CategoryModel> items() {
   mCategoryModel.name = AppString.textSkinCare;
   mList.add(mCategoryModel);
 
+  mCategoryModel = CategoryModel();
+  mCategoryModel.image = AppImage.appBabies;
+  mCategoryModel.name = AppString.textBabies;
+  mList.add(mCategoryModel);
+
+  mCategoryModel = CategoryModel();
+  mCategoryModel.image = AppImage.appSnacks;
+  mCategoryModel.name = AppString.textSnacks;
+  mList.add(mCategoryModel);
+
   return mList;
 }
 
@@ -95,6 +105,38 @@ List<CatModel> catitems() {
   mCatModel = CatModel();
   mCatModel.image = AppImage.appHeadAndShouldersShampoo;
   mCatModel.name = AppString.textHeadAndShouldersShampoo;
+  mCatModel.price = 16.00;
+  mCatList.add(mCatModel);
+
+  return mCatList;
+}
+
+List<CatModel> pitems() {
+  List<CatModel> mCatList = [];
+
+  CatModel mCatModel = CatModel();
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appDoveMen;
+  mCatModel.name = AppString.textDoveMen;
+  mCatModel.price = 12.25;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appStressRelief;
+  mCatModel.name = AppString.textStressRelief;
+  mCatModel.price = 17.96;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appTheOrdinary;
+  mCatModel.name = AppString.textTheOrdinary;
+  mCatModel.price = 22.89;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appSkincareAgeless;
+  mCatModel.name = AppString.textSkinCareAgeless;
   mCatModel.price = 16.00;
   mCatList.add(mCatModel);
 

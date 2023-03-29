@@ -110,4 +110,11 @@ class AppString {
   static const textCreditedOrderDetail = 'Credited from Order 123-321-123';
   static const textDebitedOrderDetail = 'Debited for Order 222-555-666';
   static const textDateAndTime = '20/03/2021 | 10:15';
+  static const textBabies = 'Babies';
+  static const textSnacks = 'Snacks';
+  static const textDoveMen = 'Dove Men+Care Body Wash for Men’s Skin…';
+  static const textStressRelief = 'Stress Relief - Eucalyptus Spearmint';
+  static const textTheOrdinary = 'The Ordinary Hyaluronic Acid';
+  static const textSkinCareAgeless = 'Skincare Ageless Total Repair Crème';
+  static const textBathAndBody = 'Bath & Body';
 }

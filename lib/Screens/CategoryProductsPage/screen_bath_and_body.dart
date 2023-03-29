@@ -6,15 +6,14 @@ import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 
-class ScreenRecommendedProduct extends StatefulWidget {
-  const ScreenRecommendedProduct({Key? key}) : super(key: key);
+class ScreenBathAndBody extends StatefulWidget {
+  const ScreenBathAndBody({Key? key}) : super(key: key);
 
   @override
-  State<ScreenRecommendedProduct> createState() =>
-      _ScreenRecommendedProductState();
+  State<ScreenBathAndBody> createState() => _ScreenBathAndBodyState();
 }
 
-class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
+class _ScreenBathAndBodyState extends State<ScreenBathAndBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
         title: Row(
           children: [
             const Text(
-              AppString.textRecommendProduct,
+              AppString.textBathAndBody,
               style: TextStyle(
                 color: AppColor.colorWhite,
                 fontFamily: AppFonts.avenirRegular,
@@ -36,7 +35,7 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
               ),
             ),
             const SizedBox(
-              width: 25,
+              width: 95,
             ),
             IconButton(
               icon: Image.asset(AppImage.appSetting),
@@ -54,8 +53,9 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
         elevation: 0,
       ),
       body: SizedBox(
-        height: double.infinity,
+        height: AppSize.mainSize500,
         child: GridView.builder(
+            padding: const EdgeInsets.only(top: AppSize.mainSize20),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 0,
@@ -63,52 +63,45 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: citems().length,
+            itemCount: pitems().length,
             itemBuilder: (BuildContext ctx, index) {
-              return Card(
-                child: Container(
-                  height: AppSize.mainSize300,
-                  margin: const EdgeInsets.only(
-                    left: AppSize.mainSize4,
-                    right: AppSize.mainSize4,
-                  ),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        citems()[index].image!,
-                        height: AppSize.mainSize120,
+              return Container(
+                height: 300,
+                margin: const EdgeInsets.only(
+                  left: 4,
+                  right: 4,
+                ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      pitems()[index].image!,
+                      height: 130,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 27, right: 12),
+                      child: Text(
+                        pitems()[index].name!,
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontSize: 14, fontFamily: AppFonts.avenirRegular),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 27, right: 12),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
                         child: Text(
-                          citems()[index].name!,
+                          "\$${citems()[index].price!}",
                           textAlign: TextAlign.start,
                           style: const TextStyle(
-                              fontSize: AppSize.mainSize14,
-                              fontFamily: AppFonts.avenirRegular),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "\$${citems()[index].price!}",
-                            textAlign: TextAlign.start,
-                            style: const TextStyle(
-                              color: AppColor.colorPrimary_two,
-                              fontFamily: AppFonts.avenirRegular,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            color: AppColor.colorPrimary_two,
+                            fontFamily: AppFonts.avenirRegular,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             }),
