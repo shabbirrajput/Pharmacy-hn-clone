@@ -117,4 +117,17 @@ class AppString {
   static const textTheOrdinary = 'The Ordinary Hyaluronic Acid';
   static const textSkinCareAgeless = 'Skincare Ageless Total Repair Crème';
   static const textBathAndBody = 'Bath & Body';
+  static const textCoupons = 'Coupons';
+  static const textLoremIpsum2 =
+      'Lorem Ipsum is simply dummy text of the and typesetting industry.';
+  static const textHSDetails =
+      'Head and Shoulders Shampoo, Anti Dandruff Treatment and Scalp Care, Classic Clean,32.1 fl oz, Twin Pack';
+  static const textAddToWishlist = 'Add to Wishlist';
+  static const textAddToCart = 'Add to Cart';
+  static const textHSPrice = '\$${12.25}';
+  static const textSelectQty = 'Select Qty.';
+  static const textProductDetail = 'Product Detail';
+  static const textLoremIpsum3 =
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
+  static const textChatWithSeller = 'Chat With Seller';
 }

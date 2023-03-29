@@ -62,4 +62,13 @@ class AppImage {
   static const String appStressRelief = '${filePathPNG}stressrelief.png';
   static const String appTheOrdinary = '${filePathPNG}theordinary.png';
   static const String appSkincareAgeless = '${filePathPNG}skincareageless.png';
+  static const String appHeadAndShoulders =
+      '${filePathPNG}headandshoulders.png';
+  static const String appHS1 = '${filePathPNG}hs1.png';
+  static const String appHS2 = '${filePathPNG}hs2.png';
+  static const String appHS3 = '${filePathPNG}hs3.png';
+  static const String appWpLogo = '${filePathPNG}wplogo.png';
+  static const String appShare = '${filePathPNG}share.png';
+  static const String appAdd = '${filePathPNG}add.png';
+  static const String appRemove = '${filePathPNG}remove.png';
 }

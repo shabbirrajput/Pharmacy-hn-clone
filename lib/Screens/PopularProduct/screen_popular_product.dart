@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/ProductDetails/screen_product_details.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -71,28 +72,52 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                   left: 4,
                   right: 4,
                 ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      catitems()[index].image!,
-                      height: 130,
-                    ),
-                    Text(
-                      catitems()[index].name!,
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                          fontSize: 14, fontFamily: AppFonts.avenirRegular),
-                    ),
-                    Text(
-                      "\$${catitems()[index].price!}",
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        color: AppColor.colorPrimary_two,
-                        fontFamily: AppFonts.avenirRegular,
-                        fontWeight: FontWeight.w500,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ScreenProductDetails(),
                       ),
-                    ),
-                  ],
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        catitems()[index].image!,
+                        height: 130,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: AppSize.mainSize27,
+                            right: AppSize.mainSize12),
+                        child: Text(
+                          catitems()[index].name!,
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(
+                              fontSize: AppSize.mainSize14,
+                              fontFamily: AppFonts.avenirRegular),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: AppSize.mainSize27,
+                            right: AppSize.mainSize12),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "\$${catitems()[index].price!}",
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              color: AppColor.colorPrimary_two,
+                              fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
