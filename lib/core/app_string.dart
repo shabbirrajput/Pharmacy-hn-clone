@@ -130,4 +130,19 @@ class AppString {
   static const textLoremIpsum3 =
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
   static const textChatWithSeller = 'Chat With Seller';
+  static const textMyCart = 'My Cart';
+  static const textSubtotal = 'Subtotal (8 items):';
+  static const textSubtotalAmount = '\$${60.25}';
+  static const textShareMyCart = 'Share My Cart';
+  static const textOrderNow = 'Order Now';
+  static const textPlaceOrder = 'Place Order';
+
+  static const text841MontgomeryStJersey =
+      '841 Montgomery St, Jersey City, NJ 07306, USA';
+  static const textDeliveryAddress = 'Delivery Address';
+  static const textChangeAddress = 'Change Address';
+  static const textBillingAddress = 'Billing Address';
+  static const textBillingAddressDetail =
+      '56 N 22nd St, East Orange, NJ 07017, USA';
+  static const textDeliveryType = 'Delivery Type';
 }

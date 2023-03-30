@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_home.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
 import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
@@ -176,11 +177,15 @@ class _ScreenMenuState extends State<ScreenMenu> {
             ),
           ),
           IconButton(
-            icon: const Icon(
-              Icons.shopping_cart_outlined,
-              color: Colors.white,
-            ),
-            onPressed: () {},
+            icon: Image.asset(AppImage.appCart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ScreenCart(),
+                ),
+              );
+            },
           ),
         ],
         elevation: 0,

@@ -71,4 +71,5 @@ class AppImage {
   static const String appShare = '${filePathPNG}share.png';
   static const String appAdd = '${filePathPNG}add.png';
   static const String appRemove = '${filePathPNG}remove.png';
+  static const String appDelete = '${filePathPNG}delete.png';
 }

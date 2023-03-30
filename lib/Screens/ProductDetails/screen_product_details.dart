@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -23,9 +24,10 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
           ),
           backgroundColor: AppColor.colorPrimary_two,
           title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                AppString.textRecommendProduct,
+                AppString.textProductDetail,
                 style: TextStyle(
                   color: AppColor.colorWhite,
                   fontFamily: AppFonts.avenirRegular,
@@ -33,15 +35,16 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              const SizedBox(
-                width: 74,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
               IconButton(
                 icon: Image.asset(AppImage.appCart),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ScreenCart(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -165,9 +168,11 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                       width: AppSize.mainSize12,
                     ),
                     Container(
+                      margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                       padding: const EdgeInsets.all(3),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
+                          border: Border.all(color: AppColor.colorCoolGrey),
                           color: AppColor.colorWhite_two),
                       child: Row(
                         children: [
@@ -177,6 +182,10 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                           const SizedBox(
                             width: AppSize.mainSize18,
                           ),
+                          const SizedBox(
+                              height: 22,
+                              child: VerticalDivider(
+                                  color: AppColor.colorCoolGrey)),
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 3),
                             padding: const EdgeInsets.symmetric(
@@ -191,6 +200,10 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                                   fontSize: AppSize.mainSize16),
                             ),
                           ),
+                          const SizedBox(
+                              height: 22,
+                              child: VerticalDivider(
+                                  color: AppColor.colorCoolGrey)),
                           const SizedBox(
                             width: AppSize.mainSize18,
                           ),
