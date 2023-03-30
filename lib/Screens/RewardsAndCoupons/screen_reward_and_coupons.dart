@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_points_history.dart';
-import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -213,7 +211,7 @@ class _ScreenRewardsAndCouponsState extends State<ScreenRewardsAndCoupons> {
                           //   right: 284,
                           // ),
                           decoration: BoxDecoration(
-                            color: Color(0xffff3838),
+                            color: const Color(0xffff3838),
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),

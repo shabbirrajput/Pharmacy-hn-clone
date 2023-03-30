@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/PopularProduct/screen_popular_product.dart';
 import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
-import 'package:pharmacy_hn_clone/Screens/ViewAllCategory/screen_view_all_category.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -11,7 +10,9 @@ import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenHome extends StatefulWidget {
-  const ScreenHome({Key? key}) : super(key: key);
+  final Function viewAllCategory;
+
+  const ScreenHome({Key? key, required this.viewAllCategory}) : super(key: key);
 
   @override
   State<ScreenHome> createState() => _ScreenHomeState();
@@ -87,11 +88,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                         color: AppColor.colorPrimary_two),
                   ),
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const ScreenViewAllCategory()));
+                    widget.viewAllCategory();
                   },
                 ),
                 const SizedBox(
@@ -153,8 +150,9 @@ class _ScreenHomeState extends State<ScreenHome> {
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
                 ),
-                scrollDirection: Axis.vertical,
+                // scrollDirection: Axis.vertical,
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: catitems().length,
                 itemBuilder: (BuildContext ctx, index) {
                   return Container(
@@ -232,6 +230,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                 ),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: citems().length,
                 itemBuilder: (BuildContext ctx, index) {
                   return Card(

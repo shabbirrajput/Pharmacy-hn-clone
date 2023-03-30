@@ -72,4 +72,10 @@ class AppImage {
   static const String appAdd = '${filePathPNG}add.png';
   static const String appRemove = '${filePathPNG}remove.png';
   static const String appDelete = '${filePathPNG}delete.png';
+  static const String appDoritosSmall = '${filePathPNG}doritossmall.png';
+  static const String appAveenoBabySmall = '${filePathPNG}aveenobabysmall.png';
+  static const String appHSSmall = '${filePathPNG}heand&shouldersmall.png';
+  static const String appColgateSmall = '${filePathPNG}colgatesmall.png';
+  static const String appCouponArrow = '${filePathPNG}couponarrow.png';
+  static const String appCross = '${filePathPNG}cross.png';
 }

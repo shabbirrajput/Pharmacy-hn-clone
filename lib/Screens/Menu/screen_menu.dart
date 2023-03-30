@@ -1,9 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
-import 'package:pharmacy_hn_clone/Screens/Menu/screen_home.dart';
+import 'package:pharmacy_hn_clone/Screens/Home/screen_home.dart';
+import 'package:pharmacy_hn_clone/Screens/Notification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
-import 'package:pharmacy_hn_clone/Screens/ScreenNotification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/Screens/ViewAllCategory/screen_view_all_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -193,15 +192,21 @@ class _ScreenMenuState extends State<ScreenMenu> {
       drawer: drawer,
       body: IndexedStack(
         index: selectedIndex,
-        children: const [
-          ScreenHome(),
-          ScreenViewAllCategory(),
-          Center(child: Text('My Order')),
-          Center(child: Text('My Wishlist')),
-          Center(child: Text('My Profile')),
-          ScreenNotification(),
-          ScreenRewardsAndCoupons(),
-          Center(child: Text('Settings')),
+        children: [
+          ScreenHome(
+            viewAllCategory: () {
+              setState(() {
+                selectedIndex = 1;
+              });
+            },
+          ),
+          const ScreenViewAllCategory(),
+          const Center(child: Text('My Order')),
+          const Center(child: Text('My Wishlist')),
+          const Center(child: Text('My Profile')),
+          const ScreenNotification(),
+          const ScreenRewardsAndCoupons(),
+          const Center(child: Text('Settings')),
         ],
       ), // This,
     );

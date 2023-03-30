@@ -65,7 +65,7 @@ class AppString {
   static const textSkinCare = 'Skin Care';
   static const textPopularProduct = 'Popular Product';
   static const textDoritosTangyCheeseCornChips =
-      'Doritos Tangy Cheese \nCorn Chips';
+      'Doritos Tangy Cheese Corn Chips';
   static const textPrice = '2.25';
   static const textViewMore = 'View more';
   static const textRecommendProduct = 'Recommend Product';
@@ -114,7 +114,7 @@ class AppString {
   static const textSnacks = 'Snacks';
   static const textDoveMen = 'Dove Men+Care Body Wash for Men’s Skin…';
   static const textStressRelief = 'Stress Relief - Eucalyptus Spearmint';
-  static const textTheOrdinary = 'The Ordinary Hyaluronic Acid';
+  static const textTheOrdinary = 'The Ordinary Hyaluronic Acid \$2%';
   static const textSkinCareAgeless = 'Skincare Ageless Total Repair Crème';
   static const textBathAndBody = 'Bath & Body';
   static const textCoupons = 'Coupons';
@@ -145,4 +145,27 @@ class AppString {
   static const textBillingAddressDetail =
       '56 N 22nd St, East Orange, NJ 07017, USA';
   static const textDeliveryType = 'Delivery Type';
+  static const textYourProducts = 'Your Products';
+  static const textViewDetail = 'View Detail';
+  static const textAddTip = 'Add Tip';
+  static const textAddTipDetail = '100% of this value goes to delivery person';
+  static const textAddCustom = 'Add Custom';
+  static const textTip1 = '\$${1}';
+  static const textTip2 = '\$${2}';
+  static const textTip3 = '\$${3}';
+  static const textTip4 = '\$${4}';
+  static const textYourOrder = 'Your Order';
+  static const textDeliveryFeesAmount = '\$${5.00}';
+  static const textDeliveryFees = 'Delivery Fees';
+  static const textServiceFees = 'Service Fees';
+  static const textServiceFeesAmount = '\$${5.75}';
+  static const textTipAmount = '\$${3.00}';
+  static const textTip = 'Tip';
+  static const textTotalAmount = 'Total';
+  static const textTotal = '\$${73.00}';
+  static const textTotalPrice = 'Total Price: \$${60.25}';
+  static const textAddDiscountCoupon = 'Add Discount Coupon';
+  static const textContinueToPay = 'Continue to Pay';
+  static const textColgate = 'Colgate Total Whitening Toothpaste';
+  static const textProductList = 'Product List';
 }

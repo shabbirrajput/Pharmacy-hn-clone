@@ -174,3 +174,35 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
     );
   }
 }
+// BottomNavigationBar(
+//   type: BottomNavigationBarType.fixed,
+//   selectedItemColor: AppColor.colorPrimary_two,
+//   unselectedItemColor: AppColor.colorBlack_two.withOpacity(0),
+//   selectedFontSize: 14,
+//   unselectedFontSize: 14,
+//   currentIndex: _currentIndex,
+//   onTap: _onItemTapped,
+//   elevation: 0,
+//   items: <BottomNavigationBarItem>[
+//     BottomNavigationBarItem(
+//       label: AppString.textHome,
+//       icon: Text(AppString.textTip1),
+//     ),
+//     BottomNavigationBarItem(
+//       label: AppString.textOffice,
+//       icon: Text(AppString.textTip2),
+//     ),
+//     BottomNavigationBarItem(
+//       label: AppString.textFamily,
+//       icon: Text(AppString.textTip3),
+//     ),
+//     BottomNavigationBarItem(
+//       label: AppString.textOther,
+//       icon: Text(AppString.textTip4),
+//     ),
+//     BottomNavigationBarItem(
+//       label: AppString.textOther,
+//       icon: Text(AppString.textAddCustom),
+//     ),
+//   ],
+// ),

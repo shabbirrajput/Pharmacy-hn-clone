@@ -98,19 +98,22 @@ class _ScreenCartState extends State<ScreenCart> {
                                                       AppColor.colorCoolGrey),
                                               color: AppColor.colorWhite_two),
                                           child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               InkWell(
                                                   onTap: () {},
                                                   child: Image.asset(
-                                                      AppImage.appRemove)),
+                                                    AppImage.appRemove,
+                                                    // alignment: Alignment.center,
+                                                  )),
                                               const SizedBox(
                                                 width: AppSize.mainSize18,
                                               ),
-                                              const SizedBox(
-                                                  height: AppSize.mainSize22,
-                                                  child: VerticalDivider(
-                                                      color: AppColor
-                                                          .colorCoolGrey)),
+                                              const VerticalDivider(
+                                                  thickness: 1,
+                                                  color:
+                                                      AppColor.colorCoolGrey),
                                               Container(
                                                 margin:
                                                     const EdgeInsets.symmetric(

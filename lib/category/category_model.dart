@@ -79,6 +79,35 @@ class CatModel {
   }
 }
 
+List<CatModel> csitems() {
+  List<CatModel> mCatList = [];
+
+  CatModel mCatModel = CatModel();
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appDoritosSmall;
+  mCatModel.name = AppString.textDoritosTangyCheeseCornChips;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appAveenoBabySmall;
+  mCatModel.name = AppString.textAveenoBaby;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appHSSmall;
+  mCatModel.name = AppString.textHeadAndShouldersShampoo;
+  mCatList.add(mCatModel);
+
+  mCatModel = CatModel();
+  mCatModel.image = AppImage.appColgateSmall;
+  mCatModel.name = AppString.textColgate;
+
+  mCatList.add(mCatModel);
+
+  return mCatList;
+}
+
 List<CatModel> catitems() {
   List<CatModel> mCatList = [];
 
