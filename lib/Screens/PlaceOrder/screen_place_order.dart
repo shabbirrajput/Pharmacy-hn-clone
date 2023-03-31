@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_set_address.dart';
+import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_order_being_process.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -15,7 +16,7 @@ class ScreenPlaceOrder extends StatefulWidget {
 }
 
 class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
-  bool isACHPayment = true;
+  final int _value = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +184,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                   InkWell(
                     onTap: () {
                       showModalBottomSheet<void>(
+                        isScrollControlled: true,
                         context: context,
                         builder: (BuildContext context) {
                           return SizedBox(
@@ -600,6 +602,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet<void>(
+                      isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
                         return SingleChildScrollView(
@@ -660,15 +663,15 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isACHPayment = false;
-                                                    });
-                                                  },
-                                                  icon: Icon(isACHPayment
-                                                      ? Icons.radio_button_off
-                                                      : Icons.radio_button_on)),
+                                              Radio(
+                                                value: 1,
+                                                groupValue: _value,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    value = _value;
+                                                  });
+                                                },
+                                              ),
                                               const Text(AppString
                                                   .textPayusingVisaMasterCard),
                                             ],
@@ -677,33 +680,32 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isACHPayment = false;
-                                                    });
-                                                  },
-                                                  icon: Icon(isACHPayment
-                                                      ? Icons.radio_button_off
-                                                      : Icons.radio_button_on)),
+                                              Radio(
+                                                value: 2,
+                                                groupValue: _value,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    value = _value;
+                                                  });
+                                                },
+                                              ),
                                               const Text(
-                                                  AppString.textCashOnDelivery)
+                                                  AppString.textCashOnDelivery),
                                             ],
                                           ),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isACHPayment = true;
-                                                    });
-                                                  },
-                                                  icon: Icon(isACHPayment
-                                                      ? Icons.radio_button_on
-                                                      : Icons
-                                                          .radio_button_off)),
+                                              Radio(
+                                                value: 3,
+                                                groupValue: _value,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    value = _value;
+                                                  });
+                                                },
+                                              ),
                                               const Text(
                                                   AppString.textACHPayment),
                                             ],
@@ -818,7 +820,15 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                             height: AppSize.mainSize46,
                                             width: double.infinity,
                                             child: ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const ScreenOrderBeingProcess(),
+                                                  ),
+                                                );
+                                              },
                                               style: ButtonStyle(
                                                 backgroundColor:
                                                     MaterialStateProperty
@@ -878,5 +888,3 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
     );
   }
 }
-
-///

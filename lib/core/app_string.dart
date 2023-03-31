@@ -161,8 +161,8 @@ class AppString {
   static const textServiceFeesAmount = '\$${5.75}';
   static const textTipAmount = '\$${3.00}';
   static const textTip = 'Tip';
-  static const textTotalAmount = 'Total';
-  static const textTotal = '\$${73.00}';
+  static const textTotal = 'Total';
+  static const textTotalAmount = '\$${73.00}';
   static const textTotalPrice = 'Total Price: \$${60.25}';
   static const textAddDiscountCoupon = 'Add Discount Coupon';
   static const textContinueToPay = 'Continue to Pay';
@@ -178,4 +178,35 @@ class AppString {
   static const textBankTransferID = '# 200012651887';
   static const textBancoFicohsaCheckingAccountDollar =
       'Banco Ficohsa - Checking Account Dollar ';
+  static const textOrderSuccessfullyPlaced = 'Order Successfully Placed ';
+  static const textViewMyOrder = 'View My Order ';
+  static const textOrderNo = 'Order No: 123-321-123';
+  static const textOrderBy = 'Order By';
+  static const textEmail = 'johndoe@mail.com';
+  static const textOrderDateTime = 'Order Date & Time';
+  static const textOrderDateAndTime = '20/03/2021 | 10:15';
+  static const textCancelOrder = 'Cancel Order';
+  static const textTrackOrder = 'Track Orders';
+  static const textOrderPlaced = 'Order Placed';
+  static const textWeHaveReceivedYourOrderOn =
+      'We have received your order on 20/03/2021 | 10:15';
+  static const textOrderConfirm = 'Order Confirmed';
+  static const textWeHasBeenConfirmedOn =
+      'We has been confirmed on 20/03/2021 | 10:20';
+  static const textOrderProcessed = 'Order Processed';
+  static const textWeArePreparingYourOrder = 'We are preparing your order';
+  static const textReadyToShip = 'Ready To Ship';
+  static const textYourOrderIsReadyForShipping =
+      'Your order is ready for shipping';
+  static const textDelivered = 'Delivered';
+  static const textWilliamSadders = 'William Sadders';
+  static const textTipText = 'Tip:';
+  static const textTipTextAmount = '\$${2.00}';
+  static const textDiscountAmount = '\$${-13.00}';
+  static const textGrandAmount = '\$${61.00}';
+  static const textDownloadInvoice = 'Download Invoice';
+  static const textDiscount = 'Discount';
+  static const textDiscountCode = 'Discount Code - DIS50';
+  static const textRemoveCodeChangeCode = 'Remove Code | Change Code';
+  static const textGrandTotal = 'Grand Total';
 }

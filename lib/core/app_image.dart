@@ -79,4 +79,13 @@ class AppImage {
   static const String appCouponArrow = '${filePathPNG}couponarrow.png';
   static const String appCross = '${filePathPNG}cross.png';
   static const String appFicohsa = '${filePathPNG}ficohsa.png';
+  static const String appOrderPlaced = '${filePathPNG}orderplaced.png';
+  static const String appOrderPlace = '${filePathPNG}orderplace.png';
+  static const String appOrderConfirmed = '${filePathPNG}orderconfirmed.png';
+  static const String appOrderProcess = '${filePathPNG}orderprocess.png';
+  static const String appOrderReadyToShip = '${filePathPNG}readytoship.png';
+  static const String appOrderDelivered = '${filePathPNG}delivered.png';
+  static const String appCall = '${filePathPNG}call.png';
+  static const String appMessage = '${filePathPNG}message.png';
+  static const String appAvatar = '${filePathPNG}avatar.png';
 }
