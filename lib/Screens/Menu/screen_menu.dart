@@ -99,6 +99,19 @@ class _ScreenMenuState extends State<ScreenMenu> {
               AppImage.appNotification,
               color: AppColor.colorPrimary_two,
             ),
+            trailing: Container(
+              alignment: Alignment.center,
+              height: AppSize.mainSize20,
+              width: AppSize.mainSize20,
+              decoration: BoxDecoration(
+                color: AppColor.colorGrapeFruit,
+                borderRadius: BorderRadius.circular(AppSize.mainSize19),
+              ),
+              child: const Text(
+                '2',
+                style: TextStyle(color: AppColor.colorWhite),
+              ),
+            ),
             title: const Text(AppString.textNotification),
             onTap: () {
               _onItemTapped(5);
@@ -118,12 +131,23 @@ class _ScreenMenuState extends State<ScreenMenu> {
           ),
           ListTile(
             leading: Image.asset(
+              AppImage.appNewsAndBlogs,
+              color: AppColor.colorPrimary_two,
+            ),
+            title: const Text(AppString.textNewsAndBlog),
+            onTap: () {
+              _onItemTapped(7);
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Image.asset(
               AppImage.appSettings,
               color: AppColor.colorPrimary_two,
             ),
             title: const Text(AppString.textSettings),
             onTap: () {
-              _onItemTapped(7);
+              _onItemTapped(8);
               Navigator.pop(context);
             },
           ),
@@ -201,12 +225,13 @@ class _ScreenMenuState extends State<ScreenMenu> {
             },
           ),
           const ScreenViewAllCategory(),
-          const Center(child: Text('My Order')),
-          const Center(child: Text('My Wishlist')),
-          const Center(child: Text('My Profile')),
+          const Center(child: Text(AppString.textMyOrder)),
+          const Center(child: Text(AppString.textMyWishlist)),
+          const Center(child: Text(AppString.textMyProfile)),
           const ScreenNotification(),
           const ScreenRewardsAndCoupons(),
-          const Center(child: Text('Settings')),
+          const Center(child: Text(AppString.textNewsAndBlog)),
+          const Center(child: Text(AppString.textSettings)),
         ],
       ), // This,
     );

@@ -614,7 +614,8 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 60, right: 16),
+                                        left: AppSize.mainSize60,
+                                        right: AppSize.mainSize16),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -703,7 +704,8 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                       ? Icons.radio_button_on
                                                       : Icons
                                                           .radio_button_off)),
-                                              const Text("ACH Payment"),
+                                              const Text(
+                                                  AppString.textACHPayment),
                                             ],
                                           ),
                                           Row(
@@ -876,3 +878,5 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
     );
   }
 }
+
+///

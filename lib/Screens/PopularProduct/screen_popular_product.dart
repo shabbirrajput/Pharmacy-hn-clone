@@ -27,7 +27,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
         title: Row(
           children: [
             const Text(
-              AppString.textRecommendProduct,
+              AppString.textPopularProduct,
               style: TextStyle(
                 color: AppColor.colorWhite,
                 fontFamily: AppFonts.avenirRegular,
@@ -36,14 +36,14 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
               ),
             ),
             const SizedBox(
-              width: 25,
+              width: AppSize.mainSize63,
             ),
             IconButton(
               icon: Image.asset(AppImage.appSetting),
               onPressed: () {},
             ),
             const SizedBox(
-              width: 10,
+              width: AppSize.mainSize12,
             ),
             IconButton(
               icon: Image.asset(AppImage.appCart),
@@ -81,30 +81,29 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                       ),
                     );
                   },
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        catitems()[index].image!,
-                        height: 130,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
-                        child: Text(
-                          catitems()[index].name!,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: AppSize.mainSize14,
-                              fontFamily: AppFonts.avenirRegular),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSize.mainSize24),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          catitems()[index].image!,
+                          height: AppSize.mainSize130,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            catitems()[index].name!,
+                            style: const TextStyle(
+                              fontSize: AppSize.mainSize14,
+                              color: AppColor.colorBlack_two,
+                              fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
                           child: Text(
                             "\$${catitems()[index].price!}",
                             textAlign: TextAlign.start,
@@ -115,8 +114,8 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

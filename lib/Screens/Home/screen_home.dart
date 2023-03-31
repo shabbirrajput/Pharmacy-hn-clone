@@ -78,7 +78,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                       fontSize: AppSize.mainSize18, color: AppColor.colorBlack),
                 ),
                 const SizedBox(
-                  width: 138,
+                  width: AppSize.mainSize138,
                 ),
                 InkWell(
                   child: const Text(
@@ -116,8 +116,11 @@ class _ScreenHomeState extends State<ScreenHome> {
                       Text(
                         items()[index].name!,
                         style: const TextStyle(
-                            fontSize: AppSize.mainSize14,
-                            color: AppColor.colorBlack_two),
+                          fontSize: AppSize.mainSize14,
+                          fontFamily: AppFonts.avenirRegular,
+                          color: AppColor.colorBlack_two,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ],
                   );
@@ -156,33 +159,46 @@ class _ScreenHomeState extends State<ScreenHome> {
                 itemCount: catitems().length,
                 itemBuilder: (BuildContext ctx, index) {
                   return Container(
-                    height: 300,
+                    height: AppSize.mainSize300,
                     margin: const EdgeInsets.only(
                       left: 4,
                       right: 4,
                     ),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          catitems()[index].image!,
-                          height: 130,
-                        ),
-                        Text(
-                          catitems()[index].name!,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: 14, fontFamily: AppFonts.avenirRegular),
-                        ),
-                        Text(
-                          "\$${catitems()[index].price!}",
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            color: AppColor.colorPrimary_two,
-                            fontFamily: AppFonts.avenirRegular,
-                            fontWeight: FontWeight.w500,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppSize.mainSize24),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            catitems()[index].image!,
+                            height: AppSize.mainSize130,
                           ),
-                        ),
-                      ],
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              catitems()[index].name!,
+                              style: const TextStyle(
+                                fontSize: AppSize.mainSize14,
+                                color: AppColor.colorBlack_two,
+                                fontFamily: AppFonts.avenirRegular,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "\$${catitems()[index].price!}",
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                color: AppColor.colorPrimary_two,
+                                fontFamily: AppFonts.avenirRegular,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -234,38 +250,38 @@ class _ScreenHomeState extends State<ScreenHome> {
                 itemCount: citems().length,
                 itemBuilder: (BuildContext ctx, index) {
                   return Card(
+                    elevation: 0,
                     child: Container(
                       height: 300,
                       margin: const EdgeInsets.only(
                         left: 4,
                         right: 4,
                       ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            citems()[index].image!,
-                            height: 120,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: AppSize.mainSize27,
-                                right: AppSize.mainSize12),
-                            child: Text(
-                              catitems()[index].name!,
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                  fontSize: AppSize.mainSize14,
-                                  fontFamily: AppFonts.avenirRegular),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppSize.mainSize24),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              citems()[index].image!,
+                              height: AppSize.mainSize120,
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: AppSize.mainSize27,
-                                right: AppSize.mainSize12),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
+                            Align(
+                              alignment: Alignment.topLeft,
                               child: Text(
-                                "\$${catitems()[index].price!}",
+                                citems()[index].name!,
+                                style: const TextStyle(
+                                  fontSize: AppSize.mainSize14,
+                                  color: AppColor.colorBlack_two,
+                                  fontFamily: AppFonts.avenirRegular,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "\$${citems()[index].price!}",
                                 textAlign: TextAlign.start,
                                 style: const TextStyle(
                                   color: AppColor.colorPrimary_two,
@@ -274,8 +290,8 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );

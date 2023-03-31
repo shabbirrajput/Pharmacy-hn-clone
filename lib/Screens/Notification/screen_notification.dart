@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
-import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
-import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenNotification extends StatefulWidget {
   const ScreenNotification({Key? key}) : super(key: key);

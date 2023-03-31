@@ -54,7 +54,7 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
         elevation: 0,
       ),
       body: SizedBox(
-        height: double.infinity,
+        height: AppSize.mainSize400,
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -63,39 +63,40 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: citems().length,
             itemBuilder: (BuildContext ctx, index) {
               return Card(
+                elevation: 0,
                 child: Container(
-                  height: AppSize.mainSize300,
+                  height: 300,
                   margin: const EdgeInsets.only(
-                    left: AppSize.mainSize4,
-                    right: AppSize.mainSize4,
+                    left: 4,
+                    right: 4,
                   ),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        citems()[index].image!,
-                        height: AppSize.mainSize120,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
-                        child: Text(
-                          citems()[index].name!,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              fontSize: AppSize.mainSize14,
-                              fontFamily: AppFonts.avenirRegular),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppSize.mainSize24),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          citems()[index].image!,
+                          height: AppSize.mainSize122,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppSize.mainSize27,
-                            right: AppSize.mainSize12),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            citems()[index].name!,
+                            style: const TextStyle(
+                              fontSize: AppSize.mainSize14,
+                              color: AppColor.colorBlack_two,
+                              fontFamily: AppFonts.avenirRegular,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
                           child: Text(
                             "\$${citems()[index].price!}",
                             textAlign: TextAlign.start,
@@ -106,8 +107,8 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

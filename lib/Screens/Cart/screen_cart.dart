@@ -87,51 +87,67 @@ class _ScreenCartState extends State<ScreenCart> {
                                       ),
                                     ),
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        InkWell(
-                                            onTap: () {},
-                                            child: Image.asset(
-                                              AppImage.appRemove,
-                                              height: 10,
-                                              width: 10,
-                                            )),
-                                        const VerticalDivider(
-                                          color: AppColor.colorBlack_two,
-                                          thickness: 1,
-                                        ),
                                         Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 3),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 3, vertical: 2),
+                                          height: 40,
+                                          width: 110,
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(3),
-                                              color: Colors.white),
-                                          child: const Text(
-                                            '3',
-                                            style: TextStyle(
-                                                color: AppColor.colorBlack,
-                                                fontFamily:
-                                                    AppFonts.avenirRegular,
-                                                fontSize: AppSize.textSize20),
+                                            border: Border.all(
+                                                color: AppColor.colorCoolGrey),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              InkWell(
+                                                  onTap: () {},
+                                                  child: Image.asset(
+                                                    AppImage.appRemove,
+                                                    height: 10,
+                                                    width: 10,
+                                                  )),
+                                              const VerticalDivider(
+                                                color: AppColor.colorCoolGrey,
+                                                thickness: 1,
+                                              ),
+                                              Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 3,
+                                                        vertical: 2),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            3),
+                                                    color: Colors.white),
+                                                child: Text(
+                                                  '3',
+                                                  style: getTextStyle(
+                                                      AppFonts.regular,
+                                                      AppSize.textSize20),
+                                                ),
+                                              ),
+                                              const VerticalDivider(
+                                                color: AppColor.colorCoolGrey,
+                                                thickness: 1,
+                                              ),
+                                              InkWell(
+                                                  onTap: () {},
+                                                  child: Image.asset(
+                                                    AppImage.appAdd,
+                                                    height: 10,
+                                                    width: 10,
+                                                  )),
+                                            ],
                                           ),
                                         ),
-                                        const VerticalDivider(
-                                          color: AppColor.colorCoolGrey,
-                                          thickness: 1,
-                                        ),
-                                        InkWell(
-                                            onTap: () {},
-                                            child: Image.asset(
-                                              AppImage.appAdd,
-                                              height: 10,
-                                              width: 10,
-                                            )),
                                         const SizedBox(
-                                          width: AppSize.mainSize68,
+                                          width: AppSize.mainSize73,
                                         ),
                                         Container(
                                           height: AppSize.mainSize37,
