@@ -168,4 +168,14 @@ class AppString {
   static const textContinueToPay = 'Continue to Pay';
   static const textColgate = 'Colgate Total Whitening Toothpaste';
   static const textProductList = 'Product List';
+  static const textSelectPaymentOption = 'Select Payment Option';
+  static const textBankAccountsForTransfer = 'Bank accounts for Transfer';
+  static const textPayusingVisaMasterCard = 'Pay using Visa/Master Card';
+  static const textCashOnDelivery = 'Cash on delivery';
+  static const textACHPayment = 'ACH payment';
+  static const textBancoFicohsaCheckingAccountLempiras =
+      'Banco Ficohsa - Checking Account Lempiras';
+  static const textBankTransferID = '# 200012651887';
+  static const textBancoFicohsaCheckingAccountDollar =
+      'Banco Ficohsa - Checking Account Dollar ';
 }

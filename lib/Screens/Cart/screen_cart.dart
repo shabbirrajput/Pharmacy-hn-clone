@@ -87,69 +87,49 @@ class _ScreenCartState extends State<ScreenCart> {
                                       ),
                                     ),
                                     Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
+                                        InkWell(
+                                            onTap: () {},
+                                            child: Image.asset(
+                                              AppImage.appRemove,
+                                              height: 10,
+                                              width: 10,
+                                            )),
+                                        const VerticalDivider(
+                                          color: AppColor.colorBlack_two,
+                                          thickness: 1,
+                                        ),
                                         Container(
-                                          padding: const EdgeInsets.all(3),
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 3),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 3, vertical: 2),
                                           decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(5),
-                                              border: Border.all(
-                                                  color:
-                                                      AppColor.colorCoolGrey),
-                                              color: AppColor.colorWhite_two),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              InkWell(
-                                                  onTap: () {},
-                                                  child: Image.asset(
-                                                    AppImage.appRemove,
-                                                    // alignment: Alignment.center,
-                                                  )),
-                                              const SizedBox(
-                                                width: AppSize.mainSize18,
-                                              ),
-                                              const VerticalDivider(
-                                                  thickness: 1,
-                                                  color:
-                                                      AppColor.colorCoolGrey),
-                                              Container(
-                                                margin:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 3),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 3,
-                                                        vertical: 2),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            3),
-                                                    color: Colors.white),
-                                                child: const Text(
-                                                  '0',
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize:
-                                                          AppSize.mainSize16),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                  height: AppSize.mainSize22,
-                                                  child: VerticalDivider(
-                                                      color: AppColor
-                                                          .colorCoolGrey)),
-                                              const SizedBox(
-                                                width: AppSize.mainSize18,
-                                              ),
-                                              InkWell(
-                                                  onTap: () {},
-                                                  child: Image.asset(
-                                                      AppImage.appAdd)),
-                                            ],
+                                                  BorderRadius.circular(3),
+                                              color: Colors.white),
+                                          child: const Text(
+                                            '3',
+                                            style: TextStyle(
+                                                color: AppColor.colorBlack,
+                                                fontFamily:
+                                                    AppFonts.avenirRegular,
+                                                fontSize: AppSize.textSize20),
                                           ),
                                         ),
+                                        const VerticalDivider(
+                                          color: AppColor.colorCoolGrey,
+                                          thickness: 1,
+                                        ),
+                                        InkWell(
+                                            onTap: () {},
+                                            child: Image.asset(
+                                              AppImage.appAdd,
+                                              height: 10,
+                                              width: 10,
+                                            )),
                                         const SizedBox(
                                           width: AppSize.mainSize68,
                                         ),
@@ -171,6 +151,101 @@ class _ScreenCartState extends State<ScreenCart> {
                                         ),
                                       ],
                                     ),
+                                    // Row(
+                                    //   children: [
+                                    //     Container(
+                                    //       padding: const EdgeInsets.all(3),
+                                    //       decoration: BoxDecoration(
+                                    //           borderRadius:
+                                    //               BorderRadius.circular(5),
+                                    //           border: Border.all(
+                                    //               color:
+                                    //                   AppColor.colorCoolGrey),
+                                    //           color: AppColor.colorWhite_two),
+                                    //       child: Row(
+                                    //         mainAxisAlignment:
+                                    //             MainAxisAlignment.spaceAround,
+                                    //         children: [
+                                    //           InkWell(
+                                    //               onTap: () {},
+                                    //               child: Padding(
+                                    //                 padding:
+                                    //                     const EdgeInsets.only(
+                                    //                         left: 10),
+                                    //                 child: Image.asset(
+                                    //                   AppImage.appRemove,
+                                    //                   // alignment: Alignment.center,
+                                    //                 ),
+                                    //               )),
+                                    //           const SizedBox(
+                                    //             width: AppSize.mainSize18,
+                                    //           ),
+                                    //           const VerticalDivider(
+                                    //               thickness: 1,
+                                    //               color:
+                                    //                   AppColor.colorCoolGrey),
+                                    //           Container(
+                                    //             margin:
+                                    //                 const EdgeInsets.symmetric(
+                                    //                     horizontal: 3),
+                                    //             padding:
+                                    //                 const EdgeInsets.symmetric(
+                                    //                     horizontal: 3,
+                                    //                     vertical: 2),
+                                    //             decoration: BoxDecoration(
+                                    //                 borderRadius:
+                                    //                     BorderRadius.circular(
+                                    //                         3),
+                                    //                 color: Colors.white),
+                                    //             child: const Text(
+                                    //               '0',
+                                    //               style: TextStyle(
+                                    //                   color: Colors.black,
+                                    //                   fontSize:
+                                    //                       AppSize.mainSize16),
+                                    //             ),
+                                    //           ),
+                                    //           const SizedBox(
+                                    //               height: AppSize.mainSize22,
+                                    //               child: VerticalDivider(
+                                    //                   color: AppColor
+                                    //                       .colorCoolGrey)),
+                                    //           const SizedBox(
+                                    //             width: AppSize.mainSize18,
+                                    //           ),
+                                    //           InkWell(
+                                    //               onTap: () {},
+                                    //               child: Padding(
+                                    //                 padding:
+                                    //                     const EdgeInsets.only(
+                                    //                         right: 10),
+                                    //                 child: Image.asset(
+                                    //                     AppImage.appAdd),
+                                    //               )),
+                                    //         ],
+                                    //       ),
+                                    //     ),
+                                    //     const SizedBox(
+                                    //       width: AppSize.mainSize68,
+                                    //     ),
+                                    //     Container(
+                                    //       height: AppSize.mainSize37,
+                                    //       width: AppSize.mainSize37,
+                                    //       decoration: BoxDecoration(
+                                    //         color: AppColor.colorCoral,
+                                    //         borderRadius: BorderRadius.circular(
+                                    //             AppSize.mainSize19),
+                                    //       ),
+                                    //       child: IconButton(
+                                    //           onPressed: () {},
+                                    //           icon: Image.asset(
+                                    //               AppImage.appDelete)),
+                                    //     ),
+                                    //     const SizedBox(
+                                    //       width: 16,
+                                    //     ),
+                                    //   ],
+                                    // ),
                                     const SizedBox(
                                       height: AppSize.mainSize43,
                                     )

@@ -15,6 +15,8 @@ class ScreenPlaceOrder extends StatefulWidget {
 }
 
 class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
+  bool isACHPayment = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,22 +191,42 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        AppString.textProductList,
-                                        style: TextStyle(
-                                            fontSize: AppSize.mainSize20,
-                                            color: AppColor.colorBlack_two,
-                                            fontFamily: AppFonts.avenirRegular,
-                                            fontWeight: FontWeight.w900),
-                                      ),
-                                      const SizedBox(
-                                        width: AppSize.mainSize82,
-                                      ),
-                                      Image.asset(AppImage.appCross)
-                                    ],
+                                  const SizedBox(
+                                    height: AppSize.mainSize20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 52, right: 16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              AppString.textProductList,
+                                              style: TextStyle(
+                                                  fontSize: AppSize.mainSize20,
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                        ),
+                                        // const SizedBox(
+                                        //   width: AppSize.mainSize82,
+                                        // ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Image.asset(AppImage.appCross),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: AppSize.mainSize32,
@@ -550,20 +572,23 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      AppString.textAddDiscountCoupon,
-                      style: TextStyle(
-                        color: AppColor.colorBlack_two,
-                        fontSize: AppSize.mainSize14,
-                        fontFamily: AppFonts.avenirRegular,
-                        fontWeight: FontWeight.w500,
+                child: InkWell(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        AppString.textAddDiscountCoupon,
+                        style: TextStyle(
+                          color: AppColor.colorBlack_two,
+                          fontSize: AppSize.mainSize14,
+                          fontFamily: AppFonts.avenirRegular,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    Image.asset(AppImage.appCouponArrow),
-                  ],
+                      Image.asset(AppImage.appCouponArrow),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
@@ -573,7 +598,260 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                 height: AppSize.mainSize46,
                 width: AppSize.mainSize320,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SingleChildScrollView(
+                          child: SizedBox(
+                            height: AppSize.mainSize600,
+                            child: Center(
+                              child: Column(
+                                // mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    height: AppSize.mainSize29,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 60, right: 16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const SizedBox(
+                                          height: AppSize.mainSize20,
+                                        ),
+                                        const Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              AppString.textSelectPaymentOption,
+                                              style: TextStyle(
+                                                  fontSize: AppSize.mainSize20,
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Image.asset(AppImage.appCross),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSize.mainSize61,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: AppSize.mainSize32),
+                                    child: Card(
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      isACHPayment = false;
+                                                    });
+                                                  },
+                                                  icon: Icon(isACHPayment
+                                                      ? Icons.radio_button_off
+                                                      : Icons.radio_button_on)),
+                                              const Text(AppString
+                                                  .textPayusingVisaMasterCard),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      isACHPayment = false;
+                                                    });
+                                                  },
+                                                  icon: Icon(isACHPayment
+                                                      ? Icons.radio_button_off
+                                                      : Icons.radio_button_on)),
+                                              const Text(
+                                                  AppString.textCashOnDelivery)
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      isACHPayment = true;
+                                                    });
+                                                  },
+                                                  icon: Icon(isACHPayment
+                                                      ? Icons.radio_button_on
+                                                      : Icons
+                                                          .radio_button_off)),
+                                              const Text("ACH Payment"),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+                                              Text(
+                                                AppString
+                                                    .textBankAccountsForTransfer,
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontSize: AppSize.mainSize16,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w900,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: AppSize.mainSize17,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+                                              Text(
+                                                AppString
+                                                    .textBancoFicohsaCheckingAccountLempiras,
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontSize: AppSize.mainSize14,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+                                              Text(
+                                                AppString.textBankTransferID,
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontSize: AppSize.mainSize14,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: AppSize.mainSize30,
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+                                              Text(
+                                                AppString
+                                                    .textBancoFicohsaCheckingAccountLempiras,
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontSize: AppSize.mainSize14,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: const [
+                                              SizedBox(
+                                                width: 12,
+                                              ),
+                                              Text(
+                                                AppString.textBankTransferID,
+                                                style: TextStyle(
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontSize: AppSize.mainSize14,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: AppSize.mainSize5,
+                                          ),
+                                          Image.asset(AppImage.appFicohsa),
+                                          const SizedBox(
+                                            height: AppSize.mainSize22,
+                                          ),
+                                          SizedBox(
+                                            height: AppSize.mainSize46,
+                                            width: double.infinity,
+                                            child: ElevatedButton(
+                                              onPressed: () {},
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty
+                                                        .resolveWith<Color?>(
+                                                  (Set<MaterialState> states) =>
+                                                      AppColor.colorPrimary,
+                                                ),
+                                              ),
+                                              child: const Text(
+                                                AppString.textContinue,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: AppSize.mainSize16,
+                                                  fontFamily:
+                                                      AppFonts.avenirHeavy,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSize.mainSize33,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) => AppColor.colorPrimary,

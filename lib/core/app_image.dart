@@ -78,4 +78,5 @@ class AppImage {
   static const String appColgateSmall = '${filePathPNG}colgatesmall.png';
   static const String appCouponArrow = '${filePathPNG}couponarrow.png';
   static const String appCross = '${filePathPNG}cross.png';
+  static const String appFicohsa = '${filePathPNG}ficohsa.png';
 }
