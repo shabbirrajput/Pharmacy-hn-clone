@@ -698,7 +698,7 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
                 ],
               ),
               const SizedBox(
-                height: AppSize.mainSize32,
+                height: AppSize.mainSize33,
               ),
               SizedBox(
                 height: AppSize.mainSize46,

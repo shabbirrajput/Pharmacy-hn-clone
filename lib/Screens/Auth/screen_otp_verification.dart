@@ -171,31 +171,34 @@ class _ScreenOtpVerificationState extends State<ScreenOtpVerification> {
                 const SizedBox(
                   height: AppSize.mainSize31,
                 ),
-                const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: AppString.textDidntGetTheOTP,
-                        style: TextStyle(
-                          color: AppColor.colorCoolGrey,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
+                InkWell(
+                  onTap: () {},
+                  child: const Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: AppString.textDidntGetTheOTP,
+                          style: TextStyle(
+                            color: AppColor.colorCoolGrey,
+                            fontFamily: AppFonts.avenirRegular,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: AppString.textResendOTP,
-                        style: TextStyle(
-                          color: AppColor.colorPrimary_two,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
+                        TextSpan(
+                          text: AppString.textResendOTP,
+                          style: TextStyle(
+                            color: AppColor.colorPrimary_two,
+                            fontFamily: AppFonts.avenirRegular,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  style: TextStyle(
-                    color: AppColor.colorCoolGrey,
-                    fontFamily: AppFonts.avenirRegular,
-                    fontWeight: FontWeight.w500,
+                      ],
+                    ),
+                    style: TextStyle(
+                      color: AppColor.colorCoolGrey,
+                      fontFamily: AppFonts.avenirRegular,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 const SizedBox(
