@@ -17,6 +17,29 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppSize.mainSize47, vertical: AppSize.mainSize20),
+        child: SizedBox(
+          height: AppSize.mainSize46,
+          width: AppSize.mainSize266,
+          child: OutlinedButton.icon(
+            icon: Image.asset(AppImage.appWpLogo),
+            label: const Text(
+              AppString.textChatWithSeller,
+              style: TextStyle(
+                  color: AppColor.colorWhite,
+                  fontFamily: AppFonts.avenirRegular),
+            ),
+            onPressed: () {},
+            style: OutlinedButton.styleFrom(
+              disabledForegroundColor: AppColor.colorPrimary,
+              backgroundColor: AppColor.colorGrass,
+              // side: const BorderSide(color: AppColor.colorPrimary),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: AppColor.colorWhite),
@@ -433,8 +456,8 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     AppString.textYourOrder,
                     style: TextStyle(
                       color: AppColor.colorBlack_two,
@@ -443,13 +466,16 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Text(
-                    AppString.textDownloadInvoice,
-                    style: TextStyle(
-                      color: AppColor.colorPrimary_two,
-                      fontSize: AppSize.mainSize16,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500,
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      AppString.textDownloadInvoice,
+                      style: TextStyle(
+                        color: AppColor.colorPrimary_two,
+                        fontSize: AppSize.mainSize16,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],

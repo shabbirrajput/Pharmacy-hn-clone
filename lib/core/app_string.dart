@@ -209,4 +209,5 @@ class AppString {
   static const textDiscountCode = 'Discount Code - DIS50';
   static const textRemoveCodeChangeCode = 'Remove Code | Change Code';
   static const textGrandTotal = 'Grand Total';
+  static const textSelectDeliveryType = 'Select Delivery Type';
 }

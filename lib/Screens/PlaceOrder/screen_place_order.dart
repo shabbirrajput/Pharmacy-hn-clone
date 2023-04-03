@@ -167,7 +167,29 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                 ),
               ),
               const SizedBox(
-                height: AppSize.mainSize77,
+                height: AppSize.mainSize6,
+              ),
+              Container(
+                height: AppSize.mainSize36,
+                width: AppSize.mainSize300,
+                color: AppColor.colorWhite_three,
+                child: const Padding(
+                  padding: EdgeInsets.zero,
+                  child: TextField(
+                    style: TextStyle(color: AppColor.colorBlack_two),
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: AppColor.colorWhite_three,
+                        border: InputBorder.none,
+                        hintText: AppString.textSelectDeliveryType,
+                        hintStyle: TextStyle(
+                            color: AppColor.colorCoolGrey,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize36,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
