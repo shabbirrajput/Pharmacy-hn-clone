@@ -16,7 +16,7 @@ class ScreenPlaceOrder extends StatefulWidget {
 }
 
 class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
-  final int _value = 1;
+  final int _value = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -686,7 +686,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Radio(
-                                                value: 1,
+                                                value: 0,
                                                 groupValue: _value,
                                                 onChanged: (value) {
                                                   setState(() {
@@ -703,7 +703,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Radio(
-                                                value: 2,
+                                                value: 1,
                                                 groupValue: _value,
                                                 onChanged: (value) {
                                                   setState(() {
@@ -720,7 +720,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Radio(
-                                                value: 3,
+                                                value: 2,
                                                 groupValue: _value,
                                                 onChanged: (value) {
                                                   setState(() {

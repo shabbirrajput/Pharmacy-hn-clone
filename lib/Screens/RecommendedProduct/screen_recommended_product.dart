@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -47,7 +48,14 @@ class _ScreenRecommendedProductState extends State<ScreenRecommendedProduct> {
             ),
             IconButton(
               icon: Image.asset(AppImage.appCart),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenCart(),
+                  ),
+                );
+              },
             ),
           ],
         ),
