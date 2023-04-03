@@ -189,7 +189,7 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                 ),
               ),
               const SizedBox(
-                height: AppSize.mainSize36,
+                height: AppSize.mainSize35,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -298,9 +298,6 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                                       .w900),
                                                         ),
                                                         Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
                                                           children: [
                                                             const Text(
                                                               "Qty: 1",
@@ -314,6 +311,9 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                                                                         .w500,
                                                               ),
                                                             ),
+                                                            const SizedBox(
+                                                                width: AppSize
+                                                                    .mainSize77),
                                                             Text(
                                                               "Total Price: \$${catitems()[index].price!}",
                                                               style:

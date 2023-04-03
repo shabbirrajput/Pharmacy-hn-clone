@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -130,7 +131,123 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
                 height: AppSize.mainSize46,
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          height: AppSize.mainSize500,
+                          child: Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                const SizedBox(
+                                  height: AppSize.mainSize24,
+                                ),
+                                const Text(
+                                  AppString.textCancelOrder,
+                                  style: TextStyle(
+                                    color: AppColor.colorBlack_two,
+                                    fontSize: AppSize.mainSize20,
+                                    fontFamily: AppFonts.avenirRegular,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: AppSize.mainSize24,
+                                ),
+                                const SizedBox(
+                                  height: AppSize.mainSize72,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: AppSize.mainSize20),
+                                    child: TextField(
+                                      maxLines: null,
+                                      // Set this
+                                      expands: true,
+                                      // and this
+                                      keyboardType: TextInputType.multiline,
+                                      style: TextStyle(
+                                          color: AppColor.colorBlack_two),
+                                      decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: AppColor.colorWhite_three,
+                                          border: InputBorder.none,
+                                          hintText: AppString.textAddReason,
+                                          hintStyle: TextStyle(
+                                              color: AppColor.colorCoolGrey,
+                                              fontWeight: FontWeight.w500)),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: AppSize.mainSize18,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSize.mainSize20),
+                                  child: Row(
+                                    // mainAxisAlignment:
+                                    //     MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        height: AppSize.mainSize46,
+                                        width: AppSize.mainSize170,
+                                        child: OutlinedButton(
+                                          onPressed: () {},
+                                          style: OutlinedButton.styleFrom(
+                                            disabledForegroundColor:
+                                                AppColor.colorPrimary,
+                                            side: const BorderSide(
+                                                color: AppColor.colorPrimary),
+                                          ),
+                                          child: const Text(
+                                            AppString.textCancel,
+                                            style: TextStyle(
+                                              color: AppColor.colorPrimary,
+                                              fontFamily:
+                                                  AppFonts.avenirRegular,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        width: AppSize.mainSize8,
+                                      ),
+                                      SizedBox(
+                                        height: AppSize.mainSize46,
+                                        width: AppSize.mainSize170,
+                                        child: ElevatedButton(
+                                          onPressed: () {},
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty
+                                                    .resolveWith<Color?>(
+                                              (Set<MaterialState> states) =>
+                                                  AppColor.colorPrimary,
+                                            ),
+                                          ),
+                                          child: const Text(
+                                            AppString.textSubmit,
+                                            style: TextStyle(
+                                              color: AppColor.colorWhite_two,
+                                              fontFamily:
+                                                  AppFonts.avenirRegular,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(
                       (Set<MaterialState> states) => AppColor.colorPrimary,
@@ -700,32 +817,226 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
               const SizedBox(
                 height: AppSize.mainSize33,
               ),
-              SizedBox(
-                height: AppSize.mainSize46,
-                width: AppSize.mainSize320,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ScreenProcessOrderDetail(),
-                      ),
-                    );
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                      (Set<MaterialState> states) => AppColor.colorPrimary,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    AppString.textYourProducts,
+                    style: TextStyle(
+                      color: AppColor.colorBlack_two,
+                      fontSize: AppSize.mainSize16,
+                      fontFamily: AppFonts.avenirRegular,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  child: const Text(
-                    AppString.textContinueToPay,
-                    style: TextStyle(
-                        color: AppColor.colorWhite_two,
-                        fontSize: AppSize.mainSize16,
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet<void>(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) {
+                          return SizedBox(
+                            height: AppSize.mainSize500,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    height: AppSize.mainSize20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 52, right: 16),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Expanded(
+                                          child: Align(
+                                            alignment: Alignment.topCenter,
+                                            child: Text(
+                                              AppString.textProductList,
+                                              style: TextStyle(
+                                                  fontSize: AppSize.mainSize20,
+                                                  color:
+                                                      AppColor.colorBlack_two,
+                                                  fontFamily:
+                                                      AppFonts.avenirRegular,
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                        ),
+                                        // const SizedBox(
+                                        //   width: AppSize.mainSize82,
+                                        // ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Image.asset(AppImage.appCross),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSize.mainSize32,
+                                  ),
+                                  Expanded(
+                                    child: ListView.builder(
+                                        scrollDirection: Axis.vertical,
+                                        itemBuilder: (context, index) {
+                                          return Column(
+                                            children: [
+                                              Card(
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    SizedBox(
+                                                      height:
+                                                          AppSize.mainSize100,
+                                                      width:
+                                                          AppSize.mainSize100,
+                                                      child: Image.asset(
+                                                          csitems()[index]
+                                                              .image!),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: AppSize.mainSize16,
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          csitems()[index]
+                                                              .name!,
+                                                          style: const TextStyle(
+                                                              fontSize: AppSize
+                                                                  .mainSize14,
+                                                              color: AppColor
+                                                                  .colorBlack_two,
+                                                              fontFamily: AppFonts
+                                                                  .avenirRegular,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w900),
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            const Text(
+                                                              "Qty: 1",
+                                                              style: TextStyle(
+                                                                color: AppColor
+                                                                    .colorCoolGrey,
+                                                                fontFamily: AppFonts
+                                                                    .avenirRegular,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                            const SizedBox(
+                                                                width: AppSize
+                                                                    .mainSize77),
+                                                            Text(
+                                                              "Total Price: \$${catitems()[index].price!}",
+                                                              style:
+                                                                  const TextStyle(
+                                                                color: AppColor
+                                                                    .colorPrimary_two,
+                                                                fontFamily: AppFonts
+                                                                    .avenirRegular,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                          height: AppSize
+                                                              .mainSize43,
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                        itemCount: catitems().length),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: AppSize.mainSize32),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: const [
+                                        Text(
+                                          AppString.textSubtotal,
+                                          style: TextStyle(
+                                            color: AppColor.colorBlack_two,
+                                            fontFamily: AppFonts.avenirRegular,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Text(
+                                          AppString.textTotalPrice,
+                                          style: TextStyle(
+                                            color: AppColor.colorPrimary_two,
+                                            fontFamily: AppFonts.avenirRegular,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: AppSize.mainSize33,
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const Text(
+                      AppString.textViewDetail,
+                      style: TextStyle(
+                        color: AppColor.colorPrimary_two,
+                        fontSize: AppSize.mainSize14,
                         fontFamily: AppFonts.avenirRegular,
-                        fontWeight: FontWeight.w500),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: AppSize.mainSize14,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Image.asset(AppImage.appDoritosSmall),
+                  const SizedBox(
+                    width: AppSize.mainSize10,
                   ),
-                ),
+                  Image.asset(AppImage.appAveenoBabySmall),
+                  const SizedBox(
+                    width: AppSize.mainSize10,
+                  ),
+                  Image.asset(AppImage.appHSSmall),
+                  const SizedBox(
+                    width: AppSize.mainSize10,
+                  ),
+                  Image.asset(AppImage.appColgateSmall),
+                ],
               ),
               const SizedBox(
                 height: AppSize.mainSize22,

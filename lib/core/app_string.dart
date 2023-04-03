@@ -210,4 +210,6 @@ class AppString {
   static const textRemoveCodeChangeCode = 'Remove Code | Change Code';
   static const textGrandTotal = 'Grand Total';
   static const textSelectDeliveryType = 'Select Delivery Type';
+  static const textAddReason = 'Add Reason';
+  static const textCancel = 'Cancel';
 }
