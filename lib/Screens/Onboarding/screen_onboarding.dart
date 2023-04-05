@@ -40,7 +40,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ScreenRegisteration(),
+                            builder: (context) => ScreenRegisteration(),
                           ),
                         );
                       },

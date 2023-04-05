@@ -125,7 +125,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const ScreenRegisteration(),
+                      builder: (context) => ScreenRegisteration(),
                     ),
                   );
                 },

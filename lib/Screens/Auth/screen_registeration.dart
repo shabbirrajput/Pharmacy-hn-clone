@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/user_repo.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
-import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:pharmacy_hn_clone/Db/database_handler.dart';
 
 class ScreenRegisteration extends StatefulWidget {
   const ScreenRegisteration({Key? key}) : super(key: key);
@@ -14,6 +16,56 @@ class ScreenRegisteration extends StatefulWidget {
 }
 
 class _ScreenRegisterationState extends State<ScreenRegisteration> {
+  TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController mobilenoController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController confirmpasslController = TextEditingController();
+  Database? _database;
+
+  Future<Database?> openDB() async {
+    _database = await DatabaseHandler().openDB();
+    return _database!;
+  }
+
+  Future<void> insertDB() async {
+    await openDB();
+    UserRepo userRepo = UserRepo();
+    userRepo.createTable(_database);
+
+    // UserModel userModel = UserModel(
+    //     nameController.text.toString(),
+    //     emailController.text.toString(),
+    //     mobilenoController.text.toString(),
+    //     passController.text.toString());
+
+/*    await _database?.insert('CUSTOMERSDATA', userModel.toJson());
+    await _database?.close();
+    _database = await openDB();*/
+
+    await _database!.execute(
+        '''INSERT INTO CUSTOMERSDATA (name, email, mobile, password) VALUES ('${nameController.text}','${emailController.text}','${mobilenoController.text}','${passController.text}')''').then((value) {
+      print('object--------------------');
+    });
+
+    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATA').then((value) {
+      value.forEach((element) {
+        print("element['name'] =================> ${element['name']}");
+        print("element['email'] =================> ${element['email']}");
+        print("element['mobile'] =================> ${element['mobile']}");
+        print("element['password'] =================> ${element['password']}");
+      });
+    });
+  }
+
+/*  Future<void> getFromUser() async {
+    _database = await openDB();
+
+    UserRepo userRepo = UserRepo();
+    await userRepo.getUsers(_database);
+    await _database?.close();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +100,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize30,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: nameController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -62,9 +115,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: emailController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -76,9 +130,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: mobilenoController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -90,9 +145,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: passController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -104,9 +160,10 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: confirmpasslController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -174,12 +231,14 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ScreenOtpVerification(),
-                      ),
-                    );
+                    insertDB();
+                    // getFromUser();
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const ScreenOtpVerification(),
+                    //   ),
+                    // );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(
