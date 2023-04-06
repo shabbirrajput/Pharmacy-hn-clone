@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/login_ctr.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_forgot_password.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
@@ -6,6 +7,7 @@ import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -15,6 +17,33 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  Database? _database;
+
+  /*Future<Database?> openDB() async {
+    _database = await DatabaseHandler().openDB();
+    return _database!;
+  }*/
+
+/*  Future<void> insertDB() async {
+    await openDB();
+    UserRep userRepo = User();
+    userRepo.createTable(_database);
+
+    await _database!.execute(
+        '''INSERT INTO CUSTOMERSDATAREPO (email, password) VALUES ('${emailController.text}','${passController.text}')''').then((value) {
+      print('object--------------------');
+    });
+
+    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATAREPO').then((value) {
+      value.forEach((element) {
+        print("element['email'] =================> ${element['email']}");
+        print("element['password'] =================> ${element['password']}");
+      });
+    });
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +75,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const SizedBox(
                 height: AppSize.mainSize30,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: emailController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -58,9 +88,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextField(
+                controller: passController,
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -96,6 +127,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+                    LoginCtr();
+                    // insertDB();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -125,7 +158,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ScreenRegisteration(),
+                      builder: (context) => const ScreenRegisteration(),
                     ),
                   );
                 },

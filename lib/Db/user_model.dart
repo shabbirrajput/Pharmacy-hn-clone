@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class UserModel {
   late final String? name;
   late final String? email;
@@ -29,6 +31,53 @@ class UserModel {
     data['email'] = email;
     data['mobile'] = mobile;
     data['password'] = password;
+    return data;
+  }
+}
+
+/*class User {
+  int id;
+  late final String? email;
+  late final String? password;
+
+  User(
+    String _email,
+    String _pass, {
+    required this.id,
+    this.email,
+    this.password,
+  });
+
+  User.fromJson(Map<String, dynamic> json, this.id, this.email, this.password) {
+    email = json['email'];
+    password = json['password'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['email'] = email;
+    data['password'] = password;
+    return data;
+  }
+}*/
+class User {
+  Int? id;
+  String? email;
+  String? password;
+
+  User({this.id, this.email, this.password});
+
+  User.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    email = json['email'];
+    password = json['Password'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['email'] = email;
+    data['Password'] = password;
     return data;
   }
 }
