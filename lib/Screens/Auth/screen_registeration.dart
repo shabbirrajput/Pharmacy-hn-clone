@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Db/user_repo.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
+import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:pharmacy_hn_clone/Db/database_handler.dart';
 
 class ScreenRegisteration extends StatefulWidget {
   const ScreenRegisteration({Key? key}) : super(key: key);
@@ -16,55 +17,51 @@ class ScreenRegisteration extends StatefulWidget {
 }
 
 class _ScreenRegisterationState extends State<ScreenRegisteration> {
-  TextEditingController nameController = TextEditingController();
+  final _formKey = new GlobalKey<FormState>();
+
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController mobilenoController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmpasslController = TextEditingController();
-  Database? _database;
+  var dbHelper;
 
-  Future<Database?> openDB() async {
-    _database = await DatabaseHandler().openDB();
-    return _database!;
+  void initState() {
+    super.initState();
+    dbHelper = DbHelper();
   }
 
-  Future<void> insertDB() async {
-    await openDB();
-    UserRepo userRepo = UserRepo();
-    userRepo.createTable(_database);
+  signUp() async {
+    String name = nameController.text;
+    String email = emailController.text;
+    String mobileno = mobilenoController.text;
+    String passwd = passController.text;
+    String cpasswd = confirmpasslController.text;
 
-    // UserModel userModel = UserModel(
-    //     nameController.text.toString(),
-    //     emailController.text.toString(),
-    //     mobilenoController.text.toString(),
-    //     passController.text.toString());
+    ///if (_formKey.currentState!.validate()) {
+    if (passwd != cpasswd) {
+      alertDialog('Password Mismatch');
+    } else {
+      ///_formKey.currentState!.save();
 
-/*    await _database?.insert('CUSTOMERSDATA', userModel.toJson());
-    await _database?.close();
-    _database = await openDB();*/
-
-    await _database!.execute(
-        '''INSERT INTO CUSTOMERSDATA (name, email, mobile, password) VALUES ('${nameController.text}','${emailController.text}','${mobilenoController.text}','${passController.text}')''').then((value) {
-      print('object--------------------');
-    });
-
-    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATA').then((value) {
-      value.forEach((element) {
-        print("element['name'] =================> ${element['name']}");
-        print("element['email'] =================> ${element['email']}");
-        print("element['mobile'] =================> ${element['mobile']}");
-        print("element['password'] =================> ${element['password']}");
+      UserModel uModel = UserModel();
+      // uModel.id = email;
+      uModel.name = name;
+      uModel.email = email;
+      uModel.mobileno = mobileno;
+      uModel.password = passwd;
+      dbHelper = DbHelper();
+      await dbHelper.saveData(uModel).then((userData) {
+        alertDialog("Successfully Saved");
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const ScreenLogin()));
+      }).catchError((error) {
+        print(error);
+        alertDialog("Error: Data Save Fail--$error");
       });
-    });
+    }
+    //  }
   }
-
-/*  Future<void> getFromUser() async {
-    _database = await openDB();
-
-    UserRepo userRepo = UserRepo();
-    await userRepo.getUsers(_database);
-    await _database?.close();
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -231,14 +228,8 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    insertDB();
+                    signUp();
                     // getFromUser();
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const ScreenOtpVerification(),
-                    //   ),
-                    // );
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(

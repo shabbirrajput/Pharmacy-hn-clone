@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Screens/PopularProduct/screen_popular_product.dart';
 import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
@@ -8,6 +9,7 @@ import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenHome extends StatefulWidget {
   final Function viewAllCategory;
@@ -19,6 +21,31 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
+  final _formKey = new GlobalKey<FormState>();
+  Future<SharedPreferences> _pref = SharedPreferences.getInstance();
+
+  late DbHelper dbHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    getUserData();
+
+    dbHelper = DbHelper();
+  }
+
+  Future<void> getUserData() async {
+    final SharedPreferences sp = await _pref;
+
+    /*setState(() {
+      nameController.text = sp.getString("user_id")!;
+      _conDelUserId.text = sp.getString("user_id")!;
+      _conUserName.text = sp.getString("user_name")!;
+      _conEmail.text = sp.getString("email")!;
+      _conPassword.text = sp.getString("password")!;
+    });*/
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

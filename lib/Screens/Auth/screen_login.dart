@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Db/login_ctr.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_forgot_password.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
@@ -7,6 +12,7 @@ import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class ScreenLogin extends StatefulWidget {
@@ -17,32 +23,58 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
+  Future<SharedPreferences> _pref = SharedPreferences.getInstance();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  Database? _database;
+  var dbHelper;
 
-  /*Future<Database?> openDB() async {
-    _database = await DatabaseHandler().openDB();
-    return _database!;
-  }*/
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DbHelper();
+  }
 
-/*  Future<void> insertDB() async {
-    await openDB();
-    UserRep userRepo = User();
-    userRepo.createTable(_database);
+  login() async {
+    String email = emailController.text;
+    String passwd = passController.text;
 
-    await _database!.execute(
-        '''INSERT INTO CUSTOMERSDATAREPO (email, password) VALUES ('${emailController.text}','${passController.text}')''').then((value) {
-      print('object--------------------');
-    });
-
-    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATAREPO').then((value) {
-      value.forEach((element) {
-        print("element['email'] =================> ${element['email']}");
-        print("element['password'] =================> ${element['password']}");
+    if (email.isEmpty) {
+      alertDialog("Please Enter User ID");
+    } else if (passwd.isEmpty) {
+      alertDialog("Please Enter Password");
+    } else {
+      print('else------->');
+      await dbHelper.getLoginUser(email, passwd).then((userData) {
+        if (userData != null && userData.email != null) {
+          print('else------->then----->');
+          setSP(userData).whenComplete(() {
+            Navigator.pushAndRemoveUntil(
+                NavigatorKey.navigatorKey.currentContext!,
+                MaterialPageRoute(builder: (_) => const ScreenMenu()),
+                (Route<dynamic> route) => false);
+          });
+        } else {
+          alertDialog("Error: User Not Found");
+        }
+      }).catchError((error) {
+        print(error);
+        alertDialog("Error: Login Fail");
       });
-    });
-  }*/
+    }
+  }
+
+  Future setSP(UserModel user) async {
+    final SharedPreferences sp = await _pref;
+
+    print('object--->${jsonEncode(user)}');
+
+    ///sp.setString("id", user.id!);
+    sp.setString("name", user.name!);
+    sp.setString("email", user.email!);
+    sp.setString("mobileno", user.mobileno!);
+    sp.setString("password", user.password!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,14 +159,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    LoginCtr();
+                    // login();
                     // insertDB();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ScreenMenu(),
-                      ),
-                    );
+                    login();
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -204,4 +231,34 @@ class _ScreenLoginState extends State<ScreenLogin> {
       ),
     );
   }
+
+/* Future<void> login() async {
+    await openDB();
+    UserRepo userRepo = UserRepo();
+    userRepo.createTable(_database);
+
+    // UserModel userModel = UserModel(
+    //     nameController.text.toString(),
+    //     emailController.text.toString(),
+    //     mobilenoController.text.toString(),
+    //     passController.text.toString());
+
+*/ /*    await _database?.insert('CUSTOMERSDATA', userModel.toJson());
+    await _database?.close();
+    _database = await openDB();*/ /*
+
+    await _database!.execute(
+        '''INSERT INTO CUSTOMERSDATA (name, email, mobile, password) VALUES ('${nameController.text}','${emailController.text}','${mobilenoController.text}','${passController.text}')''').then((value) {
+      print('object--------------------');
+    });
+
+    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATA').then((value) {
+      value.forEach((element) {
+        print("element['name'] =================> ${element['name']}");
+        print("element['email'] =================> ${element['email']}");
+        print("element['mobile'] =================> ${element['mobile']}");
+        print("element['password'] =================> ${element['password']}");
+      });
+    });
+  }*/
 }

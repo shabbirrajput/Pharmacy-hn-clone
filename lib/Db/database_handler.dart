@@ -17,4 +17,11 @@ class DatabaseHandler {
         await openDatabase(join(await getDatabasesPath(), 'customer.db'));
     return _database;
   }
+
+  Future<dynamic> userLogin(String email, String password) async {
+    var dbClient = await _database;
+    var value = await dbClient!.rawQuery(
+        "SELECT * FROM user where email=$email and password=$password");
+    return value;
+  }
 }
