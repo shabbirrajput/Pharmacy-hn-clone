@@ -4,8 +4,15 @@ class UserModel {
   String? email;
   String? mobileno;
   String? password;
+  int? isAdmin;
 
-  UserModel({this.id, this.name, this.email, this.mobileno, this.password});
+  UserModel(
+      {this.id,
+      this.name,
+      this.email,
+      this.mobileno,
+      this.password,
+      this.isAdmin});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -13,6 +20,7 @@ class UserModel {
     email = json['email'];
     mobileno = json['mobileno'];
     password = json['password'];
+    isAdmin = json['isAdmin'];
   }
 
   Map<String, dynamic> toJson() {
@@ -22,6 +30,8 @@ class UserModel {
     data['email'] = this.email;
     data['mobileno'] = this.mobileno;
     data['password'] = this.password;
+    data['isAdmin'] = this.isAdmin;
+
     return data;
   }
 }

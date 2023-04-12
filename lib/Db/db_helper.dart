@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 class DbHelper {
   late Database _db;
 
-  static const String DB_Name = 'myDb.db';
+  static const String DB_Name = 'User.db';
   static const String Table_User = 'user';
   static const int Version = 1;
   static const String C_UserID = 'id';

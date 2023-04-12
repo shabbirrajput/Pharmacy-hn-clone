@@ -40,27 +40,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
 
     ///if (_formKey.currentState!.validate()) {
 
-    /* try {
-      await email(
-          email: "Hello@worl.com",
-          password: "123456789"
-      );
-    } catch (e) {
-      print(e.toString());
-      switch (email) {
-        case "email-already-in-use":
-          alertDialog("This Email ID already Associated with Another Account.");
-          break;
-      }
-    }*/
-
-    /*  Future<UserModel> isEmailExist(String email) async {
-     // final db = await DbHelper.Table_User;
-      var result = await db;
-      var res = await result.rawQuerry('SELECT COUNT(*) FROM users WHERE email = ?', [email]);
-      return UserModel();
-    }*/
-
     bool isExist = false;
     if (email.isNotEmpty) {
       await dbHelper.getCheckEmailUser(email).then((userData) {
