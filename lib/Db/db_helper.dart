@@ -1,8 +1,10 @@
 import 'package:path_provider/path_provider.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
-import 'package:sqflite/sqflite.dart';
+
 import 'package:path/path.dart';
 import 'dart:io' as io;
+
+import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
   late Database _db;
@@ -62,9 +64,8 @@ class DbHelper {
 
   Future<UserModel> getCheckEmailUser(String email) async {
     var dbClient = await db;
-    var res =
-        await dbClient.rawQuery("SELECT * FROM $Table_User WHERE IF NOT EXIST"
-            "$C_Email = '$email'");
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
+        "$C_Email = '$email'");
 
     if (res.length > 0) {
       return UserModel.fromJson(res.first);

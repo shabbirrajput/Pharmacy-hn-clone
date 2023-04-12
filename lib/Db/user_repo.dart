@@ -1,4 +1,3 @@
-import 'package:pharmacy_hn_clone/Db/database_handler.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserRepo {

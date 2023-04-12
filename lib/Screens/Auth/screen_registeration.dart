@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
@@ -38,9 +39,53 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     String cpasswd = confirmpasslController.text;
 
     ///if (_formKey.currentState!.validate()) {
+
+    /* try {
+      await email(
+          email: "Hello@worl.com",
+          password: "123456789"
+      );
+    } catch (e) {
+      print(e.toString());
+      switch (email) {
+        case "email-already-in-use":
+          alertDialog("This Email ID already Associated with Another Account.");
+          break;
+      }
+    }*/
+
+    /*  Future<UserModel> isEmailExist(String email) async {
+     // final db = await DbHelper.Table_User;
+      var result = await db;
+      var res = await result.rawQuerry('SELECT COUNT(*) FROM users WHERE email = ?', [email]);
+      return UserModel();
+    }*/
+
+    bool isExist = false;
+    if (email.isNotEmpty) {
+      await dbHelper.getCheckEmailUser(email).then((userData) {
+        if (userData != null && userData.email != null) {
+          isExist = true;
+        }
+      });
+    }
+
     if (passwd != cpasswd) {
       alertDialog('Password Mismatch');
-    } else if (email == email) {
+    } else if (name.isEmpty) {
+      alertDialog("Please Enter Name");
+    } else if (email.isEmpty) {
+      alertDialog("Please Enter Email ID");
+    } else if (isExist) {
+      alertDialog("This Email ID is Exist. Please Enter new Email");
+    } else if (mobileno.isEmpty) {
+      alertDialog("Please Enter Mobile No");
+    } else if (passwd.isEmpty) {
+      alertDialog("Please Enter Password");
+    } else if (cpasswd.isEmpty) {
+      alertDialog("Please Enter Confirm Password");
+    } else if (email == DbHelper.C_Email) {
+      print('else _if----->');
       alertDialog('Email Already Exist');
     } else {
       ///_formKey.currentState!.save();
@@ -186,7 +231,13 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                       icon: Icon(isVendor
                           ? Icons.radio_button_on
                           : Icons.radio_button_off)),
-                  const Text("Vendor"),
+                  const Text(
+                    AppString.textVendor,
+                    style: TextStyle(
+                        color: AppColor.colorBlack_two,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: AppFonts.avenirRegular),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -200,7 +251,13 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                           icon: Icon(isVendor
                               ? Icons.radio_button_off
                               : Icons.radio_button_on)),
-                      const Text("Customer")
+                      const Text(
+                        AppString.textCustomer,
+                        style: TextStyle(
+                            color: AppColor.colorBlack_two,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: AppFonts.avenirRegular),
+                      )
                     ],
                   ),
                 ],
@@ -284,49 +341,48 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize19,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ScreenLogin(),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(
+                      text: AppString.textAlreadyHaveanAccount,
+                      style: TextStyle(
+                        color: AppColor.colorGreyish,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  );
-                },
-                child: const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: AppString.textAlreadyHaveanAccount,
-                        style: TextStyle(
-                          color: AppColor.colorGreyish,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    const TextSpan(
+                      text: ' ',
+                      style: TextStyle(
+                        color: AppColor.colorGreyish,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
                       ),
-                      TextSpan(
-                        text: ' ',
-                        style: TextStyle(
-                          color: AppColor.colorGreyish,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    ),
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ScreenLogin(),
+                            ),
+                          );
+                        },
+                      text: AppString.textSignIn,
+                      style: const TextStyle(
+                        color: AppColor.colorPrimary_two,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
                       ),
-                      TextSpan(
-                        text: AppString.textSignIn,
-                        style: TextStyle(
-                          color: AppColor.colorPrimary_two,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: TextStyle(
-                    color: AppColor.colorGreyish,
-                    fontFamily: AppFonts.avenirRegular,
-                    fontWeight: FontWeight.w500,
-                  ),
+                    ),
+                  ],
+                ),
+                style: const TextStyle(
+                  color: AppColor.colorGreyish,
+                  fontFamily: AppFonts.avenirRegular,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],

@@ -212,4 +212,6 @@ class AppString {
   static const textSelectDeliveryType = 'Select Delivery Type';
   static const textAddReason = 'Add Reason';
   static const textCancel = 'Cancel';
+  static const textVendor = 'Vendor';
+  static const textCustomer = 'Customer';
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
@@ -179,49 +180,48 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const SizedBox(
                 height: AppSize.mainSize15,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ScreenRegisteration(),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(
+                      text: AppString.textDontHaveAnAccount,
+                      style: TextStyle(
+                        color: AppColor.colorCoolGrey,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  );
-                },
-                child: const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: AppString.textDontHaveAnAccount,
-                        style: TextStyle(
-                          color: AppColor.colorCoolGrey,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    const TextSpan(
+                      text: ' ',
+                      style: TextStyle(
+                        color: AppColor.colorGreyish,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
                       ),
-                      TextSpan(
-                        text: ' ',
-                        style: TextStyle(
-                          color: AppColor.colorGreyish,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
+                    ),
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ScreenRegisteration(),
+                            ),
+                          );
+                        },
+                      text: AppString.textRegisterNow,
+                      style: const TextStyle(
+                        color: AppColor.colorPrimary_two,
+                        fontFamily: AppFonts.avenirRegular,
+                        fontWeight: FontWeight.w500,
                       ),
-                      TextSpan(
-                        text: AppString.textRegisterNow,
-                        style: TextStyle(
-                          color: AppColor.colorPrimary_two,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  style: TextStyle(
-                    color: AppColor.colorCoolGrey,
-                    fontFamily: AppFonts.avenirRegular,
-                    fontWeight: FontWeight.w500,
-                  ),
+                    ),
+                  ],
+                ),
+                style: const TextStyle(
+                  color: AppColor.colorCoolGrey,
+                  fontFamily: AppFonts.avenirRegular,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
