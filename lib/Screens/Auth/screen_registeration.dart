@@ -3,7 +3,6 @@ import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
-import 'package:pharmacy_hn_clone/Screens/Auth/screen_otp_verification.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
@@ -17,7 +16,7 @@ class ScreenRegisteration extends StatefulWidget {
 }
 
 class _ScreenRegisterationState extends State<ScreenRegisteration> {
-  final _formKey = new GlobalKey<FormState>();
+  bool isVendor = true;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -41,6 +40,8 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     ///if (_formKey.currentState!.validate()) {
     if (passwd != cpasswd) {
       alertDialog('Password Mismatch');
+    } else if (email == email) {
+      alertDialog('Email Already Exist');
     } else {
       ///_formKey.currentState!.save();
 
@@ -168,6 +169,41 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     hintStyle: TextStyle(
                         color: AppColor.colorCoolGrey,
                         fontWeight: FontWeight.w500)),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                      color: AppColor.colorPrimary_two,
+                      onPressed: () {
+                        setState(() {
+                          isVendor = true;
+                        });
+                      },
+                      icon: Icon(isVendor
+                          ? Icons.radio_button_on
+                          : Icons.radio_button_off)),
+                  const Text("Vendor"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          color: AppColor.colorPrimary_two,
+                          onPressed: () {
+                            setState(() {
+                              isVendor = false;
+                            });
+                          },
+                          icon: Icon(isVendor
+                              ? Icons.radio_button_off
+                              : Icons.radio_button_on)),
+                      const Text("Customer")
+                    ],
+                  ),
+                ],
               ),
               const SizedBox(
                 height: AppSize.mainSize15,

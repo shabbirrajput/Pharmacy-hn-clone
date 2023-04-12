@@ -13,7 +13,6 @@ import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sqflite/sqlite_api.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({Key? key}) : super(key: key);
@@ -40,14 +39,14 @@ class _ScreenLoginState extends State<ScreenLogin> {
     String passwd = passController.text;
 
     if (email.isEmpty) {
-      alertDialog("Please Enter User ID");
+      alertDialog("Please Enter Email ID");
     } else if (passwd.isEmpty) {
       alertDialog("Please Enter Password");
     } else {
       print('else------->');
       await dbHelper.getLoginUser(email, passwd).then((userData) {
         if (userData != null && userData.email != null) {
-          print('else------->then----->');
+          print('else-------> then----->');
           setSP(userData).whenComplete(() {
             Navigator.pushAndRemoveUntil(
                 NavigatorKey.navigatorKey.currentContext!,
@@ -69,7 +68,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
     print('object--->${jsonEncode(user)}');
 
-    ///sp.setString("id", user.id!);
+    sp.setInt("id", user.id!);
     sp.setString("name", user.name!);
     sp.setString("email", user.email!);
     sp.setString("mobileno", user.mobileno!);

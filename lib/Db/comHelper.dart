@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
-import 'package:toast/toast.dart';
 
 alertDialog(String msg) {
   //Toast.show(msg, context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
@@ -20,7 +19,7 @@ showAlertDialog(BuildContext context, String msg) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("My title"),
+    title: Text("ALERT!"),
     content: Text(msg),
     actions: [
       okButton,

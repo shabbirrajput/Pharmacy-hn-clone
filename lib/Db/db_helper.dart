@@ -7,7 +7,7 @@ import 'dart:io' as io;
 class DbHelper {
   late Database _db;
 
-  static const String DB_Name = 'pharmacy.db';
+  static const String DB_Name = 'myDb.db';
   static const String Table_User = 'user';
   static const int Version = 1;
   static const String C_UserID = 'id';
@@ -33,12 +33,12 @@ class DbHelper {
 
   _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
-        " $C_UserID TEXT, "
+        " $C_UserID INTEGER AUTOINCREMENT, "
         " $C_UserName TEXT, "
-        " $C_Email TEXT,"
+        " $C_Email TEXT PRIMARY KEY,"
         " $C_MobileNo TEXT,"
-        " $C_Password TEXT, "
-        " PRIMARY KEY ($C_UserID)"
+        " $C_Password TEXT "
+        // " PRIMARY KEY ($C_UserID)"
         ")");
   }
 
@@ -62,8 +62,9 @@ class DbHelper {
 
   Future<UserModel> getCheckEmailUser(String email) async {
     var dbClient = await db;
-    var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
-        "$C_Email = '$email'");
+    var res =
+        await dbClient.rawQuery("SELECT * FROM $Table_User WHERE IF NOT EXIST"
+            "$C_Email = '$email'");
 
     if (res.length > 0) {
       return UserModel.fromJson(res.first);
