@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Screens/PopularProduct/screen_popular_product.dart';
 import 'package:pharmacy_hn_clone/Screens/RecommendedProduct/screen_recommended_product.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
+import 'package:pharmacy_hn_clone/category/model/model_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -30,9 +34,41 @@ class _ScreenHomeState extends State<ScreenHome> {
   void initState() {
     super.initState();
     getUserData();
+    readJson();
 
     dbHelper = DbHelper();
   }
+
+  List catList = [];
+
+  List<Category>? category;
+
+  Future<void> readJson() async {
+    final String response =
+        await rootBundle.loadString('assets/json/category.json');
+    final data = await json.decode(response);
+
+    Category tutorial = Category.fromJson(jsonDecode(response));
+
+    print(tutorial);
+
+    /* Category tutorial = Category.fromJson(jsonDecode(response));
+    category!.add(tutorial);
+    print('Data---${category!.length}');*/
+
+    setState(() {
+      /// catList = data['category'].map((data) => Item.fromJson(data));
+      catList = data['category'];
+    });
+  }
+
+/*  loadData() async {
+    final catalogJson =
+        await rootBundle.loadString("assets/json/category.json");
+    final decodedData = jsonDecode(catalogJson);
+    var productsData = decodedData["category"];
+    print(productsData);
+  }*/
 
   Future<void> getUserData() async {
     final SharedPreferences sp = await _pref;
@@ -129,19 +165,21 @@ class _ScreenHomeState extends State<ScreenHome> {
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  // final catalog = CatalogModel.items[index];
                   return Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: AppSize.mainSize100,
                         width: AppSize.mainSize100,
-                        decoration: BoxDecoration(
+                        /*decoration: BoxDecoration(
                             image: DecorationImage(
-                          image: AssetImage(items()[index].image!),
+                          image: AssetImage(catList[index].image!),
                           fit: BoxFit.fill,
-                        )),
+                        ))*/
+                        child: Image.network(catList[index]['image']),
                       ),
                       Text(
-                        items()[index].name!,
+                        catList[index]['name']!,
                         style: const TextStyle(
                           fontSize: AppSize.mainSize14,
                           fontFamily: AppFonts.avenirRegular,
@@ -152,7 +190,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                     ],
                   );
                 },
-                itemCount: items().length),
+                itemCount: catList.length),
           ),
           const SizedBox(
             height: AppSize.mainSize29,
