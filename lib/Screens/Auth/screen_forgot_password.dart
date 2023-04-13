@@ -56,9 +56,9 @@ class _ScreenForgotpasswordState extends State<ScreenForgotpassword> {
             const SizedBox(
               height: AppSize.mainSize18,
             ),
-            const TextField(
-              style: TextStyle(color: AppColor.colorBlack_two),
-              decoration: InputDecoration(
+            TextFormField(
+              style: const TextStyle(color: AppColor.colorBlack_two),
+              decoration: const InputDecoration(
                   filled: true,
                   fillColor: AppColor.colorWhite_three,
                   border: InputBorder.none,

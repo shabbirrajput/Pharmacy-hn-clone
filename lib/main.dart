@@ -21,6 +21,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         navigatorKey: NavigatorKey.navigatorKey,
-        home: const ScreenMenu());
+        home: const ScreenSplash());
   }
 }

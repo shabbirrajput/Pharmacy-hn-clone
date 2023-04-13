@@ -173,11 +173,11 @@ class _ScreenPlaceOrderState extends State<ScreenPlaceOrder> {
                 height: AppSize.mainSize36,
                 width: AppSize.mainSize300,
                 color: AppColor.colorWhite_three,
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.zero,
-                  child: TextField(
-                    style: TextStyle(color: AppColor.colorBlack_two),
-                    decoration: InputDecoration(
+                  child: TextFormField(
+                    style: const TextStyle(color: AppColor.colorBlack_two),
+                    decoration: const InputDecoration(
                         filled: true,
                         fillColor: AppColor.colorWhite_three,
                         border: InputBorder.none,

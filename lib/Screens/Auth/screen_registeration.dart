@@ -17,7 +17,7 @@ class ScreenRegisteration extends StatefulWidget {
 }
 
 class _ScreenRegisterationState extends State<ScreenRegisteration> {
-  bool isVendor = true;
+  // bool isVendor = true;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -26,6 +26,9 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
   final TextEditingController confirmpasslController = TextEditingController();
   var dbHelper;
 
+  // late int _value = 0;
+
+  @override
   void initState() {
     super.initState();
     dbHelper = DbHelper();
@@ -49,9 +52,25 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       });
     }
 
-    if (passwd != cpasswd) {
-      alertDialog('Password Mismatch');
-    } else if (name.isEmpty) {
+    /*  bool isVendor = false;
+    if (_value == 0) {
+      await dbHelper.isVendorCheck(_value).then((userData) {
+        if (userData != null && userData._value != null) {
+          isVendor = true;
+        }
+      });
+    }*/
+
+    /* bool isVendor = false;
+    if (email.isNotEmpty) {
+      await dbHelper.getCheckEmailUser(email).then((userData) {
+        if (userData != null && userData.email != null) {
+          isVendor = true;
+        }
+      });
+    }*/
+
+    if (name.isEmpty) {
       alertDialog("Please Enter Name");
     } else if (email.isEmpty) {
       alertDialog("Please Enter Email ID");
@@ -63,6 +82,8 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       alertDialog("Please Enter Password");
     } else if (cpasswd.isEmpty) {
       alertDialog("Please Enter Confirm Password");
+    } else if (passwd != cpasswd) {
+      alertDialog('Password Mismatch');
     } else if (email == DbHelper.C_Email) {
       print('else _if----->');
       alertDialog('Email Already Exist');
@@ -70,7 +91,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       ///_formKey.currentState!.save();
 
       UserModel uModel = UserModel();
-      // uModel.id = email;
+
       uModel.name = name;
       uModel.email = email;
       uModel.mobileno = mobileno;
@@ -85,8 +106,11 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
         alertDialog("Error: Data Save Fail--$error");
       });
     }
-    //  }
   }
+
+  int _value = 0;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +146,13 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize30,
               ),
-              TextField(
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
                 controller: nameController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -137,7 +167,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              TextField(
+              TextFormField(
                 controller: emailController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -152,7 +182,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              TextField(
+              TextFormField(
                 controller: mobilenoController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -167,7 +197,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              TextField(
+              TextFormField(
                 controller: passController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -182,7 +212,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              TextField(
+              TextFormField(
                 controller: confirmpasslController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -198,6 +228,31 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize15,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Radio(
+                      activeColor: AppColor.colorPrimary,
+                      value: 0,
+                      groupValue: _value,
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value!;
+                        });
+                      }),
+                  const Text("Vendor"),
+                  Radio(
+                      activeColor: AppColor.colorPrimary,
+                      value: 1,
+                      groupValue: _value,
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value!;
+                        });
+                      }),
+                  const Text("Customer"),
+                ],
+              ),
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
@@ -240,7 +295,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                     ],
                   ),
                 ],
-              ),
+              ),*/
               const SizedBox(
                 height: AppSize.mainSize15,
               ),

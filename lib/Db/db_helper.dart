@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 class DbHelper {
   late Database _db;
 
-  static const String DB_Name = 'User.db';
+  static const String DB_Name = 'myDemoDbx.db';
   static const String Table_User = 'user';
   static const int Version = 1;
   static const String C_UserID = 'id';
@@ -17,11 +17,13 @@ class DbHelper {
   static const String C_Email = 'email';
   static const String C_MobileNo = 'mobileno';
   static const String C_Password = 'password';
+  static const String C_IsVendor = 'Vendor';
 
   Future<Database> get db async {
     /* if (_db != null) {
       return _db;
     }*/
+
     _db = await initDb();
     return _db;
   }
@@ -35,11 +37,13 @@ class DbHelper {
 
   _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
-        " $C_UserID INTEGER AUTOINCREMENT, "
+        " $C_UserID INTEGER PRIMARY KEY, "
         " $C_UserName TEXT, "
-        " $C_Email TEXT PRIMARY KEY,"
+        " $C_Email TEXT,"
         " $C_MobileNo TEXT,"
         " $C_Password TEXT "
+
+        /// " $C_IsVendor TEXT "
         // " PRIMARY KEY ($C_UserID)"
         ")");
   }
@@ -66,6 +70,17 @@ class DbHelper {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
         "$C_Email = '$email'");
+
+    if (res.length > 0) {
+      return UserModel.fromJson(res.first);
+    }
+    return UserModel();
+  }
+
+  Future<UserModel> isVendorCheck(String vendor) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
+        "$C_IsVendor = '$vendor'");
 
     if (res.length > 0) {
       return UserModel.fromJson(res.first);

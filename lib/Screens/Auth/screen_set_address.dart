@@ -25,9 +25,9 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextField(
-          style: TextStyle(color: AppColor.colorBlack_two),
-          decoration: InputDecoration(
+        title: TextFormField(
+          style: const TextStyle(color: AppColor.colorBlack_two),
+          decoration: const InputDecoration(
               filled: true,
               // fillColor: AppColor.colorWhite_three,
               border: InputBorder.none,
@@ -70,9 +70,9 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
               const SizedBox(
                 height: AppSize.mainSize15,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextFormField(
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,
@@ -84,9 +84,9 @@ class _ScreenSetAddressState extends State<ScreenSetAddress> {
               const SizedBox(
                 height: AppSize.mainSize8,
               ),
-              const TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+              TextFormField(
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     filled: true,
                     fillColor: AppColor.colorWhite_three,
                     border: InputBorder.none,

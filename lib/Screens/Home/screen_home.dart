@@ -91,11 +91,12 @@ class _ScreenHomeState extends State<ScreenHome> {
           Container(
             height: AppSize.mainSize60,
             color: AppColor.colorPrimary_two,
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
-              child: TextField(
-                style: TextStyle(color: AppColor.colorBlack_two),
-                decoration: InputDecoration(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
+              child: TextFormField(
+                style: const TextStyle(color: AppColor.colorBlack_two),
+                decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     filled: true,
                     fillColor: AppColor.colorWhite_three,

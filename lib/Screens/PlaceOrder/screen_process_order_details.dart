@@ -157,20 +157,20 @@ class _ScreenProcessOrderDetailState extends State<ScreenProcessOrderDetail> {
                                 const SizedBox(
                                   height: AppSize.mainSize24,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: AppSize.mainSize72,
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: AppSize.mainSize20),
-                                    child: TextField(
+                                    child: TextFormField(
                                       maxLines: null,
                                       // Set this
                                       expands: true,
                                       // and this
                                       keyboardType: TextInputType.multiline,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: AppColor.colorBlack_two),
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                           filled: true,
                                           fillColor: AppColor.colorWhite_three,
                                           border: InputBorder.none,

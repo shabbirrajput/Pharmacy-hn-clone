@@ -107,7 +107,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const SizedBox(
                 height: AppSize.mainSize30,
               ),
-              TextField(
+              TextFormField(
                 controller: emailController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -120,7 +120,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
               const SizedBox(
                 height: AppSize.mainSize16,
               ),
-              TextField(
+              TextFormField(
                 controller: passController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -230,34 +230,4 @@ class _ScreenLoginState extends State<ScreenLogin> {
       ),
     );
   }
-
-/* Future<void> login() async {
-    await openDB();
-    UserRepo userRepo = UserRepo();
-    userRepo.createTable(_database);
-
-    // UserModel userModel = UserModel(
-    //     nameController.text.toString(),
-    //     emailController.text.toString(),
-    //     mobilenoController.text.toString(),
-    //     passController.text.toString());
-
-*/ /*    await _database?.insert('CUSTOMERSDATA', userModel.toJson());
-    await _database?.close();
-    _database = await openDB();*/ /*
-
-    await _database!.execute(
-        '''INSERT INTO CUSTOMERSDATA (name, email, mobile, password) VALUES ('${nameController.text}','${emailController.text}','${mobilenoController.text}','${passController.text}')''').then((value) {
-      print('object--------------------');
-    });
-
-    await _database?.rawQuery('SELECT * FROM CUSTOMERSDATA').then((value) {
-      value.forEach((element) {
-        print("element['name'] =================> ${element['name']}");
-        print("element['email'] =================> ${element['email']}");
-        print("element['mobile'] =================> ${element['mobile']}");
-        print("element['password'] =================> ${element['password']}");
-      });
-    });
-  }*/
 }
