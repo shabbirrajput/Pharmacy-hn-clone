@@ -5,6 +5,7 @@ class UserModel {
   String? mobileno;
   String? password;
   int? usertype;
+  String? username;
 
   ///  int? UserType;
 
@@ -14,7 +15,8 @@ class UserModel {
       this.email,
       this.mobileno,
       this.password,
-      this.usertype
+      this.usertype,
+      this.username
 
       ///this.UserType
       });
@@ -26,6 +28,7 @@ class UserModel {
     mobileno = json['mobileno'];
     password = json['password'];
     usertype = json['usertype'];
+    username = json['username'];
 
     /// UserType = json['UserType'];
   }
@@ -38,6 +41,7 @@ class UserModel {
     data['mobileno'] = this.mobileno;
     data['password'] = this.password;
     data['usertype'] = this.usertype;
+    data['username'] = this.username;
 
     ///  data['UserType'] = this.UserType;
 

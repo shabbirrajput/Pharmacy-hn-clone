@@ -36,7 +36,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     String mobileno = mobilenoController.text;
     String passwd = passController.text;
     String cpasswd = confirmpasslController.text;
-    /*String usertype = "";*/
+    String username = "";
 
     ///if (_formKey.currentState!.validate()) {
 
@@ -49,11 +49,11 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       });
     }
 
-    /*   if (_value == 0) {
-      await dbHelper.getUserTypeCheck().then((userData) {});
-    } else if (_value == 1) {
-      await dbHelper.getUserTypeCheck().then((userData) {});
-    }*/
+    if (username == 0) {
+      username = 'Vendor';
+    } else {
+      username = 'Customer';
+    }
 
     /* bool isVendor = false;
     if (_value == 0) {
@@ -90,6 +90,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       uModel.mobileno = mobileno;
       uModel.password = passwd;
       uModel.usertype = _value;
+      uModel.username = username;
       dbHelper = DbHelper();
       await dbHelper.saveData(uModel).then((userData) {
         alertDialog("Successfully Saved");

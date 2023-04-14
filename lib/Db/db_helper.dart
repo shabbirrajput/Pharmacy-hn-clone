@@ -18,6 +18,7 @@ class DbHelper {
   static const String C_MobileNo = 'mobileno';
   static const String C_Password = 'password';
   static const String C_UserType = 'usertype';
+  static const String C_UserTypeName = 'username';
 
   Future<Database> get db async {
     /* if (_db != null) {
@@ -42,7 +43,8 @@ class DbHelper {
         " $C_Email TEXT,"
         " $C_MobileNo TEXT,"
         " $C_Password TEXT,"
-        " $C_UserType INTEGER"
+        " $C_UserType INTEGER,"
+        " $C_UserTypeName TEXT"
 
         /// " $C_IsVendor TEXT "
         // " PRIMARY KEY ($C_UserID)"
