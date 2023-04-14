@@ -11,7 +11,7 @@ alertDialog(String msg) {
 showAlertDialog(BuildContext context, String msg) {
   // set up the button
   Widget okButton = TextButton(
-    child: Text("OK"),
+    child: const Text("OK"),
     onPressed: () {
       Navigator.pop(context);
     },
@@ -19,7 +19,7 @@ showAlertDialog(BuildContext context, String msg) {
 
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("ALERT!"),
+    title: const Text("ALERT!"),
     content: Text(msg),
     actions: [
       okButton,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/Screens/Onboarding/screen_onboarding.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenSplash extends StatefulWidget {
   const ScreenSplash({Key? key}) : super(key: key);
@@ -12,12 +15,32 @@ class ScreenSplash extends StatefulWidget {
 class _ScreenSplashState extends State<ScreenSplash> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const ScreenOnboarding()),
-          (Route<dynamic> route) => false);
-    });
+    init();
     super.initState();
+  }
+
+  void init() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+
+    print('object--textUserId--${sp.getInt(AppConfig.textUserId)}');
+    print('object--textUserType--${sp.getInt(AppConfig.textUserType)}');
+    Future.delayed(const Duration(seconds: 2), () {
+      if (sp.getInt(AppConfig.textUserId) != null &&
+          sp.getInt(AppConfig.textUserType) == 1) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const ScreenOnboarding()),
+            (Route<dynamic> route) => false);
+      } else if (sp.getInt(AppConfig.textUserId) != null &&
+          sp.getInt(AppConfig.textUserType) == 2) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const ScreenMenu()),
+            (Route<dynamic> route) => false);
+      } else {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const ScreenOnboarding()),
+            (Route<dynamic> route) => false);
+      }
+    });
   }
 
   @override

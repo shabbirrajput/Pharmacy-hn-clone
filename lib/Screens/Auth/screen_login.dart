@@ -10,6 +10,7 @@ import 'package:pharmacy_hn_clone/Screens/Auth/screen_forgot_password.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
@@ -49,10 +50,17 @@ class _ScreenLoginState extends State<ScreenLogin> {
         if (userData != null && userData.email != null) {
           print('else-------> then----->');
           setSP(userData).whenComplete(() {
-            Navigator.pushAndRemoveUntil(
-                NavigatorKey.navigatorKey.currentContext!,
-                MaterialPageRoute(builder: (_) => const ScreenMenu()),
-                (Route<dynamic> route) => false);
+            if (userData.usertype == 1) {
+              Navigator.pushAndRemoveUntil(
+                  NavigatorKey.navigatorKey.currentContext!,
+                  MaterialPageRoute(builder: (_) => const ScreenMenu()),
+                  (Route<dynamic> route) => false);
+            } else {
+              Navigator.pushAndRemoveUntil(
+                  NavigatorKey.navigatorKey.currentContext!,
+                  MaterialPageRoute(builder: (_) => const ScreenMenu()),
+                  (Route<dynamic> route) => false);
+            }
           });
         } else {
           alertDialog("Error: User Not Found");
@@ -69,12 +77,15 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
     print('object--->${jsonEncode(user)}');
 
-    sp.setInt("id", user.id!);
+    sp.setInt(AppConfig.textUserId, user.id!);
     sp.setString("name", user.name!);
     sp.setString("email", user.email!);
     sp.setString("mobileno", user.mobileno!);
     sp.setString("password", user.password!);
+    sp.setInt(AppConfig.textUserType, user.usertype!);
   }
+
+  var categoryId = "k";
 
   @override
   Widget build(BuildContext context) {

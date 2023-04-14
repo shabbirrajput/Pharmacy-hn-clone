@@ -3,12 +3,14 @@ import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/Screens/Home/screen_home.dart';
 import 'package:pharmacy_hn_clone/Screens/Notification/screen_notification.dart';
 import 'package:pharmacy_hn_clone/Screens/RewardsAndCoupons/screen_reward_and_coupons.dart';
+import 'package:pharmacy_hn_clone/Screens/Splash/screen_splash.dart';
 import 'package:pharmacy_hn_clone/Screens/ViewAllCategory/screen_view_all_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final List<String> imgList = ['assets/images/wine.png'];
 
@@ -28,6 +30,14 @@ class _ScreenMenuState extends State<ScreenMenu> {
     setState(() {
       selectedIndex = index;
     });
+  }
+
+  void onLogout() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.clear();
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const ScreenSplash()),
+        (Route<dynamic> route) => false);
   }
 
   @override
@@ -145,9 +155,11 @@ class _ScreenMenuState extends State<ScreenMenu> {
               AppImage.appSettings,
               color: AppColor.colorPrimary_two,
             ),
-            title: const Text(AppString.textSettings),
+            title: const Text(AppString.textLogout),
             onTap: () {
-              _onItemTapped(8);
+              onLogout();
+
+              /// _onItemTapped(8);
               Navigator.pop(context);
             },
           ),

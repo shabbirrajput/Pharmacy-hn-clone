@@ -55,6 +55,7 @@ class AppString {
   static const textRewardsAndCoupons = 'Rewards & Coupons';
   static const textNewsAndBlog = 'News & Blog';
   static const textSettings = 'Settings';
+  static const textLogout = 'Logout';
   static const textPharmacy = 'Pharmacy';
   static const textGrocery = 'Grocery';
   static const textDeals = 'Deals';
