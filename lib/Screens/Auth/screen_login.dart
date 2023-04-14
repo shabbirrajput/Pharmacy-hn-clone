@@ -121,6 +121,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
+                obscureText: true,
                 controller: passController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(

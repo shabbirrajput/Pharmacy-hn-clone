@@ -56,6 +56,7 @@ class AppString {
   static const textNewsAndBlog = 'News & Blog';
   static const textSettings = 'Settings';
   static const textPharmacy = 'Pharmacy';
+  static const textGrocery = 'Grocery';
   static const textDeals = 'Deals';
   static const textCategory = 'Category';
   static const textViewAllCategory = 'View All Category';

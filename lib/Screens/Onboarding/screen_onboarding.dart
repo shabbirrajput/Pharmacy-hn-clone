@@ -25,7 +25,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
             Padding(
               padding: const EdgeInsets.fromLTRB(AppSize.mainSize68,
                   AppSize.mainSize56, AppSize.mainSize68, AppSize.mainSize13),
-              child: Image.asset(AppImage.appOnboardingPng),
+              child: Image.asset(AppImage.appOnboardingPng2),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(AppSize.mainSize20,
@@ -125,7 +125,12 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                 icon: Image.asset(AppImage.appSearch),
                 label: const Text(
                   AppString.textContinueWithGoogle,
-                  style: TextStyle(fontFamily: AppFonts.avenirRegular),
+                  style: TextStyle(
+                    color: AppColor.colorBlack,
+                    fontSize: AppSize.mainSize16,
+                    fontFamily: AppFonts.avenirRegular,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(

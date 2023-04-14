@@ -170,7 +170,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
         backgroundColor: AppColor.colorPrimary_two,
         title: Row(
           children: const [
-            Text(AppString.textPharmacy),
+            Text(AppString.textGrocery),
           ],
         ),
         actions: [

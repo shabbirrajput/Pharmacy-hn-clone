@@ -17,16 +17,12 @@ class ScreenRegisteration extends StatefulWidget {
 }
 
 class _ScreenRegisterationState extends State<ScreenRegisteration> {
-  // bool isVendor = true;
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController mobilenoController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmpasslController = TextEditingController();
   var dbHelper;
-
-  // late int _value = 0;
 
   @override
   void initState() {
@@ -40,6 +36,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     String mobileno = mobilenoController.text;
     String passwd = passController.text;
     String cpasswd = confirmpasslController.text;
+    /*String usertype = "";*/
 
     ///if (_formKey.currentState!.validate()) {
 
@@ -52,20 +49,19 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       });
     }
 
-    /*  bool isVendor = false;
-    if (_value == 0) {
-      await dbHelper.isVendorCheck(_value).then((userData) {
-        if (userData != null && userData._value != null) {
-          isVendor = true;
-        }
-      });
+    /*   if (_value == 0) {
+      await dbHelper.getUserTypeCheck().then((userData) {});
+    } else if (_value == 1) {
+      await dbHelper.getUserTypeCheck().then((userData) {});
     }*/
 
     /* bool isVendor = false;
-    if (email.isNotEmpty) {
-      await dbHelper.getCheckEmailUser(email).then((userData) {
-        if (userData != null && userData.email != null) {
+    if (_value == 0) {
+      await dbHelper.getUserTypeCheck(_value).then((userType) {
+        if (userType != null && userType._value != null) {
           isVendor = true;
+        } else {
+          isVendor = false;
         }
       });
     }*/
@@ -75,7 +71,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     } else if (email.isEmpty) {
       alertDialog("Please Enter Email ID");
     } else if (isExist) {
-      alertDialog("This Email ID is Exist. Please Enter new Email");
+      alertDialog("This Email ID Is Already Exist. Please Enter New Email");
     } else if (mobileno.isEmpty) {
       alertDialog("Please Enter Mobile No");
     } else if (passwd.isEmpty) {
@@ -84,9 +80,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       alertDialog("Please Enter Confirm Password");
     } else if (passwd != cpasswd) {
       alertDialog('Password Mismatch');
-    } else if (email == DbHelper.C_Email) {
-      print('else _if----->');
-      alertDialog('Email Already Exist');
     } else {
       ///_formKey.currentState!.save();
 
@@ -96,6 +89,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       uModel.email = email;
       uModel.mobileno = mobileno;
       uModel.password = passwd;
+      uModel.usertype = _value;
       dbHelper = DbHelper();
       await dbHelper.saveData(uModel).then((userData) {
         alertDialog("Successfully Saved");
@@ -109,8 +103,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
   }
 
   int _value = 0;
-
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -198,6 +190,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
+                obscureText: true,
                 controller: passController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -213,6 +206,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
+                obscureText: true,
                 controller: confirmpasslController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -232,7 +226,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 children: [
                   Radio(
                       activeColor: AppColor.colorPrimary,
-                      value: 0,
+                      value: 1,
                       groupValue: _value,
                       onChanged: (value) {
                         setState(() {
@@ -242,7 +236,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                   const Text("Vendor"),
                   Radio(
                       activeColor: AppColor.colorPrimary,
-                      value: 1,
+                      value: 2,
                       groupValue: _value,
                       onChanged: (value) {
                         setState(() {

@@ -17,7 +17,7 @@ class DbHelper {
   static const String C_Email = 'email';
   static const String C_MobileNo = 'mobileno';
   static const String C_Password = 'password';
-  static const String C_IsVendor = 'Vendor';
+  static const String C_UserType = 'usertype';
 
   Future<Database> get db async {
     /* if (_db != null) {
@@ -41,7 +41,8 @@ class DbHelper {
         " $C_UserName TEXT, "
         " $C_Email TEXT,"
         " $C_MobileNo TEXT,"
-        " $C_Password TEXT "
+        " $C_Password TEXT,"
+        " $C_UserType INTEGER"
 
         /// " $C_IsVendor TEXT "
         // " PRIMARY KEY ($C_UserID)"
@@ -77,16 +78,18 @@ class DbHelper {
     return UserModel();
   }
 
-  Future<UserModel> isVendorCheck(String vendor) async {
+/*
+  Future<UserModel> getUserTypeCheck(String usertype) async {
     var dbClient = await db;
-    var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
-        "$C_IsVendor = '$vendor'");
+    var res = await dbClient
+        .rawQuery("INSERT INTO $Table_User ($C_UserType) VALUES ('Vendor')");
 
     if (res.length > 0) {
       return UserModel.fromJson(res.first);
     }
     return UserModel();
   }
+*/
 
   Future<int> updateUser(UserModel user) async {
     var dbClient = await db;

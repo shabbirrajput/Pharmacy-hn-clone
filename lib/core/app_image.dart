@@ -6,6 +6,7 @@ class AppImage {
   static const String appLogoSvg = '${filePathSVG}logo.svg';
   static const String appLogoPng = '${filePathPNG}logo.png';
   static const String appOnboardingPng = '${filePathPNG}onboarding.png';
+  static const String appOnboardingPng2 = '${filePathPNG}grocery_store.png';
   static const String appFblogo = '${filePathPNG}facebook.png';
   static const String appSearch = '${filePathPNG}search.png';
   static const String appLocation = '${filePathPNG}location.png';
