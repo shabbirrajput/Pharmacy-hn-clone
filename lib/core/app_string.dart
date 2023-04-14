@@ -43,6 +43,9 @@ class AppString {
   static const textZipCodeOptional = 'Zip Code(Optional)';
   static const textThisAddressWillAppearAs = 'This address will appear as:';
   static const textHome = 'Home';
+  static const textAddProducts = 'AddProducts';
+  static const textMyCurrentOrder = 'MyCurrentOrder';
+  static const textOrderHistory = 'OrderHistory';
   static const textOffice = 'Office';
   static const textFamily = 'Family';
   static const textOther = 'Other';
@@ -58,6 +61,7 @@ class AppString {
   static const textLogout = 'Logout';
   static const textPharmacy = 'Pharmacy';
   static const textGrocery = 'Grocery';
+  static const textVendor = 'Vendor';
   static const textDeals = 'Deals';
   static const textCategory = 'Category';
   static const textViewAllCategory = 'View All Category';
@@ -214,6 +218,5 @@ class AppString {
   static const textSelectDeliveryType = 'Select Delivery Type';
   static const textAddReason = 'Add Reason';
   static const textCancel = 'Cancel';
-  static const textVendor = 'Vendor';
   static const textCustomer = 'Customer';
 }

@@ -159,8 +159,10 @@ class _ScreenMenuState extends State<ScreenMenu> {
             onTap: () {
               onLogout();
 
+              /// alertDialogue('Are you Sure you want');
+
               /// _onItemTapped(8);
-              Navigator.pop(context);
+              // Navigator.pop(context);
             },
           ),
         ],

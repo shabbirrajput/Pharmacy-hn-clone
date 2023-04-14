@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Admin_Vendor/dashboard.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
@@ -53,7 +54,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
             if (userData.usertype == 1) {
               Navigator.pushAndRemoveUntil(
                   NavigatorKey.navigatorKey.currentContext!,
-                  MaterialPageRoute(builder: (_) => const ScreenMenu()),
+                  MaterialPageRoute(builder: (_) => const Screendashboard()),
                   (Route<dynamic> route) => false);
             } else {
               Navigator.pushAndRemoveUntil(
@@ -84,8 +85,6 @@ class _ScreenLoginState extends State<ScreenLogin> {
     sp.setString("password", user.password!);
     sp.setInt(AppConfig.textUserType, user.usertype!);
   }
-
-  var categoryId = "k";
 
   @override
   Widget build(BuildContext context) {
