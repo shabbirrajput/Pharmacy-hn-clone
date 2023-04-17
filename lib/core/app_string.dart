@@ -43,9 +43,10 @@ class AppString {
   static const textZipCodeOptional = 'Zip Code(Optional)';
   static const textThisAddressWillAppearAs = 'This address will appear as:';
   static const textHome = 'Home';
-  static const textAddProducts = 'AddProducts';
-  static const textMyCurrentOrder = 'MyCurrentOrder';
-  static const textOrderHistory = 'OrderHistory';
+  static const textAddProducts = 'Add Products';
+  static const textMyCurrentOrder = 'My Current Order';
+  static const textOrderHistory = 'Order History';
+  static const text3 = '3';
   static const textOffice = 'Office';
   static const textFamily = 'Family';
   static const textOther = 'Other';
@@ -187,10 +188,12 @@ class AppString {
   static const textOrderSuccessfullyPlaced = 'Order Successfully Placed ';
   static const textViewMyOrder = 'View My Order ';
   static const textOrderNo = 'Order No: 123-321-123';
+  static const textOrderNo2 = 'Order No: 235-321-546';
   static const textOrderBy = 'Order By';
   static const textEmail = 'johndoe@mail.com';
   static const textOrderDateTime = 'Order Date & Time';
   static const textOrderDateAndTime = '20/03/2021 | 10:15';
+  static const textOrderDateAndTime2 = '18/03/2021 | 13:00';
   static const textCancelOrder = 'Cancel Order';
   static const textTrackOrder = 'Track Orders';
   static const textOrderPlaced = 'Order Placed';
@@ -210,6 +213,8 @@ class AppString {
   static const textTipTextAmount = '\$${2.00}';
   static const textDiscountAmount = '\$${-13.00}';
   static const textGrandAmount = '\$${61.00}';
+  static const textOrderAmount = '\$${50.25}';
+  static const textOrderAmount2 = '\$${600.25}';
   static const textDownloadInvoice = 'Download Invoice';
   static const textDiscount = 'Discount';
   static const textDiscountCode = 'Discount Code - DIS50';
@@ -219,4 +224,7 @@ class AppString {
   static const textAddReason = 'Add Reason';
   static const textCancel = 'Cancel';
   static const textCustomer = 'Customer';
+  static const textQty = 'Qty : ';
+  static const text1 = '1';
+  static const textEdit = 'Edit';
 }

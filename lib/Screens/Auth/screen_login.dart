@@ -54,7 +54,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
             if (userData.usertype == 1) {
               Navigator.pushAndRemoveUntil(
                   NavigatorKey.navigatorKey.currentContext!,
-                  MaterialPageRoute(builder: (_) => const Screendashboard()),
+                  MaterialPageRoute(builder: (_) => const ScreenDashboard()),
                   (Route<dynamic> route) => false);
             } else {
               Navigator.pushAndRemoveUntil(

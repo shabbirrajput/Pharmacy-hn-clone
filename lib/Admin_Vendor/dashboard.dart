@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/tab_add_products.dart';
+import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/tab_current_order.dart';
+import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/tab_order_history.dart';
 import 'package:pharmacy_hn_clone/Screens/Splash/screen_splash.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Screendashboard extends StatefulWidget {
-  const Screendashboard({Key? key}) : super(key: key);
+class ScreenDashboard extends StatefulWidget {
+  const ScreenDashboard({Key? key}) : super(key: key);
 
   @override
-  State<Screendashboard> createState() => _ScreendashboardState();
+  State<ScreenDashboard> createState() => _ScreenDashboardState();
 }
 
-class _ScreendashboardState extends State<Screendashboard> {
+class _ScreenDashboardState extends State<ScreenDashboard> {
   late var _currentIndex = 0;
 
   void _onItemTapped(int index) {
@@ -54,7 +57,7 @@ class _ScreendashboardState extends State<Screendashboard> {
         elevation: 0,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.shifting,
         selectedItemColor: AppColor.colorPrimary_two,
         unselectedItemColor: AppColor.colorBlack_two.withOpacity(.60),
         selectedFontSize: 14,
@@ -77,6 +80,14 @@ class _ScreendashboardState extends State<Screendashboard> {
           ),
         ],
       ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: const [
+          TabAddProducts(),
+          TabCurrentOrder(),
+          TabOrderHistory(),
+        ],
+      ), // Th,
     );
   }
 }

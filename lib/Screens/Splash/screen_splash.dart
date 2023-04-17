@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Admin_Vendor/dashboard.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/Screens/Onboarding/screen_onboarding.dart';
 import 'package:pharmacy_hn_clone/core/app_config.dart';
@@ -28,7 +29,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
       if (sp.getInt(AppConfig.textUserId) != null &&
           sp.getInt(AppConfig.textUserType) == 1) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const ScreenOnboarding()),
+            MaterialPageRoute(builder: (context) => const ScreenDashboard()),
             (Route<dynamic> route) => false);
       } else if (sp.getInt(AppConfig.textUserId) != null &&
           sp.getInt(AppConfig.textUserType) == 2) {

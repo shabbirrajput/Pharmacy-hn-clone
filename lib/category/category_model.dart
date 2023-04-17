@@ -387,3 +387,39 @@ List<NotificationDetails> ritems() {
 
   return mNList;
 }
+
+class VendorOrderDetails {
+  String? image;
+
+  VendorOrderDetails({this.image});
+
+  VendorOrderDetails.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['image'] = image;
+    return data;
+  }
+}
+
+List<VendorOrderDetails> vitems() {
+  List<VendorOrderDetails> mNList = [];
+
+  VendorOrderDetails mVMModel = VendorOrderDetails();
+
+  mVMModel = VendorOrderDetails();
+  mVMModel.image = AppImage.appDoritosSmall;
+  mNList.add(mVMModel);
+
+  mVMModel = VendorOrderDetails();
+  mVMModel.image = AppImage.appAveenoBabySmall;
+  mNList.add(mVMModel);
+
+  mVMModel = VendorOrderDetails();
+  mVMModel.image = AppImage.appHeadAndShouldersShampoo;
+  mNList.add(mVMModel);
+
+  return mNList;
+}
