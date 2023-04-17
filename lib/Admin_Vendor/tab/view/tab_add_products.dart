@@ -147,13 +147,33 @@ class _TabAddProductsState extends State<TabAddProducts> {
                               const SizedBox(
                                 height: AppSize.mainSize24,
                               ),
-                              const Text(
-                                AppString.textAddProducts,
-                                style: TextStyle(
-                                  color: AppColor.colorBlack_two,
-                                  fontSize: AppSize.mainSize20,
-                                  fontFamily: AppFonts.avenirRegular,
-                                  fontWeight: FontWeight.w900,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: AppSize.mainSize16),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Expanded(
+                                      child: Align(
+                                        alignment: Alignment.topCenter,
+                                        child: Text(
+                                          AppString.textAddProducts,
+                                          style: TextStyle(
+                                            color: AppColor.colorBlack_two,
+                                            fontSize: AppSize.mainSize20,
+                                            fontFamily: AppFonts.avenirRegular,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Image.asset(AppImage.appCross),
+                                    ),
+                                  ],
                                 ),
                               ),
                               const SizedBox(
