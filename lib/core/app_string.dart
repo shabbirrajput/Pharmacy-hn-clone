@@ -227,4 +227,9 @@ class AppString {
   static const textQty = 'Qty : ';
   static const text1 = '1';
   static const textEdit = 'Edit';
+  static const textAdd = 'Add';
+  static const textAddName = 'Name';
+  static const textAddPrice = 'Price';
+  static const textAddQty = 'Quantity';
+  static const textAddImage = 'Image';
 }

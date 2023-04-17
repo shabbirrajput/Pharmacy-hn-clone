@@ -165,10 +165,6 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: AppSize.mainSize20),
                                   child: TextFormField(
-                                    maxLines: null,
-                                    // Set this
-                                    expands: true,
-                                    // and this
                                     keyboardType: TextInputType.multiline,
                                     style: const TextStyle(
                                         color: AppColor.colorBlack_two),
@@ -176,7 +172,67 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                         filled: true,
                                         fillColor: AppColor.colorWhite_three,
                                         border: InputBorder.none,
-                                        hintText: AppString.textAddReason,
+                                        hintText: AppString.textAddName,
+                                        hintStyle: TextStyle(
+                                            color: AppColor.colorCoolGrey,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: AppSize.mainSize72,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSize.mainSize20),
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.multiline,
+                                    style: const TextStyle(
+                                        color: AppColor.colorBlack_two),
+                                    decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: AppColor.colorWhite_three,
+                                        border: InputBorder.none,
+                                        hintText: AppString.textAddPrice,
+                                        hintStyle: TextStyle(
+                                            color: AppColor.colorCoolGrey,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: AppSize.mainSize72,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSize.mainSize20),
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.multiline,
+                                    style: const TextStyle(
+                                        color: AppColor.colorBlack_two),
+                                    decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: AppColor.colorWhite_three,
+                                        border: InputBorder.none,
+                                        hintText: AppString.textAddQty,
+                                        hintStyle: TextStyle(
+                                            color: AppColor.colorCoolGrey,
+                                            fontWeight: FontWeight.w500)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: AppSize.mainSize72,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: AppSize.mainSize20),
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.multiline,
+                                    style: const TextStyle(
+                                        color: AppColor.colorBlack_two),
+                                    decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: AppColor.colorWhite_three,
+                                        border: InputBorder.none,
+                                        hintText: AppString.textAddImage,
                                         hintStyle: TextStyle(
                                             color: AppColor.colorCoolGrey,
                                             fontWeight: FontWeight.w500)),
@@ -190,8 +246,6 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: AppSize.mainSize20),
                                 child: Row(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
                                       height: AppSize.mainSize46,
@@ -229,7 +283,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                           ),
                                         ),
                                         child: const Text(
-                                          AppString.textSubmit,
+                                          AppString.textAdd,
                                           style: TextStyle(
                                             color: AppColor.colorWhite_two,
                                             fontFamily: AppFonts.avenirRegular,
