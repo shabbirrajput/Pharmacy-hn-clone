@@ -39,9 +39,7 @@ class _ScreenHomeState extends State<ScreenHome> {
     dbHelper = DbHelper();
   }
 
-  List catList = [];
-
-  List<Category>? category;
+  List<Category> catList = [];
 
   Future<void> readJson() async {
     final String response =
@@ -177,10 +175,10 @@ class _ScreenHomeState extends State<ScreenHome> {
                           image: AssetImage(catList[index].image!),
                           fit: BoxFit.fill,
                         ))*/
-                        child: Image.network(catList[index]['image']),
+                        child: Image.network(catList[index].image!),
                       ),
                       Text(
-                        catList[index]['name']!,
+                        catList[index].name!,
                         style: const TextStyle(
                           fontSize: AppSize.mainSize14,
                           fontFamily: AppFonts.avenirRegular,

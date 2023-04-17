@@ -232,4 +232,5 @@ class AppString {
   static const textAddPrice = 'Price';
   static const textAddQty = 'Quantity';
   static const textAddImage = 'Image';
+  static const textSelectCategoryType = 'Select Category Type';
 }
