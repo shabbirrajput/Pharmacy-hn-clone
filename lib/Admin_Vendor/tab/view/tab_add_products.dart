@@ -311,6 +311,9 @@ class _TabAddProductsState extends State<TabAddProducts> {
               ),
             ],
           ),
+          const SizedBox(
+            height: AppSize.mainSize16,
+          )
         ],
       ),
     );
