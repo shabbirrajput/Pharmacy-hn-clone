@@ -36,7 +36,17 @@ showAlertDialog(BuildContext context, String msg) {
 }
 
 validateEmail(String email) {
-  final emailReg = new RegExp(
-      r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
+  final emailReg = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   return emailReg.hasMatch(email);
+}
+
+validatePhone(String phone) {
+  final phoneReg = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
+  return phoneReg.hasMatch(phone);
+}
+
+validatePassword(String password) {
+  final PassReg =
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+  return PassReg.hasMatch(password);
 }

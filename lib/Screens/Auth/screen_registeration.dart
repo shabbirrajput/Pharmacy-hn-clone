@@ -68,14 +68,23 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
 
     if (name.isEmpty) {
       alertDialog("Please Enter Name");
-    } else if (email.isEmpty) {
-      alertDialog("Please Enter Email ID");
+    }
+    if (email.isEmpty) {
+      alertDialog("Please Enter Email");
+    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+      alertDialog("Invalid Email");
     } else if (isExist) {
       alertDialog("This Email ID Is Already Exist. Please Enter New Email");
     } else if (mobileno.isEmpty) {
       alertDialog("Please Enter Mobile No");
+    } else if (!RegExp(r'^[0-9]{10}$').hasMatch(mobileno)) {
+      alertDialog("Invalid Mobile No");
     } else if (passwd.isEmpty) {
       alertDialog("Please Enter Password");
+    } else if (!RegExp(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)')
+        .hasMatch(passwd)) {
+      alertDialog(
+          "Please Enter Strong Password\n\nHint : Password must contain Upper/Lower case, number and special character");
     } else if (cpasswd.isEmpty) {
       alertDialog("Please Enter Confirm Password");
     } else if (passwd != cpasswd) {
@@ -140,12 +149,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize30,
               ),
               TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
                 controller: nameController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -161,6 +164,11 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
+                /*validator: (value) {
+                  if (value != validateEmail) {
+                    alertDialog("Please Enter Valid Email ID");
+                  }
+                },*/
                 controller: emailController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(

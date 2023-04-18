@@ -68,7 +68,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
@@ -189,7 +189,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                         value: value,
                         child: Text(
                           value.name!,
-                          style: TextStyle(fontSize: 30),
+                          style: const TextStyle(fontSize: 30),
                         ),
                       );
                     }).toList(),

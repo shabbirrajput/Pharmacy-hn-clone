@@ -20,6 +20,16 @@ class DbHelper {
   static const String C_UserType = 'usertype';
   static const String C_UserTypeName = 'username';
 
+  static const String Table_Product = 'product';
+  static const String C_ProductID = 'productId';
+  static const String C_ProductName = 'productName';
+  static const String C_ProductCat = 'productCat';
+  static const String C_ProductImage = 'productImage';
+  static const String C_ProductDesc = 'productDesc';
+  static const String C_ProductPrice = 'productPrice';
+  static const String C_ProductQty = 'productQty';
+  static const String C_ProductUserId = 'productUserId';
+
   Future<Database> get db async {
     /* if (_db != null) {
       return _db;
@@ -45,15 +55,29 @@ class DbHelper {
         " $C_Password TEXT,"
         " $C_UserType INTEGER,"
         " $C_UserTypeName TEXT"
+        ")");
 
-        /// " $C_IsVendor TEXT "
-        // " PRIMARY KEY ($C_UserID)"
+    await db.execute("CREATE TABLE $Table_Product ("
+        " $C_ProductID INTEGER PRIMARY KEY, "
+        " $C_ProductName TEXT, "
+        " $C_ProductCat INTEGER,"
+        " $C_ProductImage IMAGE,"
+        " $C_ProductDesc TEXT,"
+        " $C_ProductPrice INTEGER,"
+        " $C_ProductQty INTEGER,"
+        " $C_ProductUserId INTEGER"
         ")");
   }
 
   Future<int> saveData(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_User, user.toJson());
+    return res;
+  }
+
+  Future<int> saveProductData(ProductModel product) async {
+    var dbClient = await db;
+    var res = await dbClient.insert(Table_User, product.toJson());
     return res;
   }
 

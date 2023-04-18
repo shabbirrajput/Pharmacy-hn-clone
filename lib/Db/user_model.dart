@@ -49,6 +49,51 @@ class UserModel {
   }
 }
 
+class ProductModel {
+  String? productId;
+  String? productName;
+  String? productCat;
+  String? productImage;
+  String? productDesc;
+  String? productPrice;
+  String? productQty;
+  String? productUserId;
+
+  ProductModel(
+      {this.productId,
+      this.productName,
+      this.productCat,
+      this.productImage,
+      this.productDesc,
+      this.productPrice,
+      this.productQty,
+      this.productUserId});
+
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    productId = json['productId'];
+    productName = json['productName'];
+    productCat = json['productCat'];
+    productImage = json['productImage'];
+    productDesc = json['productDesc'];
+    productPrice = json['productPrice'];
+    productQty = json['productQty'];
+    productUserId = json['productUserId'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['productId'] = this.productId;
+    data['productName'] = this.productName;
+    data['productCat'] = this.productCat;
+    data['productImage'] = this.productImage;
+    data['productDesc'] = this.productDesc;
+    data['productPrice'] = this.productPrice;
+    data['productQty'] = this.productQty;
+    data['productUserId'] = this.productUserId;
+    return data;
+  }
+}
+
 /*
 class UserModel {
   late final String? name;
