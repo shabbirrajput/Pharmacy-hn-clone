@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/category/model/model_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -17,12 +20,45 @@ class AddProductSheet extends StatefulWidget {
 }
 
 class _AddProductSheetState extends State<AddProductSheet> {
+  final TextEditingController productNameController = TextEditingController();
+  final TextEditingController productPriceController = TextEditingController();
+  final TextEditingController productQtyController = TextEditingController();
+  final TextEditingController productImageController = TextEditingController();
+  final TextEditingController productDescController = TextEditingController();
+  var dbHelper;
+
   @override
   void initState() {
     super.initState();
     readJson();
 
     // dbHelper = DbHelper();
+  }
+
+  addProduct() async {
+    String productName = productNameController.text;
+    String productPrice = productPriceController.text;
+    String productQty = productQtyController.text;
+    String productImage = productImageController.text;
+    String productDesc = productDescController.text;
+
+    ProductModel pModel = ProductModel();
+
+    pModel.productName = productName;
+    pModel.productPrice = productPrice;
+    pModel.productQty = productQty;
+    pModel.productImage = productImage;
+    pModel.productDesc = productDesc;
+
+    dbHelper = DbHelper();
+    await dbHelper.saveData(pModel).then((productData) {
+      alertDialog("Successfully Saved");
+      /*Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const ScreenLogin()));*/
+    }).catchError((error) {
+      print(error);
+      alertDialog("Error: Data Save Fail--$error");
+    });
   }
 
   List<Category> catList = [];
@@ -36,7 +72,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
 
     ModelCategory tutorial = ModelCategory.fromJson(data);
 
-    print("data---${data}");
+    print("data---$data");
     print(tutorial);
 
     /* Category tutorial = Category.fromJson(jsonDecode(response));
@@ -100,6 +136,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
+                  controller: productNameController,
                   keyboardType: TextInputType.multiline,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
@@ -119,6 +156,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
+                  controller: productPriceController,
                   keyboardType: TextInputType.multiline,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
@@ -138,6 +176,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
+                  controller: productQtyController,
                   keyboardType: TextInputType.multiline,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
@@ -157,6 +196,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
+                  controller: productImageController,
                   keyboardType: TextInputType.multiline,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
@@ -170,14 +210,41 @@ class _AddProductSheetState extends State<AddProductSheet> {
                 ),
               ),
             ),
+            SizedBox(
+              height: AppSize.mainSize72,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
+                child: TextFormField(
+                  controller: productDescController,
+                  keyboardType: TextInputType.multiline,
+                  style: const TextStyle(color: AppColor.colorBlack_two),
+                  decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: AppColor.colorWhite_three,
+                      border: InputBorder.none,
+                      hintText: AppString.textDesc,
+                      hintStyle: TextStyle(
+                          color: AppColor.colorCoolGrey,
+                          fontWeight: FontWeight.w500)),
+                ),
+              ),
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Text(AppString.textSelectCategoryType),
-                Container(
-                  height: 50,
-                  width: 200,
+                const Text(
+                  AppString.textSelectCategoryType,
+                  style: TextStyle(
+                    color: AppColor.colorPrimary_two,
+                    fontFamily:
+                        AppFonts.avenirRegular, /*fontWeight: FontWeight.w500*/
+                  ),
+                ),
+                SizedBox(
+                  height: AppSize.mainSize50,
+                  width: AppSize.mainSize100,
                   child: DropdownButton<Category>(
                     // Step 3.
                     value: selectCategory,
@@ -189,7 +256,9 @@ class _AddProductSheetState extends State<AddProductSheet> {
                         value: value,
                         child: Text(
                           value.name!,
-                          style: const TextStyle(fontSize: 30),
+                          style: const TextStyle(
+                              color: AppColor.colorBlack_two,
+                              fontSize: AppSize.mainSize20),
                         ),
                       );
                     }).toList(),
@@ -251,7 +320,9 @@ class _AddProductSheetState extends State<AddProductSheet> {
                     height: AppSize.mainSize46,
                     width: AppSize.mainSize170,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        addProduct();
+                      },
                       style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.resolveWith<Color?>(

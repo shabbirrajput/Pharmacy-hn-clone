@@ -61,7 +61,7 @@ class DbHelper {
         " $C_ProductID INTEGER PRIMARY KEY, "
         " $C_ProductName TEXT, "
         " $C_ProductCat INTEGER,"
-        " $C_ProductImage IMAGE,"
+        " $C_ProductImage TEXT,"
         " $C_ProductDesc TEXT,"
         " $C_ProductPrice INTEGER,"
         " $C_ProductQty INTEGER,"

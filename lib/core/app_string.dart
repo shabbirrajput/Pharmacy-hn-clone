@@ -233,4 +233,5 @@ class AppString {
   static const textAddQty = 'Quantity';
   static const textAddImage = 'Image';
   static const textSelectCategoryType = 'Select Category Type';
+  static const textDesc = 'Description';
 }

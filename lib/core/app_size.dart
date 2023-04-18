@@ -118,5 +118,6 @@ class AppSize {
   static const double mainSize400 = 400;
   static const double mainSize500 = 500;
   static const double mainSize600 = 600;
+  static const double mainSize650 = 650;
   static const double mainSize800 = 800;
 }
