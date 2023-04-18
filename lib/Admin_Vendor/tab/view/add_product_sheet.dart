@@ -7,13 +7,18 @@ import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/category/model/model_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProductSheet extends StatefulWidget {
-  const AddProductSheet({Key? key}) : super(key: key);
+  final Function onProductAdd;
+
+  const AddProductSheet({Key? key, required this.onProductAdd})
+      : super(key: key);
 
   @override
   State<AddProductSheet> createState() => _AddProductSheetState();
@@ -36,29 +41,43 @@ class _AddProductSheetState extends State<AddProductSheet> {
   }
 
   addProduct() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+
     String productName = productNameController.text;
     String productPrice = productPriceController.text;
     String productQty = productQtyController.text;
     String productImage = productImageController.text;
     String productDesc = productDescController.text;
 
-    ProductModel pModel = ProductModel();
+    if (productName.isEmpty) {
+      alertDialog("Please Enter Product Name");
+    } else if (productPrice.isEmpty) {
+      alertDialog("Please Enter Product Price");
+    } else if (productQty.isEmpty) {
+      alertDialog("Please Enter Product Qty");
+    } else if (productImage.isEmpty) {
+      alertDialog("Please Enter Product Image");
+    } else if (productDesc.isEmpty) {
+      alertDialog("Please Enter Product Description");
+    } else {
+      ProductModel pModel = ProductModel();
 
-    pModel.productName = productName;
-    pModel.productPrice = productPrice;
-    pModel.productQty = productQty;
-    pModel.productImage = productImage;
-    pModel.productDesc = productDesc;
+      pModel.productName = productName;
+      pModel.productPrice = int.parse(productPrice);
+      pModel.productQty = int.parse(productQty);
+      pModel.productImage = productImage;
+      pModel.productDesc = productDesc;
+      pModel.productCat = selectCategory.id;
+      pModel.productUserId = sp.getInt(AppConfig.textUserId);
 
-    dbHelper = DbHelper();
-    await dbHelper.saveData(pModel).then((productData) {
-      alertDialog("Successfully Saved");
-      /*Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const ScreenLogin()));*/
-    }).catchError((error) {
-      print(error);
-      alertDialog("Error: Data Save Fail--$error");
-    });
+      dbHelper = DbHelper();
+      await dbHelper.saveProductData(pModel).then((productData) {
+        widget.onProductAdd();
+      }).catchError((error) {
+        print(error);
+        alertDialog("Error: Data Save Fail--$error");
+      });
+    }
   }
 
   List<Category> catList = [];

@@ -77,7 +77,7 @@ class DbHelper {
 
   Future<int> saveProductData(ProductModel product) async {
     var dbClient = await db;
-    var res = await dbClient.insert(Table_User, product.toJson());
+    var res = await dbClient.insert(Table_Product, product.toJson());
     return res;
   }
 
@@ -91,6 +91,33 @@ class DbHelper {
       return UserModel.fromJson(res.first);
     }
     return UserModel();
+  }
+
+  Future<List<ProductModel>> getUserProduct(int userId) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
+        "$C_ProductUserId = $userId ");
+    try {
+      List<ProductModel> mProductModel = List<ProductModel>.from(
+          res.map((model) => ProductModel.fromJson(model)));
+
+      return mProductModel;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<List<ProductModel>> getCategoryProduct(int categoryId) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
+        "$C_ProductCat = $categoryId ");
+    try {
+      List<ProductModel> mProductModel = List<ProductModel>.from(
+          res.map((model) => ProductModel.fromJson(model)));
+      return mProductModel;
+    } catch (e) {
+      return [];
+    }
   }
 
   Future<UserModel> getCheckEmailUser(String email) async {

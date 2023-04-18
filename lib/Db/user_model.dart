@@ -50,14 +50,14 @@ class UserModel {
 }
 
 class ProductModel {
-  String? productId;
+  int? productId;
   String? productName;
-  String? productCat;
+  int? productCat;
   String? productImage;
   String? productDesc;
-  String? productPrice;
-  String? productQty;
-  String? productUserId;
+  int? productPrice;
+  int? productQty;
+  int? productUserId;
 
   ProductModel(
       {this.productId,

@@ -1,15 +1,16 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/add_product_sheet.dart';
-import 'package:pharmacy_hn_clone/category/category_model.dart';
-import 'package:pharmacy_hn_clone/category/model/model_category.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TabAddProducts extends StatefulWidget {
   const TabAddProducts({Key? key}) : super(key: key);
@@ -19,7 +20,23 @@ class TabAddProducts extends StatefulWidget {
 }
 
 class _TabAddProductsState extends State<TabAddProducts> {
-  String dropdownValue = 'Dog';
+  var dbHelper;
+  List<ProductModel> mProductModel = [];
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    dbHelper = DbHelper();
+    mProductModel =
+        await dbHelper.getUserProduct(sp.getInt(AppConfig.textUserId));
+    print('object--mProductModel---${mProductModel.length}');
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +51,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
+                  ProductModel item = mProductModel[index];
                   return Column(
                     children: [
                       Card(
@@ -43,7 +61,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                             SizedBox(
                               height: AppSize.mainSize100,
                               width: AppSize.mainSize100,
-                              child: Image.asset(catitems()[index].image!),
+                              child: Image.asset(''),
                             ),
                             const SizedBox(
                               width: AppSize.mainSize16,
@@ -52,7 +70,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  catitems()[index].name!,
+                                  item.productName!,
                                   style: const TextStyle(
                                       fontSize: AppSize.mainSize14,
                                       color: AppColor.colorBlack_two,
@@ -60,7 +78,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                       fontWeight: FontWeight.w900),
                                 ),
                                 Text(
-                                  "\$${catitems()[index].price!}",
+                                  "\$${item.productPrice!}",
                                   style: const TextStyle(
                                     color: AppColor.colorPrimary_two,
                                     fontFamily: AppFonts.avenirRegular,
@@ -131,7 +149,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                     ],
                   );
                 },
-                itemCount: catitems().length),
+                itemCount: mProductModel.length),
           ),
           const SizedBox(
             height: AppSize.mainSize136,
@@ -145,7 +163,13 @@ class _TabAddProductsState extends State<TabAddProducts> {
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
-                      return AddProductSheet();
+                      return AddProductSheet(
+                        onProductAdd: () {
+                          initData();
+                          Navigator.pop(context);
+                          alertDialog("Successfully Saved");
+                        },
+                      );
                     },
                   );
                 },

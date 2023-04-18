@@ -45,18 +45,9 @@ class _ScreenHomeState extends State<ScreenHome> {
     final String response =
         await rootBundle.loadString('assets/json/category.json');
     final data = await json.decode(response);
-
-    Category tutorial = Category.fromJson(jsonDecode(response));
-
-    print(tutorial);
-
-    /* Category tutorial = Category.fromJson(jsonDecode(response));
-    category!.add(tutorial);
-    print('Data---${category!.length}');*/
-
+    ModelCategory tutorial = ModelCategory.fromJson(data);
     setState(() {
-      /// catList = data['category'].map((data) => Item.fromJson(data));
-      catList = data['category'];
+      catList = tutorial.category!;
     });
   }
 
@@ -165,28 +156,40 @@ class _ScreenHomeState extends State<ScreenHome> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   // final catalog = CatalogModel.items[index];
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: AppSize.mainSize100,
-                        width: AppSize.mainSize100,
-                        /*decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage(catList[index].image!),
-                          fit: BoxFit.fill,
-                        ))*/
-                        child: Image.network(catList[index].image!),
-                      ),
-                      Text(
-                        catList[index].name!,
-                        style: const TextStyle(
-                          fontSize: AppSize.mainSize14,
-                          fontFamily: AppFonts.avenirRegular,
-                          color: AppColor.colorBlack_two,
-                          fontWeight: FontWeight.w500,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ScreenPopularProduct(
+                            mCategory: catList[index],
+                          ),
                         ),
-                      ),
-                    ],
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: AppSize.mainSize100,
+                          width: AppSize.mainSize100,
+                          /*decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage(catList[index].image!),
+                            fit: BoxFit.fill,
+                          ))*/
+                          child: Image.network(catList[index].image!),
+                        ),
+                        Text(
+                          catList[index].name!,
+                          style: const TextStyle(
+                            fontSize: AppSize.mainSize14,
+                            fontFamily: AppFonts.avenirRegular,
+                            color: AppColor.colorBlack_two,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 itemCount: catList.length),
@@ -272,7 +275,9 @@ class _ScreenHomeState extends State<ScreenHome> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ScreenPopularProduct(),
+                  builder: (context) => ScreenPopularProduct(
+                    mCategory: Category(),
+                  ),
                 ),
               );
             },

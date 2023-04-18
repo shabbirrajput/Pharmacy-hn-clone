@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -7,7 +8,9 @@ import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenProductDetails extends StatefulWidget {
-  const ScreenProductDetails({Key? key}) : super(key: key);
+  final ProductModel mProductModel;
+  const ScreenProductDetails({Key? key, required this.mProductModel})
+      : super(key: key);
 
   @override
   State<ScreenProductDetails> createState() => _ScreenProductDetailsState();
@@ -61,24 +64,26 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                 Container(
                   height: AppSize.mainSize300,
                   alignment: Alignment.center,
-                  child: Image.asset(AppImage.appHeadAndShoulders),
+                  child: Image.network(
+                    widget.mProductModel.productImage!,
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(AppImage.appHS1),
                     Image.asset(AppImage.appHS2),
                     Image.asset(AppImage.appHS3),
                   ],
-                ),
+                ),*/
                 const SizedBox(
                   height: AppSize.mainSize31,
                 ),
-                const Text(
-                  AppString.textHSDetails,
+                Text(
+                  widget.mProductModel.productName!,
                   style: TextStyle(
                       color: AppColor.colorBlack_two,
                       fontSize: AppSize.mainSize16,

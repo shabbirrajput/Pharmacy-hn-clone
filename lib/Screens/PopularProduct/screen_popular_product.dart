@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/Screens/ProductDetails/screen_product_details.dart';
-import 'package:pharmacy_hn_clone/category/category_model.dart';
+import 'package:pharmacy_hn_clone/category/model/model_category.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
@@ -9,13 +11,33 @@ import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 
 class ScreenPopularProduct extends StatefulWidget {
-  const ScreenPopularProduct({Key? key}) : super(key: key);
+  final Category mCategory;
+
+  const ScreenPopularProduct({Key? key, required this.mCategory})
+      : super(key: key);
 
   @override
   State<ScreenPopularProduct> createState() => _ScreenPopularProductState();
 }
 
 class _ScreenPopularProductState extends State<ScreenPopularProduct> {
+  var dbHelper;
+  List<ProductModel> mProductModel = [];
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    if (widget.mCategory.id != null) {
+      dbHelper = DbHelper();
+      mProductModel = await dbHelper.getCategoryProduct(widget.mCategory.id!);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +49,10 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
         backgroundColor: AppColor.colorPrimary_two,
         title: Row(
           children: [
-            const Text(
-              AppString.textPopularProduct,
+            Text(
+              widget.mCategory.id != null
+                  ? widget.mCategory.name!
+                  : AppString.textPopularProduct,
               style: TextStyle(
                 color: AppColor.colorWhite,
                 fontFamily: AppFonts.avenirRegular,
@@ -72,8 +96,9 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
             ),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: catitems().length,
+            itemCount: mProductModel.length,
             itemBuilder: (BuildContext ctx, index) {
+              ProductModel item = mProductModel[index];
               return Container(
                 height: 300,
                 margin: const EdgeInsets.only(
@@ -85,7 +110,9 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ScreenProductDetails(),
+                        builder: (context) => ScreenProductDetails(
+                          mProductModel: item,
+                        ),
                       ),
                     );
                   },
@@ -94,14 +121,14 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                         horizontal: AppSize.mainSize24),
                     child: Column(
                       children: [
-                        Image.asset(
-                          catitems()[index].image!,
+                        Image.network(
+                          item.productImage!,
                           height: AppSize.mainSize130,
                         ),
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            catitems()[index].name!,
+                            item.productName!,
                             style: const TextStyle(
                               fontSize: AppSize.mainSize14,
                               color: AppColor.colorBlack_two,
@@ -113,7 +140,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "\$${catitems()[index].price!}",
+                            "\$${item.productPrice!}",
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                               color: AppColor.colorPrimary_two,
