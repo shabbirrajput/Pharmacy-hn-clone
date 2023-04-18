@@ -43,8 +43,14 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
     if (email.isEmpty) {
       alertDialog("Please Enter Email ID");
+    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+      alertDialog("Invalid Email");
     } else if (passwd.isEmpty) {
       alertDialog("Please Enter Password");
+    } else if (!RegExp(r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)')
+        .hasMatch(passwd)) {
+      alertDialog(
+          "Please Enter Strong Password\n\nHint : Password must contain Upper/Lower case, number and special character");
     } else {
       print('else------->');
       await dbHelper.getLoginUser(email, passwd).then((userData) {
