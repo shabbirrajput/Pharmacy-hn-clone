@@ -172,14 +172,14 @@ List<CatModel> pitems() {
   return mCatList;
 }
 
-class CModel {
+class oModel {
   String? name;
   String? image;
   double? price;
 
-  CModel({this.name, this.image, this.price});
+  oModel({this.name, this.image, this.price});
 
-  CModel.fromJson(Map<String, dynamic> json) {
+  oModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
     price = json['price'];

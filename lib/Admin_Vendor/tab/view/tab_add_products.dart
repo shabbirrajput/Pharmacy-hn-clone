@@ -61,7 +61,7 @@ class _TabAddProductsState extends State<TabAddProducts> {
                             SizedBox(
                               height: AppSize.mainSize100,
                               width: AppSize.mainSize100,
-                              child: Image.asset(''),
+                              child: Image.network(item.productImage!),
                             ),
                             const SizedBox(
                               width: AppSize.mainSize16,

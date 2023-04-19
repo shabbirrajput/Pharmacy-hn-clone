@@ -53,7 +53,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
               widget.mCategory.id != null
                   ? widget.mCategory.name!
                   : AppString.textPopularProduct,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColor.colorWhite,
                 fontFamily: AppFonts.avenirRegular,
                 fontSize: AppSize.mainSize18,

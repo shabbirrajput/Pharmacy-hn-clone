@@ -55,23 +55,12 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       username = 'Customer';
     }
 
-    /* bool isVendor = false;
-    if (_value == 0) {
-      await dbHelper.getUserTypeCheck(_value).then((userType) {
-        if (userType != null && userType._value != null) {
-          isVendor = true;
-        } else {
-          isVendor = false;
-        }
-      });
-    }*/
-
     if (name.isEmpty) {
       alertDialog("Please Enter Name");
-    }
-    if (email.isEmpty) {
+    } else if (email.isEmpty) {
       alertDialog("Please Enter Email");
     } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+      print('email_Invalid------------------>');
       alertDialog("Invalid Email");
     } else if (isExist) {
       alertDialog("This Email ID Is Already Exist. Please Enter New Email");
@@ -90,8 +79,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     } else if (passwd != cpasswd) {
       alertDialog('Password Mismatch');
     } else {
-      ///_formKey.currentState!.save();
-
       UserModel uModel = UserModel();
 
       uModel.name = name;
@@ -184,6 +171,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
+                keyboardType: TextInputType.number,
                 controller: mobilenoController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(

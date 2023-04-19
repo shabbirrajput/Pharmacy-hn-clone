@@ -60,18 +60,18 @@ class _AddProductSheetState extends State<AddProductSheet> {
     } else if (productDesc.isEmpty) {
       alertDialog("Please Enter Product Description");
     } else {
-      ProductModel pModel = ProductModel();
+      ProductModel oModel = ProductModel();
 
-      pModel.productName = productName;
-      pModel.productPrice = int.parse(productPrice);
-      pModel.productQty = int.parse(productQty);
-      pModel.productImage = productImage;
-      pModel.productDesc = productDesc;
-      pModel.productCat = selectCategory.id;
-      pModel.productUserId = sp.getInt(AppConfig.textUserId);
+      oModel.productName = productName;
+      oModel.productPrice = int.parse(productPrice);
+      oModel.productQty = int.parse(productQty);
+      oModel.productImage = productImage;
+      oModel.productDesc = productDesc;
+      oModel.productCat = selectCategory.id;
+      oModel.productUserId = sp.getInt(AppConfig.textUserId);
 
       dbHelper = DbHelper();
-      await dbHelper.saveProductData(pModel).then((productData) {
+      await dbHelper.saveProductData(oModel).then((productData) {
         widget.onProductAdd();
       }).catchError((error) {
         print(error);
@@ -84,22 +84,14 @@ class _AddProductSheetState extends State<AddProductSheet> {
   Category selectCategory = Category();
 
   Future<void> readJson() async {
-    print('object-------------------------------------------------->');
     final String response =
         await rootBundle.loadString('assets/json/category.json');
     final data = await json.decode(response);
 
     ModelCategory tutorial = ModelCategory.fromJson(data);
-
-    print("data---$data");
     print(tutorial);
 
-    /* Category tutorial = Category.fromJson(jsonDecode(response));
-    category!.add(tutorial);
-    print('Data---${category!.length}');*/
-
     setState(() {
-      /// catList = data['category'].map((data) => Item.fromJson(data));
       catList = tutorial.category!;
       selectCategory = catList[0];
 
@@ -176,7 +168,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
                   controller: productPriceController,
-                  keyboardType: TextInputType.multiline,
+                  keyboardType: TextInputType.number,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
                       filled: true,
@@ -196,7 +188,7 @@ class _AddProductSheetState extends State<AddProductSheet> {
                     const EdgeInsets.symmetric(horizontal: AppSize.mainSize20),
                 child: TextFormField(
                   controller: productQtyController,
-                  keyboardType: TextInputType.multiline,
+                  keyboardType: TextInputType.number,
                   style: const TextStyle(color: AppColor.colorBlack_two),
                   decoration: const InputDecoration(
                       filled: true,

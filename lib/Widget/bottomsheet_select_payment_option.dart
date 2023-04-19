@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_order_being_process.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomSheetSelectPaymentOption extends StatefulWidget {
   final int selectedIndex;
   final Function(int) onChange;
+
   const BottomSheetSelectPaymentOption(
       {Key? key, required this.selectedIndex, required this.onChange})
       : super(key: key);
@@ -21,6 +27,33 @@ class BottomSheetSelectPaymentOption extends StatefulWidget {
 class _BottomSheetSelectPaymentOptionState
     extends State<BottomSheetSelectPaymentOption> {
   int _value = 1;
+  var dbHelper;
+
+  /*addOrder() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+
+    String orderId = '';
+    String orderQty = '';
+    String orderProductId = '';
+    String orderStatus = '';
+
+    OrderModel oModel = OrderModel();
+
+    oModel.orderId = int.parse(orderId);
+    oModel.orderQty = int.parse(orderQty);
+    oModel.orderProductId = int.parse(orderProductId);
+    oModel.orderUserId = sp.getInt(AppConfig.textUserId);
+    oModel.orderStatus = int.parse(orderStatus);
+
+    dbHelper = DbHelper();
+    await dbHelper
+        .saveProductData(oModel)
+        .then((productData) {})
+        .catchError((error) {
+      print(error);
+      alertDialog("Error: Data Save Fail--$error");
+    });
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -218,6 +251,7 @@ class _BottomSheetSelectPaymentOptionState
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
+                            /*addOrder();*/
                             Navigator.push(
                               context,
                               MaterialPageRoute(

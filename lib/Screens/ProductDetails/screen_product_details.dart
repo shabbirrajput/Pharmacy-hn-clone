@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/comHelper.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/screen_cart.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenProductDetails extends StatefulWidget {
   final ProductModel mProductModel;
+
+  /*final Function onAddToCart;*/
+
   const ScreenProductDetails({Key? key, required this.mProductModel})
       : super(key: key);
 
@@ -17,6 +24,31 @@ class ScreenProductDetails extends StatefulWidget {
 }
 
 class _ScreenProductDetailsState extends State<ScreenProductDetails> {
+  var dbHelper;
+
+  addToCart() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+
+    String cartId = '';
+    String cartProductId = '';
+    String cartProductQty = '';
+
+    CartModel oModel = CartModel();
+
+    oModel.cartId = int.parse(cartId);
+    oModel.cartProductId = int.parse(cartProductId);
+    oModel.cartProductQty = int.parse(cartProductQty);
+    oModel.cartUserId = sp.getInt(AppConfig.textUserId);
+
+    dbHelper = DbHelper();
+    await dbHelper.saveProductData(oModel).then((productData) {
+      /*    widget.onAddToCart();*/
+    }).catchError((error) {
+      print(error);
+      alertDialog("Error: Data Save Fail--$error");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +150,9 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                       height: AppSize.mainSize46,
                       width: 177,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          addToCart();
+                        },
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.resolveWith<Color?>(

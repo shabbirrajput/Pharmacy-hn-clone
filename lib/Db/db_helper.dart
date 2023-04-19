@@ -9,7 +9,7 @@ import 'package:sqflite/sqflite.dart';
 class DbHelper {
   late Database _db;
 
-  static const String DB_Name = 'myDemoDbx.db';
+  static const String DB_Name = 'pharmacy.db';
   static const String Table_User = 'user';
   static const int Version = 1;
   static const String C_UserID = 'id';
@@ -29,6 +29,19 @@ class DbHelper {
   static const String C_ProductPrice = 'productPrice';
   static const String C_ProductQty = 'productQty';
   static const String C_ProductUserId = 'productUserId';
+
+  static const String Table_Cart = 'cart';
+  static const String C_CartID = 'cartId';
+  static const String C_CartProductID = 'cartProductId';
+  static const String C_CartQty = 'productQty';
+  static const String C_CartUserId = 'cartUserId';
+
+  static const String Table_Order = 'order';
+  static const String C_OrderID = 'orderId';
+  static const String C_OrderQty = 'orderQty';
+  static const String C_OrderProductId = 'orderProductId';
+  static const String C_OrderUserId = 'orderUserId';
+  static const String C_OrderStatus = 'orderStatus';
 
   Future<Database> get db async {
     /* if (_db != null) {
@@ -67,6 +80,21 @@ class DbHelper {
         " $C_ProductQty INTEGER,"
         " $C_ProductUserId INTEGER"
         ")");
+
+    await db.execute("CREATE TABLE $Table_Cart ("
+        " $C_CartID INTEGER PRIMARY KEY, "
+        " $C_CartProductID INTEGER, "
+        " $C_OrderQty INTEGER,"
+        " $C_CartUserId INTEGER"
+        ")");
+
+/*    await db.execute("CREATE TABLE $Table_Order ("
+        " $C_OrderID INTEGER PRIMARY KEY, "
+        " $C_OrderQty INTEGER, "
+        " $C_OrderProductId INTEGER,"
+        " $C_OrderUserId INTEGER,"
+        " $C_OrderStatus INTEGER"
+        ")");*/
   }
 
   Future<int> saveData(UserModel user) async {
@@ -78,6 +106,18 @@ class DbHelper {
   Future<int> saveProductData(ProductModel product) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_Product, product.toJson());
+    return res;
+  }
+
+  Future<int> saveCartData(CartModel cart) async {
+    var dbClient = await db;
+    var res = await dbClient.insert(Table_Cart, cart.toJson());
+    return res;
+  }
+
+  Future<int> saveOrderData(OrderModel order) async {
+    var dbClient = await db;
+    var res = await dbClient.insert(Table_Order, order.toJson());
     return res;
   }
 

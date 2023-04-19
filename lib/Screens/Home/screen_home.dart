@@ -51,24 +51,8 @@ class _ScreenHomeState extends State<ScreenHome> {
     });
   }
 
-/*  loadData() async {
-    final catalogJson =
-        await rootBundle.loadString("assets/json/category.json");
-    final decodedData = jsonDecode(catalogJson);
-    var productsData = decodedData["category"];
-    print(productsData);
-  }*/
-
   Future<void> getUserData() async {
     final SharedPreferences sp = await _pref;
-
-    /*setState(() {
-      nameController.text = sp.getString("user_id")!;
-      _conDelUserId.text = sp.getString("user_id")!;
-      _conUserName.text = sp.getString("user_name")!;
-      _conEmail.text = sp.getString("email")!;
-      _conPassword.text = sp.getString("password")!;
-    });*/
   }
 
   @override
