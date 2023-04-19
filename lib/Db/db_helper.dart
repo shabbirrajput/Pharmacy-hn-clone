@@ -82,19 +82,19 @@ class DbHelper {
         ")");
 
     await db.execute("CREATE TABLE $Table_Cart ("
-        " $C_CartID INTEGER PRIMARY KEY, "
-        " $C_CartProductID INTEGER, "
-        " $C_OrderQty INTEGER,"
+        " $C_CartID INTEGER PRIMARY KEY,"
+        " $C_CartProductID INTEGER,"
+        " $C_CartQty INTEGER,"
         " $C_CartUserId INTEGER"
         ")");
 
-/*    await db.execute("CREATE TABLE $Table_Order ("
-        " $C_OrderID INTEGER PRIMARY KEY, "
-        " $C_OrderQty INTEGER, "
+    await db.execute("CREATE TABLE $Table_Order ("
+        " $C_OrderID INTEGER PRIMARY KEY,"
+        " $C_OrderQty INTEGER,"
         " $C_OrderProductId INTEGER,"
         " $C_OrderUserId INTEGER,"
         " $C_OrderStatus INTEGER"
-        ")");*/
+        ")");
   }
 
   Future<int> saveData(UserModel user) async {
@@ -113,6 +113,25 @@ class DbHelper {
     var dbClient = await db;
     var res = await dbClient.insert(Table_Cart, cart.toJson());
     return res;
+  }
+
+  Future<CartModel> getCartProduct(int productId, int userId) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_Cart WHERE "
+        "$C_CartProductID = $productId AND "
+        "$C_CartUserId = $userId");
+
+    if (res.length > 0) {
+      return CartModel.fromJson(res.first);
+    }
+    return CartModel();
+  }
+
+  ///RemoveFromCart
+  Future<int> deleteCategory(int id) async {
+    var dbClient = await db;
+    return await dbClient
+        .rawDelete('DELETE FROM $Table_Cart WHERE $C_CartID = ?', [id]);
   }
 
   Future<int> saveOrderData(OrderModel order) async {

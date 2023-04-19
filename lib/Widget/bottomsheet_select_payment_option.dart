@@ -29,7 +29,7 @@ class _BottomSheetSelectPaymentOptionState
   int _value = 1;
   var dbHelper;
 
-  /*addOrder() async {
+/*  addOrder() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
 
     String orderId = '';
@@ -47,8 +47,8 @@ class _BottomSheetSelectPaymentOptionState
 
     dbHelper = DbHelper();
     await dbHelper
-        .saveProductData(oModel)
-        .then((productData) {})
+        .saveOrderData(oModel)
+        .then((orderData) {})
         .catchError((error) {
       print(error);
       alertDialog("Error: Data Save Fail--$error");

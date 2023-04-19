@@ -25,28 +25,62 @@ class ScreenProductDetails extends StatefulWidget {
 
 class _ScreenProductDetailsState extends State<ScreenProductDetails> {
   var dbHelper;
+  CartModel mCartModel = CartModel();
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    dbHelper = DbHelper();
+    await dbHelper
+        .getCartProduct(
+            widget.mProductModel.productId, sp.getInt(AppConfig.textUserId))
+        .then((cartData) {
+      if (cartData != null && cartData.cartId != null) {
+        setState(() {
+          mCartModel = cartData;
+        });
+      } else {
+        setState(() {
+          mCartModel = CartModel();
+        });
+      }
+    });
+  }
+
+  int selectQty = 0;
+
+  removeFromCart() async {
+    dbHelper = DbHelper();
+    await dbHelper.deleteCategory(mCartModel.cartId);
+    initData();
+  }
 
   addToCart() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
 
-    String cartId = '';
-    String cartProductId = '';
-    String cartProductQty = '';
-
     CartModel oModel = CartModel();
 
-    oModel.cartId = int.parse(cartId);
-    oModel.cartProductId = int.parse(cartProductId);
-    oModel.cartProductQty = int.parse(cartProductQty);
+    oModel.cartProductId = widget.mProductModel.productId;
+    oModel.cartProductQty = selectQty;
     oModel.cartUserId = sp.getInt(AppConfig.textUserId);
 
-    dbHelper = DbHelper();
-    await dbHelper.saveProductData(oModel).then((productData) {
-      /*    widget.onAddToCart();*/
-    }).catchError((error) {
-      print(error);
-      alertDialog("Error: Data Save Fail--$error");
-    });
+    if (selectQty != 0) {
+      dbHelper = DbHelper();
+      await dbHelper.saveCartData(oModel).then((cartData) {
+        alertDialog("Successfully Added");
+      }).catchError((error) {
+        print(error);
+        alertDialog("Error: Data Save Fail--$error");
+      });
+      initData();
+    } else {
+      alertDialog("Please Select Qty");
+    }
   }
 
   @override
@@ -151,7 +185,11 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                       width: 177,
                       child: ElevatedButton(
                         onPressed: () {
-                          addToCart();
+                          if (mCartModel.cartId != null) {
+                            removeFromCart();
+                          } else {
+                            addToCart();
+                          }
                         },
                         style: ButtonStyle(
                           backgroundColor:
@@ -160,8 +198,10 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                                 AppColor.colorPrimary,
                           ),
                         ),
-                        child: const Text(
-                          AppString.textAddToCart,
+                        child: Text(
+                          mCartModel.cartId != null
+                              ? 'Remove Cart'
+                              : AppString.textAddToCart,
                           style: TextStyle(
                             color: AppColor.colorWhite_two,
                             fontFamily: AppFonts.avenirRegular,
@@ -189,84 +229,99 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                 const SizedBox(
                   height: AppSize.mainSize28,
                 ),
-                Row(
-                  children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        AppString.textSelectQty,
-                        style: TextStyle(
-                          color: AppColor.colorBlack_two,
-                          fontSize: AppSize.mainSize16,
-                          fontFamily: AppFonts.avenirRegular,
-                          fontWeight: FontWeight.w500,
+                if (mCartModel.cartId == null)
+                  Row(
+                    children: [
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          AppString.textSelectQty,
+                          style: TextStyle(
+                            color: AppColor.colorBlack_two,
+                            fontSize: AppSize.mainSize16,
+                            fontFamily: AppFonts.avenirRegular,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: AppSize.mainSize12,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 110,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColor.colorCoolGrey),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                  onTap: () {},
-                                  child: Image.asset(
-                                    AppImage.appRemove,
-                                    height: 10,
-                                    width: 10,
-                                  )),
-                              const VerticalDivider(
-                                color: AppColor.colorCoolGrey,
-                                thickness: 1,
-                              ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 3),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 2),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(3),
-                                    color: Colors.white),
-                                child: Text(
-                                  '3',
-                                  style: getTextStyle(
-                                      AppFonts.regular, AppSize.textSize20),
+                      const SizedBox(
+                        width: AppSize.mainSize12,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 40,
+                            width: 110,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: AppColor.colorCoolGrey),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                if (selectQty != 0)
+                                  InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selectQty--;
+                                        });
+                                      },
+                                      child: Image.asset(
+                                        AppImage.appRemove,
+                                        height: 10,
+                                        width: 10,
+                                      )),
+                                if (selectQty != 0)
+                                  const VerticalDivider(
+                                    color: AppColor.colorCoolGrey,
+                                    thickness: 1,
+                                  ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(horizontal: 3),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 3, vertical: 2),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(3),
+                                      color: Colors.white),
+                                  child: Text(
+                                    selectQty.toString(),
+                                    style: getTextStyle(
+                                        AppFonts.regular, AppSize.textSize20),
+                                  ),
                                 ),
-                              ),
-                              const VerticalDivider(
-                                color: AppColor.colorCoolGrey,
-                                thickness: 1,
-                              ),
-                              InkWell(
-                                  onTap: () {},
-                                  child: Image.asset(
-                                    AppImage.appAdd,
-                                    height: 10,
-                                    width: 10,
-                                  )),
-                            ],
+                                if (selectQty !=
+                                    widget.mProductModel.productQty!)
+                                  const VerticalDivider(
+                                    color: AppColor.colorCoolGrey,
+                                    thickness: 1,
+                                  ),
+                                if (selectQty !=
+                                    widget.mProductModel.productQty!)
+                                  InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selectQty++;
+                                        });
+                                      },
+                                      child: Image.asset(
+                                        AppImage.appAdd,
+                                        height: 10,
+                                        width: 10,
+                                      )),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: AppSize.mainSize73,
-                        ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(AppImage.appDelete)),
-                      ],
-                    ),
-                  ],
-                ),
+                          const SizedBox(
+                            width: AppSize.mainSize73,
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(AppImage.appDelete)),
+                        ],
+                      ),
+                    ],
+                  ),
                 const SizedBox(
                   height: AppSize.mainSize31,
                 ),

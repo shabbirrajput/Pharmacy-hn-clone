@@ -106,7 +106,7 @@ class CartModel {
   CartModel.fromJson(Map<String, dynamic> json) {
     cartId = json['cartId'];
     cartProductId = json['cartProductId'];
-    cartProductQty = json['cartProductQty'];
+    cartProductQty = json['productQty'];
     cartUserId = json['cartUserId'];
   }
 
@@ -114,7 +114,7 @@ class CartModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['cartId'] = this.cartId;
     data['cartProductId'] = this.cartProductId;
-    data['cartProductQty'] = this.cartProductQty;
+    data['productQty'] = this.cartProductQty;
     data['cartUserId'] = this.cartUserId;
     return data;
   }
