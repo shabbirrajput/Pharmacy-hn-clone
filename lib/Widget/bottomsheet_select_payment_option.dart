@@ -115,8 +115,8 @@ class _BottomSheetSelectPaymentOptionState
                             groupValue: _value,
                             onChanged: (value) {
                               setState(() {
-                                value = _value;
-                                widget.onChange(value!);
+                                _value = value!;
+                                widget.onChange(value);
                               });
                             },
                           ),
@@ -131,7 +131,7 @@ class _BottomSheetSelectPaymentOptionState
                             groupValue: _value,
                             onChanged: (value) {
                               setState(() {
-                                value = _value;
+                                _value = value!;
                               });
                             },
                           ),
@@ -146,7 +146,7 @@ class _BottomSheetSelectPaymentOptionState
                             groupValue: _value,
                             onChanged: (value) {
                               setState(() {
-                                value = _value;
+                                _value = value!;
                               });
                             },
                           ),
