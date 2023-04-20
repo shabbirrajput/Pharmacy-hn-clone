@@ -13,10 +13,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenProductDetails extends StatefulWidget {
   final ProductModel mProductModel;
+  final Function onProductAddToCart;
 
   /*final Function onAddToCart;*/
 
-  const ScreenProductDetails({Key? key, required this.mProductModel})
+  const ScreenProductDetails(
+      {Key? key, required this.mProductModel, required this.onProductAddToCart})
       : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
   @override
   void initState() {
     initData();
+    initNewData();
     super.initState();
   }
 
@@ -50,6 +53,13 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
         });
       }
     });
+  }
+
+  void initNewData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    dbHelper = DbHelper();
+    mCartModel = await dbHelper.getUserProduct(sp.getInt(AppConfig.textUserId));
+    setState(() {});
   }
 
   int selectQty = 0;
@@ -81,6 +91,13 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
     } else {
       alertDialog("Please Select Qty");
     }
+    dbHelper = DbHelper();
+    await dbHelper.saveProductData(oModel).then((productData) {
+      widget.onProductAddToCart();
+    }).catchError((error) {
+      print(error);
+      alertDialog("Error: Data Save Fail--$error");
+    });
   }
 
   @override
@@ -185,6 +202,8 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                       width: 177,
                       child: ElevatedButton(
                         onPressed: () {
+                          initNewData();
+
                           if (mCartModel.cartId != null) {
                             removeFromCart();
                           } else {
@@ -200,7 +219,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                         ),
                         child: Text(
                           mCartModel.cartId != null
-                              ? 'Remove Cart'
+                              ? 'Remove From Cart'
                               : AppString.textAddToCart,
                           style: TextStyle(
                             color: AppColor.colorWhite_two,
@@ -306,8 +325,8 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                                       },
                                       child: Image.asset(
                                         AppImage.appAdd,
-                                        height: 10,
-                                        width: 10,
+                                        height: 20,
+                                        width: 20,
                                       )),
                               ],
                             ),

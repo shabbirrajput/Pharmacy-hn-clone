@@ -112,6 +112,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
                       MaterialPageRoute(
                         builder: (context) => ScreenProductDetails(
                           mProductModel: item,
+                          onProductAddToCart: () {},
                         ),
                       ),
                     );

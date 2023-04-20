@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
 import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_place_order.dart';
 import 'package:pharmacy_hn_clone/category/category_model.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
+import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenCart extends StatefulWidget {
   const ScreenCart({Key? key}) : super(key: key);
@@ -15,6 +20,33 @@ class ScreenCart extends StatefulWidget {
 }
 
 class _ScreenCartState extends State<ScreenCart> {
+  var dbHelper;
+  List<ModelCartProduct> mCartModel = [];
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
+
+  void initData() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    dbHelper = DbHelper();
+    await dbHelper
+        .getUserCart(sp.getInt(AppConfig.textUserId))
+        .then((List<ModelCartProduct> cartData) {
+      if (cartData.isNotEmpty) {
+        setState(() {
+          mCartModel = cartData;
+        });
+      } else {
+        setState(() {
+          mCartModel = [];
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +82,7 @@ class _ScreenCartState extends State<ScreenCart> {
               child: ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index) {
+                    ModelCartProduct item = mCartModel[index];
                     return Padding(
                       padding:
                           const EdgeInsets.only(bottom: AppSize.mainSize30),
@@ -62,7 +95,7 @@ class _ScreenCartState extends State<ScreenCart> {
                                 SizedBox(
                                   height: AppSize.mainSize100,
                                   width: AppSize.mainSize100,
-                                  child: Image.asset(catitems()[index].image!),
+                                  child: Image.network(item.productImage!),
                                 ),
                                 const SizedBox(
                                   width: AppSize.mainSize16,
@@ -71,7 +104,7 @@ class _ScreenCartState extends State<ScreenCart> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      catitems()[index].name!,
+                                      item.productName!.toString(),
                                       style: const TextStyle(
                                           fontSize: AppSize.mainSize14,
                                           color: AppColor.colorBlack_two,
@@ -79,7 +112,7 @@ class _ScreenCartState extends State<ScreenCart> {
                                           fontWeight: FontWeight.w900),
                                     ),
                                     Text(
-                                      "\$${catitems()[index].price!}",
+                                      "\$${item.productPrice!.toString()}",
                                       style: const TextStyle(
                                         color: AppColor.colorPrimary_two,
                                         fontFamily: AppFonts.avenirRegular,
@@ -179,7 +212,7 @@ class _ScreenCartState extends State<ScreenCart> {
                       ),
                     );
                   },
-                  itemCount: catitems().length),
+                  itemCount: mCartModel.length),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,6 +2,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 
 import 'package:path/path.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
 import 'dart:io' as io;
 
 import 'package:sqflite/sqflite.dart';
@@ -125,6 +126,21 @@ class DbHelper {
       return CartModel.fromJson(res.first);
     }
     return CartModel();
+  }
+
+  Future<List<ModelCartProduct>> getUserCart(int userId) async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery(
+        "SELECT * FROM $Table_Cart INNER JOIN $Table_Product on $Table_Product.$C_ProductID=$Table_Cart.$C_CartProductID WHERE $C_CartUserId = $userId");
+
+    try {
+      List<ModelCartProduct> mCartModel = List<ModelCartProduct>.from(
+          res.map((model) => ModelCartProduct.fromJson(model)));
+
+      return mCartModel;
+    } catch (e) {
+      return [];
+    }
   }
 
   ///RemoveFromCart
