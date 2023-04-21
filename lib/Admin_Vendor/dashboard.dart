@@ -35,10 +35,6 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon: Image.asset(AppImage.appDrawerIcon),
-        //   onPressed: () {},
-        // ),
         backgroundColor: AppColor.colorPrimary_two,
         title: Row(
           children: const [
@@ -49,7 +45,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              onLogout();
+              showAlertDialog(context);
             },
           ),
         ],
@@ -59,7 +55,7 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
         data: Theme.of(context).copyWith(
             canvasColor: AppColor.colorPrimary_two,
             textTheme: Theme.of(context).textTheme.copyWith(
-                bodySmall: TextStyle(color: AppColor.colorWhite_three))),
+                bodySmall: const TextStyle(color: AppColor.colorWhite_three))),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.shifting,
           selectedItemColor: AppColor.colorWhite,
@@ -93,6 +89,39 @@ class _ScreenDashboardState extends State<ScreenDashboard> {
           TabOrderHistory(),
         ],
       ), // Th,
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      child: const Text("log Out"),
+      onPressed: () {
+        onLogout();
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Log Out"),
+      content: const Text("Are you sure you want to Log Out?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

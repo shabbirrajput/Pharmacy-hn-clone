@@ -157,7 +157,7 @@ class _ScreenMenuState extends State<ScreenMenu> {
             ),
             title: const Text(AppString.textLogout),
             onTap: () {
-              onLogout();
+              showAlertDialog(context);
 
               /// alertDialogue('Are you Sure you want');
 
@@ -248,6 +248,39 @@ class _ScreenMenuState extends State<ScreenMenu> {
           const Center(child: Text(AppString.textSettings)),
         ],
       ), // This,
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      child: const Text("log Out"),
+      onPressed: () {
+        onLogout();
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Log Out"),
+      content: const Text("Are you sure you want to Log Out?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

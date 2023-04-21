@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
-import 'package:pharmacy_hn_clone/Screens/Menu/alert_dialogue.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
