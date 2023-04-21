@@ -32,7 +32,6 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
   @override
   void initState() {
     initData();
-    initNewData();
     super.initState();
   }
 
@@ -55,18 +54,11 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
     });
   }
 
-  void initNewData() async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-    dbHelper = DbHelper();
-    mCartModel = await dbHelper.getUserProduct(sp.getInt(AppConfig.textUserId));
-    setState(() {});
-  }
-
   int selectQty = 0;
 
   removeFromCart() async {
     dbHelper = DbHelper();
-    await dbHelper.deleteCategory(mCartModel.cartId);
+    await dbHelper.deleteCart(mCartModel.cartId);
     initData();
   }
 
@@ -167,7 +159,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                 ),
                 Text(
                   widget.mProductModel.productName!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: AppColor.colorBlack_two,
                       fontSize: AppSize.mainSize16,
                       fontFamily: AppFonts.avenirRegular,
@@ -202,8 +194,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                       width: 177,
                       child: ElevatedButton(
                         onPressed: () {
-                          initNewData();
-
+                          initData();
                           if (mCartModel.cartId != null) {
                             removeFromCart();
                           } else {
@@ -221,7 +212,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                           mCartModel.cartId != null
                               ? 'Remove From Cart'
                               : AppString.textAddToCart,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: AppColor.colorWhite_two,
                             fontFamily: AppFonts.avenirRegular,
                           ),

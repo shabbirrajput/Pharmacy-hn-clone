@@ -12,7 +12,7 @@ class DbHelper {
 
   static const String DB_Name = 'pharmacy.db';
   static const String Table_User = 'user';
-  static const int Version = 1;
+  static const int Version = 2;
   static const String C_UserID = 'id';
   static const String C_UserName = 'name';
   static const String C_Email = 'email';
@@ -34,10 +34,10 @@ class DbHelper {
   static const String Table_Cart = 'cart';
   static const String C_CartID = 'cartId';
   static const String C_CartProductID = 'cartProductId';
-  static const String C_CartQty = 'productQty';
+  static const String C_CartProductQty = 'cartProductQty';
   static const String C_CartUserId = 'cartUserId';
 
-  static const String Table_Order = 'order';
+  static const String Table_Order = 'user_order';
   static const String C_OrderID = 'orderId';
   static const String C_OrderQty = 'orderQty';
   static const String C_OrderProductId = 'orderProductId';
@@ -82,19 +82,19 @@ class DbHelper {
         " $C_ProductUserId INTEGER"
         ")");
 
-    await db.execute("CREATE TABLE $Table_Cart ("
-        " $C_CartID INTEGER PRIMARY KEY,"
-        " $C_CartProductID INTEGER,"
-        " $C_CartQty INTEGER,"
-        " $C_CartUserId INTEGER"
-        ")");
-
     await db.execute("CREATE TABLE $Table_Order ("
         " $C_OrderID INTEGER PRIMARY KEY,"
         " $C_OrderQty INTEGER,"
         " $C_OrderProductId INTEGER,"
         " $C_OrderUserId INTEGER,"
         " $C_OrderStatus INTEGER"
+        ")");
+
+    await db.execute("CREATE TABLE $Table_Cart ("
+        " $C_CartID INTEGER PRIMARY KEY,"
+        " $C_CartProductID INTEGER,"
+        " $C_CartProductQty INTEGER,"
+        " $C_CartUserId INTEGER"
         ")");
   }
 
@@ -128,6 +128,21 @@ class DbHelper {
     return CartModel();
   }
 
+  ///UpdateCart
+
+  Future<List<CartModel>> updateCart(int qty, int cartId) async {
+    var dbClient = await db;
+    String q =
+        'UPDATE $Table_Cart SET $C_CartProductQty = $qty WHERE $C_CartID = $cartId';
+    print('object---->${q}');
+    var value = await dbClient.rawQuery(q);
+    print('object--value-->$value');
+    List<CartModel> mModelCategory =
+        List<CartModel>.from(value.map((model) => CartModel.fromJson(model)));
+    return mModelCategory;
+  }
+
+  ///Join Querry
   Future<List<ModelCartProduct>> getUserCart(int userId) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery(
@@ -144,7 +159,7 @@ class DbHelper {
   }
 
   ///RemoveFromCart
-  Future<int> deleteCategory(int id) async {
+  Future<int> deleteCart(int id) async {
     var dbClient = await db;
     return await dbClient
         .rawDelete('DELETE FROM $Table_Cart WHERE $C_CartID = ?', [id]);
@@ -196,13 +211,18 @@ class DbHelper {
   }
 
   Future<UserModel> getCheckEmailUser(String email) async {
-    var dbClient = await db;
-    var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
-        "$C_Email = '$email'");
+    try {
+      var dbClient = await db;
+      var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
+          "$C_Email = '$email'");
 
-    if (res.length > 0) {
-      return UserModel.fromJson(res.first);
+      if (res.length > 0) {
+        return UserModel.fromJson(res.first);
+      }
+    } catch (e) {
+      return UserModel();
     }
+
     return UserModel();
   }
 
