@@ -4,7 +4,6 @@ import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
 alertDialogue(String msg) {
   //Toast.show(msg, context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   //Toast.show(msg, duration: Toast.lengthShort, gravity: Toast.bottom);
-  print('msg--$msg');
   showAlertDialog(NavigatorKey.navigatorKey.currentContext!, msg);
 }
 

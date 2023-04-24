@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/tab_add_products.dart';
 import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/tab_current_order.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
@@ -76,7 +78,6 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
       await dbHelper.saveCartData(oModel).then((cartData) {
         alertDialog("Successfully Added");
       }).catchError((error) {
-        print(error);
         alertDialog("Error: Data Save Fail--$error");
       });
       initData();
@@ -87,7 +88,6 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
     await dbHelper.saveProductData(oModel).then((productData) {
       widget.onProductAddToCart();
     }).catchError((error) {
-      print(error);
       alertDialog("Error: Data Save Fail--$error");
     });
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:path_provider/path_provider.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 
@@ -126,7 +128,7 @@ class DbHelper {
         "$C_CartProductID = $productId AND "
         "$C_CartUserId = $userId");
 
-    if (res.length > 0) {
+    if (res.isNotEmpty) {
       return CartModel.fromJson(res.first);
     }
     return CartModel();
@@ -137,9 +139,7 @@ class DbHelper {
     var dbClient = await db;
     String q =
         'UPDATE $Table_Cart SET $C_CartProductQty = $qty WHERE $C_CartID = $cartId';
-    print('object---->${q}');
     var value = await dbClient.rawQuery(q);
-    print('object--value-->$value');
     List<CartModel> mModelCategory =
         List<CartModel>.from(value.map((model) => CartModel.fromJson(model)));
     return mModelCategory;
@@ -192,7 +192,7 @@ class DbHelper {
         "$C_Email = '$email' AND "
         "$C_Password = '$password'");
 
-    if (res.length > 0) {
+    if (res.isNotEmpty) {
       return UserModel.fromJson(res.first);
     }
     return UserModel();
@@ -234,7 +234,7 @@ class DbHelper {
       var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
           "$C_Email = '$email'");
 
-      if (res.length > 0) {
+      if (res.isNotEmpty) {
         return UserModel.fromJson(res.first);
       }
     } catch (e) {
@@ -253,10 +253,10 @@ class DbHelper {
   }
 
   ///DeleteUser
-  Future<int> deleteUser(String user_id) async {
+  Future<int> deleteUser(String userId) async {
     var dbClient = await db;
     var res = await dbClient
-        .delete(Table_User, where: '$C_UserID = ?', whereArgs: [user_id]);
+        .delete(Table_User, where: '$C_UserID = ?', whereArgs: [userId]);
     return res;
   }
 }

@@ -13,7 +13,6 @@ import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenHome extends StatefulWidget {
   final Function viewAllCategory;
@@ -25,9 +24,6 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  final _formKey = new GlobalKey<FormState>();
-  Future<SharedPreferences> _pref = SharedPreferences.getInstance();
-
   late DbHelper dbHelper;
 
   @override
@@ -51,9 +47,7 @@ class _ScreenHomeState extends State<ScreenHome> {
     });
   }
 
-  Future<void> getUserData() async {
-    final SharedPreferences sp = await _pref;
-  }
+  Future<void> getUserData() async {}
 
   @override
   Widget build(BuildContext context) {

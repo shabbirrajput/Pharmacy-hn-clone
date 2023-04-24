@@ -34,14 +34,14 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['email'] = this.email;
-    data['mobileno'] = this.mobileno;
-    data['password'] = this.password;
-    data['usertype'] = this.usertype;
-    data['username'] = this.username;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['email'] = email;
+    data['mobileno'] = mobileno;
+    data['password'] = password;
+    data['usertype'] = usertype;
+    data['username'] = username;
 
     ///  data['UserType'] = this.UserType;
 
@@ -81,15 +81,15 @@ class ProductModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['productId'] = this.productId;
-    data['productName'] = this.productName;
-    data['productCat'] = this.productCat;
-    data['productImage'] = this.productImage;
-    data['productDesc'] = this.productDesc;
-    data['productPrice'] = this.productPrice;
-    data['productQty'] = this.productQty;
-    data['productUserId'] = this.productUserId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['productId'] = productId;
+    data['productName'] = productName;
+    data['productCat'] = productCat;
+    data['productImage'] = productImage;
+    data['productDesc'] = productDesc;
+    data['productPrice'] = productPrice;
+    data['productQty'] = productQty;
+    data['productUserId'] = productUserId;
     return data;
   }
 }
@@ -111,11 +111,11 @@ class CartModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['cartId'] = this.cartId;
-    data['cartProductId'] = this.cartProductId;
-    data['cartProductQty'] = this.cartProductQty;
-    data['cartUserId'] = this.cartUserId;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['cartId'] = cartId;
+    data['cartProductId'] = cartProductId;
+    data['cartProductQty'] = cartProductQty;
+    data['cartUserId'] = cartUserId;
     return data;
   }
 }
@@ -143,12 +143,12 @@ class OrderModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['orderId'] = this.orderId;
-    data['orderQty'] = this.orderQty;
-    data['orderProductId'] = this.orderProductId;
-    data['orderUserId'] = this.orderUserId;
-    data['orderStatus'] = this.orderStatus;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['orderId'] = orderId;
+    data['orderQty'] = orderQty;
+    data['orderProductId'] = orderProductId;
+    data['orderUserId'] = orderUserId;
+    data['orderStatus'] = orderStatus;
     return data;
   }
 }

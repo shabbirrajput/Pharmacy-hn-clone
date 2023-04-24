@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -74,7 +76,6 @@ class _AddProductSheetState extends State<AddProductSheet> {
       await dbHelper.saveProductData(oModel).then((productData) {
         widget.onProductAdd();
       }).catchError((error) {
-        print(error);
         alertDialog("Error: Data Save Fail--$error");
       });
     }
@@ -89,13 +90,10 @@ class _AddProductSheetState extends State<AddProductSheet> {
     final data = await json.decode(response);
 
     ModelCategory tutorial = ModelCategory.fromJson(data);
-    print(tutorial);
 
     setState(() {
       catList = tutorial.category!;
       selectCategory = catList[0];
-
-      print('catList---${catList.length}');
     });
   }
 

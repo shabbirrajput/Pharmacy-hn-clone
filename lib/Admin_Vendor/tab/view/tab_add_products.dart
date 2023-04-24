@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pharmacy_hn_clone/Admin_Vendor/tab/view/add_product_sheet.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
@@ -34,7 +35,6 @@ class _TabAddProductsState extends State<TabAddProducts> {
     dbHelper = DbHelper();
     mProductModel =
         await dbHelper.getUserProduct(sp.getInt(AppConfig.textUserId));
-    print('object--mProductModel---${mProductModel.length}');
     setState(() {});
   }
 

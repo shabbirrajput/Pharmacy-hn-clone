@@ -19,7 +19,7 @@ class DatabaseHandler {
   }
 
   Future<dynamic> userLogin(String email, String password) async {
-    var dbClient = await _database;
+    var dbClient = _database;
     var value = await dbClient!.rawQuery(
         "SELECT * FROM user where email=$email and password=$password");
     return value;

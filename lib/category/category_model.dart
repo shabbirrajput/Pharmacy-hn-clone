@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
 

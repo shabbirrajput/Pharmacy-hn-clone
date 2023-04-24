@@ -11,9 +11,5 @@ class UserRepo {
 ''');
   }
 
-  Future<void> getUsers(Database? db) async {
-    final List<Map<String, dynamic>> maps = await db!.query('CUSTOMERSDATA');
-
-    print(maps);
-  }
+  Future<void> getUsers(Database? db) async {}
 }

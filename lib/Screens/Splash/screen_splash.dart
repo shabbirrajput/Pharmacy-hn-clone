@@ -23,8 +23,6 @@ class _ScreenSplashState extends State<ScreenSplash> {
   void init() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
 
-    print('object--textUserId--${sp.getInt(AppConfig.textUserId)}');
-    print('object--textUserType--${sp.getInt(AppConfig.textUserType)}');
     Future.delayed(const Duration(seconds: 2), () {
       if (sp.getInt(AppConfig.textUserId) != null &&
           sp.getInt(AppConfig.textUserType) == 1) {

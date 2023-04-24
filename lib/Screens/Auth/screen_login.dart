@@ -1,4 +1,4 @@
-import 'dart:convert';
+// ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
-  Future<SharedPreferences> _pref = SharedPreferences.getInstance();
+  final Future<SharedPreferences> _pref = SharedPreferences.getInstance();
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -43,7 +43,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
     if (email.isEmpty) {
       alertDialog("Please Enter Email ID");
-    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+    } else if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
       alertDialog("Invalid Email");
     } else if (passwd.isEmpty) {
       alertDialog("Please Enter Password");
@@ -52,10 +52,8 @@ class _ScreenLoginState extends State<ScreenLogin> {
       alertDialog(
           "Please Enter Strong Password\n\nHint : Password must contain Upper/Lower case, number and special character");
     } else {
-      print('else------->');
       await dbHelper.getLoginUser(email, passwd).then((userData) {
         if (userData != null && userData.email != null) {
-          print('else-------> then----->');
           setSP(userData).whenComplete(() {
             if (userData.usertype == 1) {
               Navigator.pushAndRemoveUntil(
@@ -73,7 +71,6 @@ class _ScreenLoginState extends State<ScreenLogin> {
           alertDialog("Error: User Not Found");
         }
       }).catchError((error) {
-        print(error);
         alertDialog("Error: Login Fail");
       });
     }
@@ -81,8 +78,6 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   Future setSP(UserModel user) async {
     final SharedPreferences sp = await _pref;
-
-    print('object--->${jsonEncode(user)}');
 
     sp.setInt(AppConfig.textUserId, user.id!);
     sp.setString("name", user.name!);

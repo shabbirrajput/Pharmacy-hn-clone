@@ -1,10 +1,11 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
 
 alertDialog(String msg) {
   //Toast.show(msg, context, duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
   //Toast.show(msg, duration: Toast.lengthShort, gravity: Toast.bottom);
-  print('msg--$msg');
   showAlertDialog(NavigatorKey.navigatorKey.currentContext!, msg);
 }
 
@@ -47,6 +48,6 @@ validatePhone(String phone) {
 
 validatePassword(String password) {
   final PassReg =
-      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+      RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}$');
   return PassReg.hasMatch(password);
 }

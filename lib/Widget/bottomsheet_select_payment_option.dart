@@ -1,15 +1,12 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
-import 'package:pharmacy_hn_clone/Db/comHelper.dart';
-import 'package:pharmacy_hn_clone/Db/db_helper.dart';
-import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_order_being_process.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
-import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_image.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
 import 'package:pharmacy_hn_clone/core/app_string.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomSheetSelectPaymentOption extends StatefulWidget {
   final int selectedIndex;
