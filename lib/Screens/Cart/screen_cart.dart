@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
@@ -106,7 +108,6 @@ class _ScreenCartState extends State<ScreenCart> {
       alertDialog("Successfully Modified Cart");
       initData();
     }).catchError((error) {
-      print(error);
       alertDialog("Error: Data Save Fail--$error");
     });
     initData();
