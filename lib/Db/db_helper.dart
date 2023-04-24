@@ -171,6 +171,15 @@ class DbHelper {
     return res;
   }
 
+  Future<dynamic> updateCartProduct(int qty, int productId) async {
+    var dbClient = await db;
+    String q =
+        'UPDATE $Table_Product SET $C_ProductQty = $qty WHERE $C_ProductID = $productId';
+
+    var value = await dbClient.rawQuery(q);
+    return value;
+  }
+
   Future<UserModel> getLoginUser(String email, String password) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "

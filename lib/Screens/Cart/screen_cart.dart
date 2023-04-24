@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
+import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
+import 'package:pharmacy_hn_clone/Db/user_model.dart';
+import 'package:pharmacy_hn_clone/Screens/Cart/cart.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/row/row_cart.dart';
+import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
 import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_place_order.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_config.dart';
@@ -47,6 +51,37 @@ class _ScreenCartState extends State<ScreenCart> {
     });
   }
 
+  void initDataOrder() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    dbHelper = DbHelper();
+
+    for (int i = 0; i < mCartModel.length; i++) {
+      ModelCartProduct item = mCartModel[i];
+
+      OrderModel oModel = OrderModel();
+      oModel.orderProductId = item.productId;
+      oModel.orderQty = item.cartProductQty;
+      oModel.orderUserId = sp.getInt(AppConfig.textUserId);
+      oModel.orderStatus = 0;
+
+      int remainingQty = item.productQty! - item.cartProductQty!;
+      await dbHelper.saveOrderData(oModel).then((orderData) async {
+        await dbHelper
+            .updateCartProduct(remainingQty, item.productId)
+            .then((ss) async {
+          await dbHelper.deleteCart(item.cartId);
+        });
+      });
+    }
+    alertDialog("Order Placed Successfully");
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushAndRemoveUntil(
+          NavigatorKey.navigatorKey.currentContext!,
+          MaterialPageRoute(builder: (_) => const ScreenMenu()),
+          (Route<dynamic> route) => false);
+    });
+  }
+
   int selectQty = 0;
 
   removeFromCart(int index) async {
@@ -71,8 +106,22 @@ class _ScreenCartState extends State<ScreenCart> {
     initData();
   }
 
-  getTotalPrice() {
-    double total = 0.0;
+  List<Map<String, dynamic>> get totalItemsPrice {
+    return List.generate(1, (index) {
+      var totalPriceSum = 0.0;
+      for (var i = 0; i < mCartModel.length; i++) {
+        totalPriceSum = mCartModel[index].productPrice! + totalPriceSum;
+      }
+      return {
+        'price': totalPriceSum,
+      };
+    }).toList();
+  }
+
+  double get totalPriceSum {
+    return totalItemsPrice.fold(0.0, (sum, item) {
+      return sum + item['price'];
+    });
   }
 
   @override
@@ -121,8 +170,8 @@ class _ScreenCartState extends State<ScreenCart> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   AppString.textSubtotal,
                   style: TextStyle(
                     color: AppColor.colorBlack_two,
@@ -132,8 +181,10 @@ class _ScreenCartState extends State<ScreenCart> {
                   ),
                 ),
                 Text(
-                  AppString.textSubtotalAmount,
-                  style: TextStyle(
+                  /*'1200',*/
+                  /*CartModel.totalPrice!,*/
+                  totalItemsPrice.toString(),
+                  style: const TextStyle(
                     color: AppColor.colorPrimary_two,
                     fontFamily: AppFonts.avenirRegular,
                     fontSize: AppSize.mainSize14,
@@ -171,12 +222,13 @@ class _ScreenCartState extends State<ScreenCart> {
                   width: 177,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
+                      initDataOrder();
+                      /*Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const ScreenPlaceOrder(),
                         ),
-                      );
+                      );*/
                     },
                     style: ButtonStyle(
                       backgroundColor:

@@ -1,3 +1,14 @@
+class CatalogModel {
+  static List<ModelCartProduct> items = [];
+
+  //Get Item by ID
+  ModelCartProduct getById(int id) =>
+      items.firstWhere((element) => element.cartId == id, orElse: null);
+
+  //Get Item by position
+  ModelCartProduct getByPosition(int pos) => items[pos];
+}
+
 class ModelCartProduct {
   int? cartId;
   int? cartProductId;
