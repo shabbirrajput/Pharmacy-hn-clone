@@ -244,19 +244,6 @@ class DbHelper {
     return UserModel();
   }
 
-/*
-  Future<UserModel> getUserTypeCheck(String usertype) async {
-    var dbClient = await db;
-    var res = await dbClient
-        .rawQuery("INSERT INTO $Table_User ($C_UserType) VALUES ('Vendor')");
-
-    if (res.length > 0) {
-      return UserModel.fromJson(res.first);
-    }
-    return UserModel();
-  }
-*/
-
   ///UpdateUser
   Future<int> updateUser(UserModel user) async {
     var dbClient = await db;
