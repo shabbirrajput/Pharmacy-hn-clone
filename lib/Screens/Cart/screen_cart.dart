@@ -3,11 +3,9 @@ import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/navigator_key.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
-import 'package:pharmacy_hn_clone/Screens/Cart/cart.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/row/row_cart.dart';
 import 'package:pharmacy_hn_clone/Screens/Menu/screen_menu.dart';
-import 'package:pharmacy_hn_clone/Screens/PlaceOrder/screen_place_order.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_config.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
@@ -26,6 +24,7 @@ class _ScreenCartState extends State<ScreenCart> {
   var dbHelper;
   ModelCartProduct mCartModelData = ModelCartProduct();
   List<ModelCartProduct> mCartModel = [];
+  int totalCartAmount = 0;
 
   @override
   void initState() {
@@ -41,10 +40,17 @@ class _ScreenCartState extends State<ScreenCart> {
         .then((List<ModelCartProduct> cartData) {
       if (cartData.isNotEmpty) {
         setState(() {
+          totalCartAmount = 0;
           mCartModel = cartData;
+          for (int i = 0; i < mCartModel.length; i++) {
+            int cartPrice =
+                (mCartModel[i].productPrice! * mCartModel[i].cartProductQty!);
+            totalCartAmount = totalCartAmount + cartPrice;
+          }
         });
       } else {
         setState(() {
+          totalCartAmount = 0;
           mCartModel = [];
         });
       }
@@ -106,24 +112,6 @@ class _ScreenCartState extends State<ScreenCart> {
     initData();
   }
 
-  List<Map<String, dynamic>> get totalItemsPrice {
-    return List.generate(1, (index) {
-      var totalPriceSum = 0.0;
-      for (var i = 0; i < mCartModel.length; i++) {
-        totalPriceSum = mCartModel[index].productPrice! + totalPriceSum;
-      }
-      return {
-        'price': totalPriceSum,
-      };
-    }).toList();
-  }
-
-  double get totalPriceSum {
-    return totalItemsPrice.fold(0.0, (sum, item) {
-      return sum + item['price'];
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,9 +169,7 @@ class _ScreenCartState extends State<ScreenCart> {
                   ),
                 ),
                 Text(
-                  /*'1200',*/
-                  /*CartModel.totalPrice!,*/
-                  totalItemsPrice.toString(),
+                  '\$ ${totalCartAmount.toString()}',
                   style: const TextStyle(
                     color: AppColor.colorPrimary_two,
                     fontFamily: AppFonts.avenirRegular,
