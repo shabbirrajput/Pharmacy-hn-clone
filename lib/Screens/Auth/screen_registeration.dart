@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, unrelated_type_equality_checks
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacy_hn_clone/Db/comHelper.dart';
@@ -59,8 +61,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
       alertDialog("Please Enter Name");
     } else if (email.isEmpty) {
       alertDialog("Please Enter Email");
-    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
-      print('email_Invalid------------------>');
+    } else if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
       alertDialog("Invalid Email");
     } else if (isExist) {
       alertDialog("This Email ID Is Already Exist. Please Enter New Email");
@@ -93,7 +94,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
         Navigator.push(
             context, MaterialPageRoute(builder: (_) => const ScreenLogin()));
       }).catchError((error) {
-        print(error);
         alertDialog("Error: Data Save Fail--$error");
       });
     }
