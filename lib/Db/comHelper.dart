@@ -36,16 +36,19 @@ showAlertDialog(BuildContext context, String msg) {
   );
 }
 
+///EmailValidation
 validateEmail(String email) {
   final emailReg = RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   return emailReg.hasMatch(email);
 }
 
+///PhoneValidation
 validatePhone(String phone) {
   final phoneReg = RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)');
   return phoneReg.hasMatch(phone);
 }
 
+///PasswordValidation
 validatePassword(String password) {
   final PassReg =
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}$');
