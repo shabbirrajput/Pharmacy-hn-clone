@@ -98,24 +98,28 @@ class DbHelper {
         ")");
   }
 
+  ///InsertIntoUserTable
   Future<int> saveData(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_User, user.toJson());
     return res;
   }
 
+  ///InsertIntoProductsTable
   Future<int> saveProductData(ProductModel product) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_Product, product.toJson());
     return res;
   }
 
+  ///InsertIntoCartTable
   Future<int> saveCartData(CartModel cart) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_Cart, cart.toJson());
     return res;
   }
 
+  ///GetCartData
   Future<CartModel> getCartProduct(int productId, int userId) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_Cart WHERE "
@@ -129,7 +133,6 @@ class DbHelper {
   }
 
   ///UpdateCart
-
   Future<List<CartModel>> updateCart(int qty, int cartId) async {
     var dbClient = await db;
     String q =
@@ -165,12 +168,14 @@ class DbHelper {
         .rawDelete('DELETE FROM $Table_Cart WHERE $C_CartID = ?', [id]);
   }
 
+  ///SaveOrderData
   Future<int> saveOrderData(OrderModel order) async {
     var dbClient = await db;
     var res = await dbClient.insert(Table_Order, order.toJson());
     return res;
   }
 
+  ///UpdateIntoCartTable
   Future<dynamic> updateCartProduct(int qty, int productId) async {
     var dbClient = await db;
     String q =
@@ -180,6 +185,7 @@ class DbHelper {
     return value;
   }
 
+  ///LoginUserCheck
   Future<UserModel> getLoginUser(String email, String password) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_User WHERE "
@@ -192,6 +198,7 @@ class DbHelper {
     return UserModel();
   }
 
+  ///GetUSerProduct
   Future<List<ProductModel>> getUserProduct(int userId) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
@@ -206,6 +213,7 @@ class DbHelper {
     }
   }
 
+  ///GetCategoryProduct
   Future<List<ProductModel>> getCategoryProduct(int categoryId) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
@@ -219,6 +227,7 @@ class DbHelper {
     }
   }
 
+  ///GetEmailCheck
   Future<UserModel> getCheckEmailUser(String email) async {
     try {
       var dbClient = await db;
@@ -248,6 +257,7 @@ class DbHelper {
   }
 */
 
+  ///UpdateUser
   Future<int> updateUser(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient.update(Table_User, user.toJson(),
@@ -255,6 +265,7 @@ class DbHelper {
     return res;
   }
 
+  ///DeleteUser
   Future<int> deleteUser(String user_id) async {
     var dbClient = await db;
     var res = await dbClient
