@@ -95,20 +95,9 @@ class _TabAddProductsState extends State<TabAddProducts> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    const Text(
-                                      AppString.text1,
-                                      style: TextStyle(
-                                        color: AppColor.colorCoolGrey,
-                                        fontFamily: AppFonts.avenirRegular,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: AppSize.mainSize10,
-                                    ),
-                                    const Text(
-                                      AppString.textEdit,
-                                      style: TextStyle(
+                                    Text(
+                                      item.productQty!.toString(),
+                                      style: const TextStyle(
                                         color: AppColor.colorCoolGrey,
                                         fontFamily: AppFonts.avenirRegular,
                                         fontWeight: FontWeight.w500,
