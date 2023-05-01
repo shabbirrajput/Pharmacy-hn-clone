@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_registeration.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
@@ -16,6 +17,17 @@ class ScreenOnboarding extends StatefulWidget {
 }
 
 class _ScreenOnboardingState extends State<ScreenOnboarding> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  void _login() async {
+    try {
+      await _googleSignIn.signIn();
+      // User signed in successfully
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +144,9 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _login();
+                },
                 style: OutlinedButton.styleFrom(
                   disabledForegroundColor: AppColor.colorPrimary,
                   backgroundColor: AppColor.colorWhite_two,
