@@ -6,7 +6,6 @@ import 'package:pharmacy_hn_clone/Db/comHelper.dart';
 import 'package:pharmacy_hn_clone/Db/db_helper.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
 import 'package:pharmacy_hn_clone/Screens/Auth/screen_login.dart';
-import 'package:pharmacy_hn_clone/Screens/Menu/alert_dialogue.dart';
 import 'package:pharmacy_hn_clone/core/app_color.dart';
 import 'package:pharmacy_hn_clone/core/app_fonts.dart';
 import 'package:pharmacy_hn_clone/core/app_size.dart';
@@ -59,7 +58,7 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
     }
 
     if (name.isEmpty) {
-      alertDialogue("Please Enter Name");
+      alertDialog("Please Enter Name");
     } else if (email.isEmpty) {
       alertDialog("Please Enter Email");
     } else if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {

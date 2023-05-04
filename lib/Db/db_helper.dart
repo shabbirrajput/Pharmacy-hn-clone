@@ -15,6 +15,7 @@ class DbHelper {
   static const String DB_Name = 'pharmacy.db';
   static const String Table_User = 'user';
   static const int Version = 2;
+
   static const String C_UserID = 'id';
   static const String C_UserName = 'name';
   static const String C_Email = 'email';
