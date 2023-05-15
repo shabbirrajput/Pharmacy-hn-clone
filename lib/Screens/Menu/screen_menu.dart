@@ -160,11 +160,6 @@ class _ScreenMenuState extends State<ScreenMenu> {
             title: const Text(AppString.textLogout),
             onTap: () {
               showAlertDialog(context);
-
-              /// alertDialogue('Are you Sure you want');
-
-              /// _onItemTapped(8);
-              // Navigator.pop(context);
             },
           ),
         ],

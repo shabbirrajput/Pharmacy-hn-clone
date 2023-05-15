@@ -151,11 +151,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                 height: AppSize.mainSize16,
               ),
               TextFormField(
-                /*validator: (value) {
-                  if (value != validateEmail) {
-                    alertDialog("Please Enter Valid Email ID");
-                  }
-                },*/
                 controller: emailController,
                 style: const TextStyle(color: AppColor.colorBlack_two),
                 decoration: const InputDecoration(
@@ -243,50 +238,6 @@ class _ScreenRegisterationState extends State<ScreenRegisteration> {
                   const Text("Customer"),
                 ],
               ),
-              /*Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      color: AppColor.colorPrimary_two,
-                      onPressed: () {
-                        setState(() {
-                          isVendor = true;
-                        });
-                      },
-                      icon: Icon(isVendor
-                          ? Icons.radio_button_on
-                          : Icons.radio_button_off)),
-                  const Text(
-                    AppString.textVendor,
-                    style: TextStyle(
-                        color: AppColor.colorBlack_two,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: AppFonts.avenirRegular),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                          color: AppColor.colorPrimary_two,
-                          onPressed: () {
-                            setState(() {
-                              isVendor = false;
-                            });
-                          },
-                          icon: Icon(isVendor
-                              ? Icons.radio_button_off
-                              : Icons.radio_button_on)),
-                      const Text(
-                        AppString.textCustomer,
-                        style: TextStyle(
-                            color: AppColor.colorBlack_two,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: AppFonts.avenirRegular),
-                      )
-                    ],
-                  ),
-                ],
-              ),*/
               const SizedBox(
                 height: AppSize.mainSize15,
               ),

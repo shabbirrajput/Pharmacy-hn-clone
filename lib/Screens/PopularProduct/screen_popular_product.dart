@@ -23,7 +23,7 @@ class ScreenPopularProduct extends StatefulWidget {
 }
 
 class _ScreenPopularProductState extends State<ScreenPopularProduct> {
-  var dbHelper;
+  late DbHelper dbHelper;
   List<ProductModel> mProductModel = [];
 
   @override
@@ -34,6 +34,10 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
 
   void initData() async {
     if (widget.mCategory.id != null) {
+      dbHelper = DbHelper();
+      mProductModel = await dbHelper.getCategoryProduct(widget.mCategory.id!);
+      setState(() {});
+    } else {
       dbHelper = DbHelper();
       mProductModel = await dbHelper.getCategoryProduct(widget.mCategory.id!);
       setState(() {});

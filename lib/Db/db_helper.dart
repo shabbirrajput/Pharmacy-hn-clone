@@ -2,11 +2,9 @@
 
 import 'package:path_provider/path_provider.dart';
 import 'package:pharmacy_hn_clone/Db/user_model.dart';
-
 import 'package:path/path.dart';
 import 'package:pharmacy_hn_clone/Screens/Cart/model/model_cart_product.dart';
 import 'dart:io' as io;
-
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
@@ -146,7 +144,7 @@ class DbHelper {
     return mModelCategory;
   }
 
-  ///Join Querry
+  ///Join Query
   Future<List<ModelCartProduct>> getUserCart(int userId) async {
     var dbClient = await db;
     var res = await dbClient.rawQuery(
@@ -219,6 +217,20 @@ class DbHelper {
     var dbClient = await db;
     var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
         "$C_ProductCat = $categoryId ");
+    try {
+      List<ProductModel> mProductModel = List<ProductModel>.from(
+          res.map((model) => ProductModel.fromJson(model)));
+      return mProductModel;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  ///GetPopularProduct
+  Future<List<ProductModel>> getPopularProduct() async {
+    var dbClient = await db;
+    var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
+        "$C_ProductCat  ");
     try {
       List<ProductModel> mProductModel = List<ProductModel>.from(
           res.map((model) => ProductModel.fromJson(model)));

@@ -67,15 +67,15 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
   addToCart() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
 
-    CartModel oModel = CartModel();
+    CartModel cModel = CartModel();
 
-    oModel.cartProductId = widget.mProductModel.productId;
-    oModel.cartProductQty = selectQty;
-    oModel.cartUserId = sp.getInt(AppConfig.textUserId);
+    cModel.cartProductId = widget.mProductModel.productId;
+    cModel.cartProductQty = selectQty;
+    cModel.cartUserId = sp.getInt(AppConfig.textUserId);
 
     if (selectQty != 0) {
       dbHelper = DbHelper();
-      await dbHelper.saveCartData(oModel).then((cartData) {
+      await dbHelper.saveCartData(cModel).then((cartData) {
         alertDialog("Successfully Added");
       }).catchError((error) {
         alertDialog("Error: Data Save Fail--$error");
@@ -85,7 +85,7 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
       alertDialog("Please Select Qty");
     }
     dbHelper = DbHelper();
-    await dbHelper.saveProductData(oModel).then((productData) {
+    await dbHelper.saveProductData(cModel).then((productData) {
       widget.onProductAddToCart();
     }).catchError((error) {
       alertDialog("Error: Data Save Fail--$error");
@@ -95,58 +95,58 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: AppColor.colorWhite),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          backgroundColor: AppColor.colorPrimary_two,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                AppString.textProductDetail,
-                style: TextStyle(
-                  color: AppColor.colorWhite,
-                  fontFamily: AppFonts.avenirRegular,
-                  fontSize: AppSize.mainSize18,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              IconButton(
-                icon: Image.asset(AppImage.appCart),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ScreenCart(),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-          elevation: 0,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: AppColor.colorWhite),
+          onPressed: () => Navigator.of(context).pop(),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: AppSize.mainSize16,
-                ),
-                Container(
-                  height: AppSize.mainSize300,
-                  alignment: Alignment.center,
-                  child: Image.network(
-                    widget.mProductModel.productImage!,
+        backgroundColor: AppColor.colorPrimary_two,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              AppString.textProductDetail,
+              style: TextStyle(
+                color: AppColor.colorWhite,
+                fontFamily: AppFonts.avenirRegular,
+                fontSize: AppSize.mainSize18,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+            IconButton(
+              icon: Image.asset(AppImage.appCart),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ScreenCart(),
                   ),
+                );
+              },
+            ),
+          ],
+        ),
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSize.mainSize16),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: AppSize.mainSize16,
+              ),
+              Container(
+                height: AppSize.mainSize300,
+                alignment: Alignment.center,
+                child: Image.network(
+                  widget.mProductModel.productImage!,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                /*Row(
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(AppImage.appHS1),
@@ -154,254 +154,252 @@ class _ScreenProductDetailsState extends State<ScreenProductDetails> {
                     Image.asset(AppImage.appHS3),
                   ],
                 ),*/
-                const SizedBox(
-                  height: AppSize.mainSize31,
+              const SizedBox(
+                height: AppSize.mainSize31,
+              ),
+              Text(
+                widget.mProductModel.productName!,
+                style: const TextStyle(
+                    color: AppColor.colorBlack_two,
+                    fontSize: AppSize.mainSize16,
+                    fontFamily: AppFonts.avenirRegular,
+                    fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize14,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: AppSize.mainSize46,
+                    width: 177,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        disabledForegroundColor: AppColor.colorPrimary,
+                        side: const BorderSide(color: AppColor.colorPrimary),
+                      ),
+                      child: const Text(
+                        AppString.textAddToWishlist,
+                        style: TextStyle(
+                          color: AppColor.colorPrimary,
+                          fontFamily: AppFonts.avenirRegular,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSize.mainSize46,
+                    width: 177,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        initData();
+                        if (mCartModel.cartId != null) {
+                          removeFromCart();
+                        } else {
+                          addToCart();
+                        }
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color?>(
+                          (Set<MaterialState> states) => AppColor.colorPrimary,
+                        ),
+                      ),
+                      child: Text(
+                        mCartModel.cartId != null
+                            ? 'Remove From Cart'
+                            : AppString.textAddToCart,
+                        style: const TextStyle(
+                          color: AppColor.colorWhite_two,
+                          fontFamily: AppFonts.avenirRegular,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: AppSize.mainSize15,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textHSPrice,
+                  style: TextStyle(
+                    color: AppColor.colorPrimary_two,
+                    fontSize: AppSize.mainSize24,
+                    fontFamily: AppFonts.avenirRegular,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-                Text(
-                  widget.mProductModel.productName!,
-                  style: const TextStyle(
-                      color: AppColor.colorBlack_two,
-                      fontSize: AppSize.mainSize16,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500),
-                ),
-                const SizedBox(
-                  height: AppSize.mainSize14,
-                ),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize28,
+              ),
+              if (mCartModel.cartId == null)
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: AppSize.mainSize46,
-                      width: 177,
-                      child: OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          disabledForegroundColor: AppColor.colorPrimary,
-                          side: const BorderSide(color: AppColor.colorPrimary),
-                        ),
-                        child: const Text(
-                          AppString.textAddToWishlist,
-                          style: TextStyle(
-                            color: AppColor.colorPrimary,
-                            fontFamily: AppFonts.avenirRegular,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: AppSize.mainSize46,
-                      width: 177,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          initData();
-                          if (mCartModel.cartId != null) {
-                            removeFromCart();
-                          } else {
-                            addToCart();
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) =>
-                                AppColor.colorPrimary,
-                          ),
-                        ),
-                        child: Text(
-                          mCartModel.cartId != null
-                              ? 'Remove From Cart'
-                              : AppString.textAddToCart,
-                          style: const TextStyle(
-                            color: AppColor.colorWhite_two,
-                            fontFamily: AppFonts.avenirRegular,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: AppSize.mainSize15,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppString.textHSPrice,
-                    style: TextStyle(
-                      color: AppColor.colorPrimary_two,
-                      fontSize: AppSize.mainSize24,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.mainSize28,
-                ),
-                if (mCartModel.cartId == null)
-                  Row(
-                    children: [
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          AppString.textSelectQty,
-                          style: TextStyle(
-                            color: AppColor.colorBlack_two,
-                            fontSize: AppSize.mainSize16,
-                            fontFamily: AppFonts.avenirRegular,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: AppSize.mainSize12,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 110,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: AppColor.colorCoolGrey),
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                if (selectQty != 0)
-                                  InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          selectQty--;
-                                        });
-                                      },
-                                      child: Image.asset(
-                                        AppImage.appRemove,
-                                        height: 10,
-                                        width: 10,
-                                      )),
-                                if (selectQty != 0)
-                                  const VerticalDivider(
-                                    color: AppColor.colorCoolGrey,
-                                    thickness: 1,
-                                  ),
-                                Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 3),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 3, vertical: 2),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3),
-                                      color: Colors.white),
-                                  child: Text(
-                                    selectQty.toString(),
-                                    style: getTextStyle(
-                                        AppFonts.regular, AppSize.textSize20),
-                                  ),
-                                ),
-                                if (selectQty !=
-                                    widget.mProductModel.productQty!)
-                                  const VerticalDivider(
-                                    color: AppColor.colorCoolGrey,
-                                    thickness: 1,
-                                  ),
-                                if (selectQty !=
-                                    widget.mProductModel.productQty!)
-                                  InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          selectQty++;
-                                        });
-                                      },
-                                      child: Image.asset(
-                                        AppImage.appAdd,
-                                        height: 20,
-                                        width: 20,
-                                      )),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            width: AppSize.mainSize73,
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Image.asset(AppImage.appDelete)),
-                        ],
-                      ),
-                    ],
-                  ),
-                const SizedBox(
-                  height: AppSize.mainSize31,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppString.textProductDetail,
-                    style: TextStyle(
-                      color: AppColor.colorBlack_two,
-                      fontSize: AppSize.mainSize16,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.mainSize5,
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppString.textLoremIpsum3,
-                    style: TextStyle(
-                      color: AppColor.colorCoolGrey,
-                      fontSize: AppSize.mainSize16,
-                      fontFamily: AppFonts.avenirRegular,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.mainSize21,
-                ),
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      height: AppSize.mainSize46,
-                      width: AppSize.mainSize266,
-                      child: OutlinedButton.icon(
-                        icon: Image.asset(AppImage.appWpLogo),
-                        label: const Text(
-                          AppString.textChatWithSeller,
-                          style: TextStyle(
-                              color: AppColor.colorWhite,
-                              fontFamily: AppFonts.avenirRegular),
-                        ),
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          disabledForegroundColor: AppColor.colorPrimary,
-                          backgroundColor: AppColor.colorGrass,
-                          // side: const BorderSide(color: AppColor.colorPrimary),
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        AppString.textSelectQty,
+                        style: TextStyle(
+                          color: AppColor.colorBlack_two,
+                          fontSize: AppSize.mainSize16,
+                          fontFamily: AppFonts.avenirRegular,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                     const SizedBox(
-                      width: AppSize.mainSize16,
+                      width: AppSize.mainSize12,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Image.asset(AppImage.appShare),
+                    Row(
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 110,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColor.colorCoolGrey),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              if (selectQty != 0)
+                                InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        selectQty--;
+                                      });
+                                    },
+                                    child: Image.asset(
+                                      AppImage.appRemove,
+                                      height: 10,
+                                      width: 10,
+                                    )),
+                              if (selectQty != 0)
+                                const VerticalDivider(
+                                  color: AppColor.colorCoolGrey,
+                                  thickness: 1,
+                                ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 3),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 3, vertical: 2),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    color: Colors.white),
+                                child: Text(
+                                  selectQty.toString(),
+                                  style: getTextStyle(
+                                      AppFonts.regular, AppSize.textSize20),
+                                ),
+                              ),
+                              if (selectQty != widget.mProductModel.productQty!)
+                                const VerticalDivider(
+                                  color: AppColor.colorCoolGrey,
+                                  thickness: 1,
+                                ),
+                              if (selectQty != widget.mProductModel.productQty!)
+                                InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        selectQty++;
+                                      });
+                                    },
+                                    child: Image.asset(
+                                      AppImage.appAdd,
+                                      height: 20,
+                                      width: 20,
+                                    )),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: AppSize.mainSize73,
+                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Image.asset(AppImage.appDelete)),
+                      ],
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: AppSize.mainSize110,
-                )
-              ],
-            ),
+              const SizedBox(
+                height: AppSize.mainSize31,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textProductDetail,
+                  style: TextStyle(
+                    color: AppColor.colorBlack_two,
+                    fontSize: AppSize.mainSize16,
+                    fontFamily: AppFonts.avenirRegular,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize5,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  AppString.textLoremIpsum3,
+                  style: TextStyle(
+                    color: AppColor.colorCoolGrey,
+                    fontSize: AppSize.mainSize16,
+                    fontFamily: AppFonts.avenirRegular,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.mainSize21,
+              ),
+              Row(
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: AppSize.mainSize46,
+                    width: AppSize.mainSize266,
+                    child: OutlinedButton.icon(
+                      icon: Image.asset(AppImage.appWpLogo),
+                      label: const Text(
+                        AppString.textChatWithSeller,
+                        style: TextStyle(
+                            color: AppColor.colorWhite,
+                            fontFamily: AppFonts.avenirRegular),
+                      ),
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        disabledForegroundColor: AppColor.colorPrimary,
+                        backgroundColor: AppColor.colorGrass,
+                        // side: const BorderSide(color: AppColor.colorPrimary),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: AppSize.mainSize16,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(AppImage.appShare),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: AppSize.mainSize110,
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
