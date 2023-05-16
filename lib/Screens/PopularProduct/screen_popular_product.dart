@@ -39,7 +39,7 @@ class _ScreenPopularProductState extends State<ScreenPopularProduct> {
       setState(() {});
     } else {
       dbHelper = DbHelper();
-      mProductModel = await dbHelper.getCategoryProduct(widget.mCategory.id!);
+      mProductModel = await dbHelper.getPopularProduct();
       setState(() {});
     }
   }

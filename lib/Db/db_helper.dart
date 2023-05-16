@@ -45,6 +45,8 @@ class DbHelper {
   static const String C_OrderUserId = 'orderUserId';
   static const String C_OrderStatus = 'orderStatus';
 
+  static const String C_NumberOfOrders = 'numberOfOrders';
+
   Future<Database> get db async {
     /* if (_db != null) {
       return _db;
@@ -229,8 +231,10 @@ class DbHelper {
   ///GetPopularProduct
   Future<List<ProductModel>> getPopularProduct() async {
     var dbClient = await db;
-    var res = await dbClient.rawQuery("SELECT * FROM $Table_Product WHERE "
-        "$C_ProductCat  ");
+    var res = await dbClient.rawQuery("SELECT $C_ProductID,$C_ProductName,"
+        "COUNT($C_OrderID)AS $C_NumberOfOrders FROM $Table_Product GROUP BY $C_ProductID"
+        "ORDER BY $C_NumberOfOrders DESC "
+        "LIMIT 1");
     try {
       List<ProductModel> mProductModel = List<ProductModel>.from(
           res.map((model) => ProductModel.fromJson(model)));
@@ -239,6 +243,14 @@ class DbHelper {
       return [];
     }
   }
+
+  ///SELECT product_id,
+  //        product_name,
+  //        COUNT(order_id) AS number_of_orders
+  // FROM order_details
+  // GROUP BY product_id
+  // ORDER BY number_of_orders DESC
+  // LIMIT 1;
 
   ///GetEmailCheck
   Future<UserModel> getCheckEmailUser(String email) async {
